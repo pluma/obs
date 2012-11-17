@@ -1,6 +1,5 @@
 {
   "name": "obs",
-  "preferGlobal": "true",
   "version": "0.1.0",
   "author": "Alan Plum <me@alanplum.com>",
   "description": "Minimalist observable properties",
@@ -13,7 +12,6 @@
     "properties"
   ],
   "dependencies" : {},
-  "analyze": false,
   "devDependencies": {},
   "license": "MIT",
   "engines": {
