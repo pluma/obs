@@ -1,21 +1,22 @@
-﻿{
-    "name": "obs",
-    "version": "0.1.0",
-    "author": "Alan Plum <me@alanplum.com>",
-    "description": "Minimalist observable properties",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/pluma/obs.js"
-    },
-    "keywords": [
-        "observables",
-        "properties"
-    ],
-    "dependencies" : {},
-    "analyze": false,
-    "devDependencies": {},
-    "license": "MIT",
-    "engines": {
-        "node": ">=0.6"
-    }
+{
+  "name": "obs",
+  "preferGlobal": "true",
+  "version": "0.1.0",
+  "author": "Alan Plum <me@alanplum.com>",
+  "description": "Minimalist observable properties",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pluma/obs.js.git"
+  },
+  "keywords": [
+    "observables",
+    "properties"
+  ],
+  "dependencies" : {},
+  "analyze": false,
+  "devDependencies": {},
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.6"
+  }
 }
