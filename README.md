@@ -144,7 +144,7 @@ Publishes the given message. Every callback function in this object's list of su
 
 ### util.extend: Helper function to apply attributes from one object to another
 
-#### util.extend(target, source...)
+#### util.extend(target, source…)
 
 Applies all attributes of each of the given source objects to the given target object.
 
