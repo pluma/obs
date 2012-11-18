@@ -5,4 +5,10 @@ test:
 		--reporter spec \
 		spec/*.spec.js
 
-.PHONY: test
+min:
+	@./node_modules/.bin/uglifyjs lib/obs.js > lib/obs.min.js
+
+lint:
+	@./node_modules/.bin/jshint lib spec
+
+.PHONY: lint test

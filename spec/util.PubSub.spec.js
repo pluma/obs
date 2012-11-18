@@ -3,12 +3,12 @@ describe('util.PubSub', function() {
     var PubSub = obs.util.PubSub;
     it('remembers subscribers', function() {
         var subscriber = function() {},
-            pubsub = new PubSub;
+            pubsub = new PubSub();
         pubsub.subscribe(subscriber);
         expect(pubsub._subscribers).to.only.contain(subscriber);
     });
     it('notifies subscribers when a message is published', function() {
-        var pubsub = new PubSub,
+        var pubsub = new PubSub(),
             messages = [],
             subscriber = function(msg) {messages.push(msg);},
             message = 'hello world';
@@ -17,7 +17,7 @@ describe('util.PubSub', function() {
         expect(messages).to.only.contain(message);
     });
     it('notifies each subscriber in sequence', function() {
-        var pubsub = new PubSub,
+        var pubsub = new PubSub(),
             results = [];
         pubsub.subscribe(function() {results.push('one');});
         pubsub.subscribe(function() {results.push('two');});
@@ -26,7 +26,7 @@ describe('util.PubSub', function() {
         expect(results).to.eql(['one', 'two', 'three']);
     });
     it('publishes each message in sequence', function() {
-        var pubsub = new PubSub,
+        var pubsub = new PubSub(),
             messages = [],
             subscriber = function(msg) {messages.push(msg);};
         pubsub.subscribe(subscriber);
@@ -37,7 +37,7 @@ describe('util.PubSub', function() {
     });
     describe('when notified without subscribers', function() {
         it('does not throw an error', function() {
-            var pubsub = new PubSub;
+            var pubsub = new PubSub();
             pubsub.publish('hello');
         });
     });
@@ -46,7 +46,7 @@ describe('util.PubSub', function() {
             subscriber1 = function() {subscriber1.timesCalled += 1;},
             subscriber2 = function() {subscriber2.timesCalled += 1;};
         beforeEach(function() {
-            pubsub = new PubSub;
+            pubsub = new PubSub();
             subscriber1.timesCalled = 0;
             subscriber2.timesCalled = 0;
             pubsub.subscribe(subscriber1);
@@ -70,7 +70,7 @@ describe('util.PubSub', function() {
     });
     describe('when a non-subscribed function is unsubscribed', function() {
         it('returns false', function() {
-            var pubsub = new PubSub,
+            var pubsub = new PubSub(),
                 subscriber = function() {},
                 nonSubscriber = function() {},
                 result;
