@@ -1,6 +1,6 @@
 {
   "name": "obs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Alan Plum <me@alanplum.com>",
   "description": "Minimalist observable properties",
   "repository": {
@@ -14,7 +14,7 @@
   "dependencies" : {},
   "devDependencies": {},
   "license": "MIT",
-  "main": "obs",
+  "main": "./lib/obs.js",
   "engines": {
     "node": ">=0.6"
   }
