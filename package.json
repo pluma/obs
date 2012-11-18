@@ -12,7 +12,10 @@
     "properties"
   ],
   "dependencies" : {},
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "1.7.x",
+    "expect.js": "0.2.x"
+  },
   "license": "MIT",
   "main": "./lib/obs.js",
   "scripts": {
