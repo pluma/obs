@@ -1,6 +1,6 @@
 # Synopsis
 
-obs.js is a lightweight implementation of observable properties inspired by knockout.js.
+obs.js is a lightweight implementation of observable properties.
 
 # Install
 
@@ -160,8 +160,8 @@ Returns the target object.
 
 # Acknowledgements
 
-This libary was heavily inspired by Steve Sanderson's knockout.js project.
+This libary was heavily inspired by [Steve Sanderson's knockout.js project](https://github.com/SteveSanderson/knockout).
 
 # License
 
-The MIT license. For more information see LICENSE.
+The MIT/X11 license.
