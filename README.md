@@ -12,7 +12,7 @@ obs.js is a lightweight implementation of observable properties inspired by knoc
 
 ## Browser
 
-Get the [latest minified release](https://github.com/pluma/obs.js/master/lib/obs.min.js) and download it to your project.
+Get the [latest minified release](https://raw.github.com/pluma/obs.js/master/lib/obs.min.js) and download it to your project.
 
 You can load the `obs` module with an AMD or CommonJS module loader or include the `obs` global directly with a script tag:
 
