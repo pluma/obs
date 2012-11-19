@@ -16,6 +16,16 @@ describe('util.PubSub', function() {
         pubsub.publish(message);
         expect(messages).to.only.contain(message);
     });
+    it('passes all published arguments to subscribers', function() {
+        var pubsub = new PubSub(),
+            messages = [],
+            subscriber = function() {messages.push(Array.prototype.slice.call(arguments, 0));},
+            message = ['hello', 'world'];
+        pubsub.subscribe(subscriber);
+        pubsub.publish.apply(pubsub, message);
+        expect(messages.length).to.equal(1);
+        expect(messages[0]).to.eql(message);
+    });
     it('notifies each subscriber in sequence', function() {
         var pubsub = new PubSub(),
             results = [];

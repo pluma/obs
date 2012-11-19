@@ -47,6 +47,25 @@ describe('computed', function() {
                 y(newY);
                 expect(messages).to.eql([newX + oldY, newX + newY]);
             });
+            it('notifies its subscribers with its old and new value', function() {
+                var subscriber = function(newVal, oldVal) {
+                        publishedNewVal = newVal;
+                        publishedOldVal = oldVal;
+                    },
+                    newY = y() * 2,
+                    expectedNewVal = x() + newY,
+                    publishedNewVal,
+                    publishedOldVal,
+                    oldVal;
+                computed = obs.computed(function() {
+                    return x() + y();
+                }, [x, y]);
+                oldVal = computed();
+                computed.subscribe(subscriber);
+                y(newY);
+                expect(publishedNewVal).to.equal(expectedNewVal);
+                expect(publishedOldVal).to.equal(oldVal);
+            });
         });
     });
     describe('when created as lazy', function() {

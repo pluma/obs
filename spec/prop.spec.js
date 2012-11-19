@@ -25,13 +25,20 @@ describe('prop', function() {
         beforeEach(function() {
             prop = obs.prop();
         });
-        it('publishes its new value', function() {
-            var newValue = 'new value',
-                subscriber = function(val) {publishedValue = val;},
-                publishedValue;
+        it('publishes its new and old value', function() {
+            var oldValue = 'old value',
+                newValue = 'new value',
+                subscriber = function(newVal, oldVal) {
+                    publishedNewValue = newVal;
+                    publishedOldValue = oldVal;
+                },
+                publishedNewValue,
+                publishedOldValue;
+            prop(oldValue);
             prop.subscribe(subscriber);
             prop(newValue);
-            expect(newValue).to.equal(publishedValue);
+            expect(newValue).to.equal(publishedNewValue);
+            expect(oldValue).to.equal(publishedOldValue);
         });
         describe('the next time it is called without a value', function() {
             it('returns the new value', function() {

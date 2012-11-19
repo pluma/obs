@@ -1,6 +1,6 @@
 {
   "name": "obs",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "Alan Plum <me@alanplum.com>",
   "description": "Minimalist observable properties",
   "repository": {

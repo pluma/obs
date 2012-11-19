@@ -50,13 +50,13 @@ If you want to use `obs` in [legacy browsers](https://kangax.github.com/es5-comp
         sum.subscribe(console.log.bind(console, 'sum is now'));
         product.subscribe(console.log.bind(console, 'product is now'));
         x(3);
-        // 'sum is now', 8
-        // 'product is now', 15
+        // 'sum is now', 8, 7
+        // 'product is now', 15, 10
         console.log(sum());
         // 8
         y(8);
-        // 'sum is now', 11
-        // 'product is now', 24
+        // 'sum is now', 11, 8
+        // 'product is now', 24, 15
     });
 ```
 
@@ -74,13 +74,13 @@ Returns the property's current value.
 
 ### prop#(newValue)
 
-Sets the property's value to `newValue`. Notifies all subscribers with the new value.
+Sets the property's value to `newValue`. Notifies all subscribers with the new and old value.
 
 ### prop#subscribe(callback:Function)
 
 Adds the given callback function to this property's list of subscribers.
 
-The callback will be called with the property's new value as a single argument whenever the property is set to a new value (even if the new value is equal to the old value).
+The callback will be called with the property's new and old value as its arguments whenever the property is set to a new value (even if the new value is equal to the old value).
 
 ### prop#unsubscribe(callback:Function):Boolean
 
@@ -146,9 +146,9 @@ Adds the given callback function to this object's list of subscribers.
 
 Removes the given callback function from this object's list of subscribers.
 
-#### util.PubSub#publish(message)
+#### util.PubSub#publish(messages…)
 
-Publishes the given message. Every callback function in this object's list of subscribers will be called sequentially with the given message as their single argument.
+Publishes the given messages. Every callback function in this object's list of subscribers will be called sequentially with the given messages as its arguments.
 
 ### util.extend: Helper function to apply attributes from one object to another
 
