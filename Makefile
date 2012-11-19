@@ -9,6 +9,6 @@ min:
 	@./node_modules/.bin/uglifyjs lib/obs.js > lib/obs.min.js
 
 lint:
-	@./node_modules/.bin/jshint lib spec
+	@./node_modules/.bin/jshint lib/obs.js spec
 
 .PHONY: lint test
