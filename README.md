@@ -20,7 +20,7 @@ You can load the `obs` module with an AMD or CommonJS module loader or include t
     <script src="/your/js/path/obs.min.js"></script>
 ```
 
-If you want to use `obs` in [legacy browsers](https://kangax.github.com/es5-compat-table/#showold) (e.g. IE 8 and lower) make sure to use an EcmaScript 5 polyfill like [augment.js](http://augmentjs.com) because this library makes use of JavaScript functions not available in EcmaScript 4 and lower.
+If you want to use `obs` in [legacy browsers](http://kangax.github.com/es5-compat-table/#showold) (e.g. IE 8 and lower) make sure to use an EcmaScript 5 polyfill like [augment.js](http://augmentjs.com) because this library makes use of JavaScript functions not available in EcmaScript 4 and lower.
 
 ## From Github
 
