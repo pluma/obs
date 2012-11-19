@@ -1,6 +1,6 @@
 # Synopsis
 
-obs.js is a lightweight implementation of observable properties.
+obs.js is a lightweight (1.4 kB minified and 0.7 kB gzipped) implementation of observable properties.
 
 # Install
 
