@@ -6,7 +6,9 @@ obs.js is a lightweight implementation of observable properties inspired by knoc
 
 ## Node.js
 
+```sh
     npm install obs
+```
 
 ## Browser
 
@@ -14,19 +16,24 @@ Get the [latest minified release](https://github.com/pluma/obs.js/master/lib/obs
 
 You can load the `obs` module with an AMD or CommonJS module loader or include the `obs` global directly with a script tag:
 
+```html
     <script src="/your/js/path/obs.min.js"></script>
+```
 
 If you want to use `obs` in [legacy browsers](https://kangax.github.com/es5-compat-table/#showold) (e.g. IE 8 and lower) make sure to use an EcmaScript 5 polyfill like [augment.js](http://augmentjs.com) because this library makes use of JavaScript functions not available in EcmaScript 4 and lower.
 
 ## From Github
 
+```sh
     git clone https://github.com/pluma/obs.js.git
     cd obs.js
     npm install
     make && make min
+```
 
 # Usage example
 
+```javascript
     require(['obs'], function(obs) {
         var x = obs.prop(2),
             y = obs.prop(5),
@@ -51,6 +58,7 @@ If you want to use `obs` in [legacy browsers](https://kangax.github.com/es5-comp
         // 'sum is now', 11
         // 'product is now', 24
     });
+```
 
 # API
 
