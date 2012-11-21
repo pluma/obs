@@ -160,7 +160,7 @@ Returns the target object.
 
 # Acknowledgements
 
-This libary was heavily inspired by [Steve Sanderson's knockout.js project](https://github.com/SteveSanderson/knockout).
+This library was heavily inspired by [Steve Sanderson's knockout.js project](https://github.com/SteveSanderson/knockout).
 
 # License
 
