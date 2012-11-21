@@ -7,7 +7,7 @@ obs.js is a lightweight (1.4 kB minified and 0.7 kB gzipped) implementation of o
 ## Node.js
 
 ```sh
-    npm install obs
+npm install obs
 ```
 
 ## Browser
@@ -17,7 +17,7 @@ Get the [latest minified release](https://raw.github.com/pluma/obs.js/master/lib
 You can load the `obs` module with an AMD or CommonJS module loader or include the `obs` global directly with a script tag:
 
 ```html
-    <script src="/your/js/path/obs.min.js"></script>
+<script src="/your/js/path/obs.min.js"></script>
 ```
 
 If you want to use `obs` in [legacy browsers](http://kangax.github.com/es5-compat-table/#showold) (e.g. IE 8 and lower) make sure to use an EcmaScript 5 polyfill like [augment.js](http://augmentjs.com) because this library makes use of JavaScript functions not available in EcmaScript 4 and lower.
@@ -25,39 +25,39 @@ If you want to use `obs` in [legacy browsers](http://kangax.github.com/es5-compa
 ## From Github
 
 ```sh
-    git clone https://github.com/pluma/obs.js.git
-    cd obs.js
-    npm install
-    make && make min
+git clone https://github.com/pluma/obs.js.git
+cd obs.js
+npm install
+make && make min
 ```
 
 # Usage example
 
 ```javascript
-    require(['obs'], function(obs) {
-        var x = obs.prop(2),
-            y = obs.prop(5),
-            sum = obs.computed(function() {
-                return x() + y();
-            }, [x, y]),
-            product = obs.computed(function() {
-                return x() * y();
-            }, [x, y]);
-        console.log(sum());
-        // 7
-        console.log(product());
-        // 10
-        sum.subscribe(console.log.bind(console, 'sum is now'));
-        product.subscribe(console.log.bind(console, 'product is now'));
-        x(3);
-        // 'sum is now', 8, 7
-        // 'product is now', 15, 10
-        console.log(sum());
-        // 8
-        y(8);
-        // 'sum is now', 11, 8
-        // 'product is now', 24, 15
-    });
+require(['obs'], function(obs) {
+    var x = obs.prop(2),
+        y = obs.prop(5),
+        sum = obs.computed(function() {
+            return x() + y();
+        }, [x, y]),
+        product = obs.computed(function() {
+            return x() * y();
+        }, [x, y]);
+    console.log(sum());
+    // 7
+    console.log(product());
+    // 10
+    sum.subscribe(console.log.bind(console, 'sum is now'));
+    product.subscribe(console.log.bind(console, 'product is now'));
+    x(3);
+    // 'sum is now', 8, 7
+    // 'product is now', 15, 10
+    console.log(sum());
+    // 8
+    y(8);
+    // 'sum is now', 11, 8
+    // 'product is now', 24, 15
+});
 ```
 
 # API
@@ -164,4 +164,4 @@ This libary was heavily inspired by [Steve Sanderson's knockout.js project](http
 
 # License
 
-The MIT/X11 license.
+The MIT/Expat license.
