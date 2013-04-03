@@ -62,7 +62,7 @@ require(['obs'], function(obs) {
 });
 ```
 
-# Client-side example with [rivet.js](http://rivetjs.com) data-binding
+# Client-side example with [rivets.js](http://rivetsjs.com) data-binding
 
 Try it on [jsfiddle](http://jsfiddle.net/QdLxc/).
 
