@@ -1,6 +1,8 @@
 # Synopsis
 
-obs.js is a lightweight (1.4 kB minified and 0.7 kB gzipped) implementation of observable properties.
+obs.js is a lightweight (1.4 kB minified and 0.7 kB gzipped) implementation of observable properties that can be used on both the client-side and the server-side.
+
+Together with [rivets.js](http://rivetsjs.com) it can serve as a lightweight (~3 kB gzipped) alternative to [Knockout.js](http://knockoutjs.com) (14 kB gzipped).
 
 # Install
 
@@ -31,7 +33,7 @@ npm install
 make && make min
 ```
 
-# Usage example
+# Basic usage example with AMD
 
 ```javascript
 require(['obs'], function(obs) {
@@ -58,6 +60,102 @@ require(['obs'], function(obs) {
     // 'sum is now', 11, 8
     // 'product is now', 24, 15
 });
+```
+
+# Client-side example with [rivet.js](http://rivetjs.com) data-binding
+
+Try it on [jsfiddle](http://jsfiddle.net/QdLxc/).
+
+## HTML
+
+```html
+<div id="view">
+    <label>
+        Your name:
+        <input data-rv-value="user.name"/>
+    </label>
+    <div data-rv-bgcolor="color">
+        Hello <span data-rv-text="user.name"></span>!<br>
+        The current UNIX time is: <span data-rv-text="now"></span>
+    </div>
+</div>
+```
+
+## CSS
+
+```css
+#view {
+    font: 16px Verdana, Arial, sans-serif;
+}
+#view div {
+    padding: 10px;
+}
+```
+
+## JavaScript
+
+### Utilities
+
+```javascript
+var colors = [
+    'rgba(255,0,0,0.5)', 'rgba(255,255,0,0.5)',
+    'rgba(0,255,0,0.5)', 'rgba(0,255,255,0.5)',
+    'rgba(0,0,255,0.5)', 'rgba(255,0,255,0.5)'
+];
+function resolveKeypath(obj, keypath) {
+    keypath.split('.').forEach(function(key) {
+        if (key) {
+            obj = obj[key];
+        }
+    });
+    return obj;
+}
+```
+
+### Rivets.js adapter and configuration
+```javascript
+rivets.configure({
+    prefix: 'rv',
+    adapter: {
+        subscribe: function(obj, keypath, callback) {
+            resolveKeypath(obj, keypath).subscribe(callback);
+        },
+        unsubscribe: function(obj, keypath, callback) {
+            resolveKeypath(obj, keypath).unsubscribe(callback);
+        },
+        read: function(obj, keypath) {
+            return resolveKeypath(obj, keypath)();
+        },
+        publish: function(obj, keypath, value) {
+            resolveKeypath(obj, keypath)(value);
+        }
+    }
+});
+
+rivets.binders.bgcolor = function(el, value) {
+    el.style.backgroundColor = value;
+};
+```
+
+### ViewModel (using obs.js)
+
+```javascript
+var viewModel = {
+    now: obs.prop(+new Date()),
+    color: obs.prop(colors[0]),
+    user: {
+        name: obs.prop('User')
+    }
+};
+
+var view = rivets.bind($('#view'), viewModel);
+
+setInterval(function() {
+    viewModel.now(+new Date());
+    viewModel.color(colors[
+        Math.floor(Math.random() * colors.length)
+    ]);
+}, 3000);
 ```
 
 # API
