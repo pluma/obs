@@ -33,33 +33,39 @@ npm install
 make && make min
 ```
 
-# Basic usage example with AMD
+# Basic usage example with node.js
 
 ```javascript
-require(['obs'], function(obs) {
-    var x = obs.prop(2),
-        y = obs.prop(5),
-        sum = obs.computed(function() {
-            return x() + y();
-        }, [x, y]),
-        product = obs.computed(function() {
-            return x() * y();
-        }, [x, y]);
-    console.log(sum());
-    // 7
-    console.log(product());
-    // 10
-    sum.subscribe(console.log.bind(console, 'sum is now'));
-    product.subscribe(console.log.bind(console, 'product is now'));
-    x(3);
-    // 'sum is now', 8, 7
-    // 'product is now', 15, 10
-    console.log(sum());
-    // 8
-    y(8);
-    // 'sum is now', 11, 8
-    // 'product is now', 24, 15
+var obs = require('obs');
+var x = obs.prop(2),
+    y = obs.prop(5),
+    sum = obs.computed(function() {
+        return x() + y();
+    }, [x, y]),
+    product = obs.computed(function() {
+        return x() * y();
+    }, [x, y]);
+
+console.log('sum is currently ' + sum());
+// 'sum is currently 7'
+console.log('product is currently ' + product());
+// 'product is currently 10'
+
+sum.subscribe(function(value, old) {
+    console.log('sum is now ' + value + ' (was: ' + old + ')');
 });
+product.subscribe(function(value, old) {
+    console.log('product is now ' + value + ' (was: ' + old + ')');
+});
+
+x(3);
+// 'sum is now 8 (was: 7)'
+// 'product is now 15 (was: 10)'
+console.log('sum is currently ' + sum());
+// 'sum is currently 8'
+y(8);
+// 'sum is now 11 (was: 8)'
+// 'product is now 24 (was: 15)'
 ```
 
 # Client-side example with [rivets.js](http://rivetsjs.com) data-binding
