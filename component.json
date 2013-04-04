@@ -1,0 +1,10 @@
+{
+  "name": "obs.js",
+  "repo": "pluma/obs.js",
+  "description": "Minimalist observable properties.",
+  "version": "0.2.3",
+  "keywords": ["observable", "pubsub"],
+  "scripts": ["lib/obs.js"],
+  "main": "lib/obs.js",
+  "license": "MIT"
+}
