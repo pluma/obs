@@ -39,7 +39,7 @@ Get the [latest minified release](https://raw.github.com/pluma/obs.js/master/lib
 
 ### As standalone bundle
 
-Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/dist/obs.all.min.js) (~3.1 kB or ~1.1 kB gzipped, includes [aug 0.0.5](https://github.com/jgallen23/aug/tree/0.0.5) and [sublish 0.1.0](https://github.com/pluma/sublish/tree/0.1.0)) and download it to your project.
+Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/dist/obs.all.min.js) (~3.1 kB or ~1.1 kB gzipped, includes [aug 0.0.5](https://github.com/jgallen23/aug/tree/0.0.5) and [sublish 0.2.0](https://github.com/pluma/sublish/tree/0.1.0)) and download it to your project.
 
 You can then include the bundle with a script tag. If you are using an AMD module loader on the same page, make sure to load it _after_ the script tag to avoid conflicts.
 
