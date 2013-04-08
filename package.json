@@ -1,6 +1,6 @@
 {
   "name": "obs",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Alan Plum <me@alanplum.com>",
   "description": "Minimalist observable properties",
   "repository": {
@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "aug": "~0.0.5",
-    "sublish": "~0.1.0"
+    "sublish": "~0.2.0"
   },
   "devDependencies": {
     "mocha": "1.7.x",
