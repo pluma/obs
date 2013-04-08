@@ -1,8 +1,8 @@
 /*global describe, it, expect, obs */
 describe('prop', function() {
-    var originalFn = obs.util.extend({}, obs.prop.fn);
+    var originalFn = aug({}, obs.prop.fn);
     beforeEach(function() {
-        obs.prop.fn = obs.util.extend({}, originalFn);
+        obs.prop.fn = aug({}, originalFn);
     });
     it('inherits all properties of prop.fn', function() {
         var prop;

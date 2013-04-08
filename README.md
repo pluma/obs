@@ -1,30 +1,20 @@
 # Synopsis
 
-obs.js is a lightweight (1.4 kB minified and 0.7 kB gzipped) implementation of observable properties that can be used on both the client-side and the server-side.
+*obs* is a lightweight (~0.7 kB gzipped, ~1.1 kB with all dependencies) implementation of observable properties that can be used on both the client-side and the server-side.
 
-Together with [rivets.js](http://rivetsjs.com) it can serve as a lightweight (~3 kB gzipped) alternative to [Knockout.js](http://knockoutjs.com) (14 kB gzipped).
+Together with [rivets.js](http://rivetsjs.com) it can serve as a lightweight alternative to [Knockout.js](http://knockoutjs.com).
 
 # Install
 
 ## Node.js
 
+### With NPM
+
 ```sh
 npm install obs
 ```
 
-## Browser
-
-Get the [latest minified release](https://raw.github.com/pluma/obs.js/master/lib/obs.min.js) and download it to your project.
-
-You can load the `obs` module with an AMD or CommonJS module loader or include the `obs` global directly with a script tag:
-
-```html
-<script src="/your/js/path/obs.min.js"></script>
-```
-
-If you want to use `obs` in [legacy browsers](http://kangax.github.com/es5-compat-table/#showold) (e.g. IE 8 and lower) make sure to use an EcmaScript 5 polyfill like [augment.js](http://augmentjs.com) because this library makes use of JavaScript functions not available in EcmaScript 4 and lower.
-
-## From Github
+### From source
 
 ```sh
 git clone https://github.com/pluma/obs.js.git
@@ -32,6 +22,32 @@ cd obs.js
 npm install
 make && make min
 ```
+
+## Browser
+
+### With component
+
+```sh
+component install pluma/obs.js
+```
+
+[Learn more about component](https://github.com/component/component).
+
+### Using an AMD or CommonJS module loader
+
+Get the [latest minified release](https://raw.github.com/pluma/obs.js/master/lib/obs.min.js). Make sure you also have a compatible copy of [aug](https://github.com/jgallen23/aug) and [sublish](https://github.com/pluma/sublish).
+
+### As standalone bundle
+
+Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/dist/obs.all.min.js) (~3.1 kB or ~1.1 kB gzipped, includes [aug 0.0.5](https://github.com/jgallen23/aug/tree/0.0.5) and [sublish 0.1.0](https://github.com/pluma/sublish/tree/0.1.0)) and download it to your project.
+
+You can then include the bundle with a script tag. If you are using an AMD module loader on the same page, make sure to load it _after_ the script tag to avoid conflicts.
+
+```html
+<script src="/your/js/path/obs.min.js"></script>
+```
+
+If you want to use `obs` in [legacy browsers](http://kangax.github.com/es5-compat-table/#showold) (e.g. IE 8 and lower) make sure to use an EcmaScript 5 polyfill like [augment.js](http://augmentjs.com) because this library makes use of JavaScript functions not available in EcmaScript 4 and lower.
 
 # Basic usage example with node.js
 
@@ -194,6 +210,10 @@ Returns `false` if the callback could not be found in the list of subscribers or
 
 **NOTE:** Remember to use the exact function that was passed to `prop#subscribe`.
 
+### prop#reset()
+
+Resets the property to its initial value (or `undefined`).
+
 ### prop.fn
 
 An object containing attributes that will be applied to new observable properties.
@@ -206,7 +226,7 @@ Creates a computed observable property. The property's value will be set to the 
 
 If `lazy` is set to `true` (default: `false`), updating of the property's new value will be delayed until the first time the property is called. This also means subscribers will not be notified until the property is called directly.
 
-The list of dependencies can be an array containing any kind of object that supports the `subscribe` and (optionally) `unsubscribe` methods. If a single object is passed instead of an array, the object will automatically be wrapped in an array.
+The list of dependencies can be an array containing any kind of object that supports the `subscribe` and (optionally) `unsubscribe` methods (e.g. an instance of `sublish.PubSub`). If a single object is passed instead of an array, the object will automatically be wrapped in an array.
 
 ### computed#()
 
@@ -224,43 +244,21 @@ Removes the given callback function from this property#s list of subscribers. Se
 
 Returns the comnputed property's current value. Unlike `computed#()` this will not trigger the function evaluation in lazy computed observables.
 
+### computed#watch(dependencies…)
+
+Adds the given objects as dependencies. The passed objects should support the `subscribe` method and optionally support the `unsubscribe` method.
+
+### computed#unwatch(dependencies…)
+
+Removes the given objects from the computed property's dependencies after calling their `unsubscribe` methods, if possible.
+
 ### computed#dismiss()
 
-Unsubscribes the computed observable from all dependencies that support the `unsubscribe` method. This also means changes to the property's dependencies will no longer result in its value being recalculated.
+Removes all of the computed property's dependencies. Equivalent to calling `computed#unwatch` for each dependency.
 
 ### computed.fn
 
 An object containing attributes that will be applied to new computed observable properties.
-
-## util: Useful utilities used internally
-
-### util.PubSub: Simple object that supports publishing and subscriptions
-
-#### new util.PubSub()
-
-Creates a new PubSub instance.
-
-**NOTE:** This is a constructor. Use of the `new` keyword is therefore not optional.
-
-#### util.PubSub#subscribe(callback:Function)
-
-Adds the given callback function to this object's list of subscribers.
-
-#### util.PubSub#unsubscribe(callback:Function)
-
-Removes the given callback function from this object's list of subscribers.
-
-#### util.PubSub#publish(messages…)
-
-Publishes the given messages. Every callback function in this object's list of subscribers will be called sequentially with the given messages as its arguments.
-
-### util.extend: Helper function to apply attributes from one object to another
-
-#### util.extend(target, source…)
-
-Applies all attributes of each of the given source objects to the given target object.
-
-Returns the target object.
 
 # Acknowledgements
 

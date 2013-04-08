@@ -1,2 +1,5 @@
+.*.swp
 build
+components
+dist/vendor
 node_modules
