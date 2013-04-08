@@ -1,6 +1,6 @@
 # Synopsis
 
-*obs* is a lightweight (~0.7 kB gzipped, ~1.1 kB with all dependencies) implementation of observable properties that can be used on both the client-side and the server-side.
+**obs** is a lightweight (~0.7 kB gzipped, ~1.1 kB with all dependencies) implementation of observable properties that can be used on both the client-side and the server-side.
 
 Together with [rivets.js](http://rivetsjs.com) it can serve as a lightweight alternative to [Knockout.js](http://knockoutjs.com).
 
