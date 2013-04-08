@@ -44,7 +44,7 @@ Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/
 You can then include the bundle with a script tag. If you are using an AMD module loader on the same page, make sure to load it _after_ the script tag to avoid conflicts.
 
 ```html
-<script src="/your/js/path/obs.min.js"></script>
+<script src="/your/js/path/obs.all.min.js"></script>
 ```
 
 If you want to use `obs` in [legacy browsers](http://kangax.github.com/es5-compat-table/#showold) (e.g. IE 8 and lower) make sure to use an EcmaScript 5 polyfill like [augment.js](http://augmentjs.com) because this library makes use of JavaScript functions not available in EcmaScript 4 and lower.
