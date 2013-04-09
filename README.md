@@ -24,7 +24,7 @@ npm install obs
 git clone https://github.com/pluma/obs.js.git
 cd obs.js
 npm install
-make && make min
+make && make dist
 ```
 
 ## Browser
@@ -37,19 +37,33 @@ component install pluma/obs.js
 
 [Learn more about component](https://github.com/component/component).
 
-### Using an AMD or CommonJS module loader
+### With a CommonJS module loader
 
-Get the [latest minified release](https://raw.github.com/pluma/obs.js/master/lib/obs.min.js). Make sure you also have a compatible copy of [aug](https://github.com/jgallen23/aug) and [sublish](https://github.com/pluma/sublish).
+Download the [latest minified CommonJS release](https://github.com/pluma/obs.js/dist/obs.min.js) and add it to your project.
+
+Make sure you also have a compatible copy of [aug](https://github.com/jgallen23/aug) and [sublish](https://github.com/pluma/sublish).
+
+[Learn more about CommonJS modules](http://wiki.commonjs.org/wiki/Modules/1.1).
+
+### With an AMD module loader
+
+Download the [latest minified AMD release](https://github.com/pluma/obs.js/dist/obs.amd.min.js) and add it to your project.
+
+Make sure you also have a compatible copy of [aug](https://github.com/jgallen23/aug) and [sublish](https://github.com/pluma/sublish).
+
+[Learn more about AMD modules](http://requirejs.org/docs/whyamd.html).
 
 ### As standalone bundle
 
-Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/dist/obs.all.min.js) (~3.1 kB or ~1.1 kB gzipped, includes [aug 0.0.5](https://github.com/jgallen23/aug/tree/0.0.5) and [sublish 0.2.0](https://github.com/pluma/sublish/tree/0.1.0)) and download it to your project.
-
-You can then include the bundle with a script tag. If you are using an AMD module loader on the same page, make sure to load it _after_ the script tag to avoid conflicts.
+Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/dist/obs.all.min.js) (~3.0 kB or ~1.1 kB gzipped, includes [aug 0.0.5](https://github.com/jgallen23/aug/tree/0.0.5) and [sublish 0.3.0](https://github.com/pluma/sublish/tree/0.3.0)) and download it to your project.
 
 ```html
 <script src="/your/js/path/obs.all.min.js"></script>
 ```
+
+This makes the `obs` module available in the global namespace.
+
+If you are already using `aug` and `sublish` in your project, you can download the [latest minified standalone release](https://raw.github.com/pluma/obs.js/master/dist/obs.globals.min.js) (~1.9 kB or ~0.7 kB minified) instead.
 
 # Basic usage example with node.js
 
@@ -88,7 +102,7 @@ y(8);
 
 # Client-side example with [rivets.js](http://rivetsjs.com) data-binding
 
-Try it on [jsfiddle](http://jsfiddle.net/QdLxc/2/).
+Try it on [jsfiddle](http://jsfiddle.net/QdLxc/3/).
 
 ## HTML
 
