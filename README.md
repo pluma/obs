@@ -4,6 +4,10 @@
 
 Together with [rivets.js](http://rivetsjs.com) it can serve as a lightweight alternative to [Knockout.js](http://knockoutjs.com).
 
+[![browser support](https://ci.testling.com/pluma/obs.js.png)](https://ci.testling.com/pluma/obs.js)
+
+**NOTE**: If you want to use `obs` in [legacy browsers](http://kangax.github.com/es5-compat-table/#showold) (e.g. IE 8 and lower) make sure to use an EcmaScript 5 polyfill like [augment.js](http://augmentjs.com) because this library makes use of JavaScript functions not available in EcmaScript 4 and lower.
+
 # Install
 
 ## Node.js
@@ -47,8 +51,6 @@ You can then include the bundle with a script tag. If you are using an AMD modul
 <script src="/your/js/path/obs.all.min.js"></script>
 ```
 
-If you want to use `obs` in [legacy browsers](http://kangax.github.com/es5-compat-table/#showold) (e.g. IE 8 and lower) make sure to use an EcmaScript 5 polyfill like [augment.js](http://augmentjs.com) because this library makes use of JavaScript functions not available in EcmaScript 4 and lower.
-
 # Basic usage example with node.js
 
 ```javascript
@@ -86,7 +88,7 @@ y(8);
 
 # Client-side example with [rivets.js](http://rivetsjs.com) data-binding
 
-Try it on [jsfiddle](http://jsfiddle.net/QdLxc/).
+Try it on [jsfiddle](http://jsfiddle.net/QdLxc/1/).
 
 ## HTML
 
