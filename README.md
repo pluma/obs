@@ -8,6 +8,8 @@ Together with [rivets.js](http://rivetsjs.com) it can serve as a lightweight alt
 
 **NOTE**: If you want to use `obs` in [legacy browsers](http://kangax.github.com/es5-compat-table/#showold) (e.g. IE 8 and lower) make sure to use an EcmaScript 5 polyfill like [augment.js](http://augmentjs.com) because this library makes use of JavaScript functions not available in EcmaScript 4 and lower.
 
+[![Build Status](https://travis-ci.org/pluma/obs.js.png)](https://travis-ci.org/pluma/obs.js)
+
 # Install
 
 ## Node.js
