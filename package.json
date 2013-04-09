@@ -28,5 +28,19 @@
   },
   "engines": {
     "node": ">=0.10"
+  },
+  "testling": {
+    "files": "spec/*.js",
+    "browsers": [
+      "ie/7..latest",
+      "chrome/latest",
+      "chrome/canary",
+      "firefox/latest",
+      "firefox/nightly",
+      "opera/latest",
+      "safari/latest",
+      "ipad/6..latest",
+      "iphone/6..latest"
+    ]
   }
 }
