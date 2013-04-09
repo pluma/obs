@@ -38,6 +38,7 @@
       "firefox/latest",
       "firefox/nightly",
       "opera/latest",
+      "opera/next",
       "safari/latest",
       "ipad/6..latest",
       "iphone/6..latest"
