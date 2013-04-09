@@ -88,7 +88,7 @@ y(8);
 
 # Client-side example with [rivets.js](http://rivetsjs.com) data-binding
 
-Try it on [jsfiddle](http://jsfiddle.net/QdLxc/1/).
+Try it on [jsfiddle](http://jsfiddle.net/QdLxc/2/).
 
 ## HTML
 
