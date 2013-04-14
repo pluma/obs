@@ -41,7 +41,7 @@ component install pluma/obs.js
 
 ### With a CommonJS module loader
 
-Download the [latest minified CommonJS release](https://github.com/pluma/obs.js/blob/master/dist/obs.min.js) and add it to your project.
+Download the [latest minified CommonJS release](https://raw.github.com/pluma/obs.js/master/dist/obs.min.js) and add it to your project.
 
 Make sure you also have a compatible copy of [aug](https://github.com/jgallen23/aug) and [sublish](https://github.com/pluma/sublish).
 
@@ -49,7 +49,7 @@ Make sure you also have a compatible copy of [aug](https://github.com/jgallen23/
 
 ### With an AMD module loader
 
-Download the [latest minified AMD release](https://github.com/pluma/obs.js/blob/master/dist/obs.amd.min.js) and add it to your project.
+Download the [latest minified AMD release](https://raw.github.com/pluma/obs.js/master/dist/obs.amd.min.js) and add it to your project.
 
 Make sure you also have a compatible copy of [aug](https://github.com/jgallen23/aug) and [sublish](https://github.com/pluma/sublish).
 
