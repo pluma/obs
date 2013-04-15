@@ -1,4 +1,4 @@
-/*! obs 0.5.1 Copyright (c) 2013 Alan Plum. MIT licensed. */
+/*! obs 0.5.2 Copyright (c) 2013 Alan Plum. MIT licensed. */
 var aug = require('aug'),
     PubSub = require('sublish').PubSub,
     slice = Array.prototype.slice;

@@ -6,8 +6,6 @@ Together with [rivets.js](http://rivetsjs.com) it can serve as a lightweight alt
 
 [![browser support](https://ci.testling.com/pluma/obs.js.png)](https://ci.testling.com/pluma/obs.js)
 
-**NOTE**: If you want to use `obs` in [legacy browsers](http://kangax.github.com/es5-compat-table/#showold) (e.g. IE 8 and lower) make sure to use an EcmaScript 5 polyfill like [augment.js](http://augmentjs.com) because this library makes use of JavaScript functions not available in EcmaScript 4 and lower.
-
 [![Build Status](https://travis-ci.org/pluma/obs.js.png?branch=master)](https://travis-ci.org/pluma/obs.js)
 
 # Install
@@ -57,7 +55,7 @@ Make sure you also have a compatible copy of [aug](https://github.com/jgallen23/
 
 ### As standalone bundle
 
-Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/dist/obs.all.min.js) (~3.3 kB or ~1.2 kB gzipped, includes [aug 0.0.5](https://github.com/jgallen23/aug/tree/0.0.5) and [sublish 0.3.0](https://github.com/pluma/sublish/tree/0.3.0)) and download it to your project.
+Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/dist/obs.all.min.js) (~3.3 kB or ~1.2 kB gzipped, includes [aug 0.0.5](https://github.com/jgallen23/aug/tree/0.0.5) and [sublish 0.4.2](https://github.com/pluma/sublish/tree/0.3.0)) and download it to your project.
 
 ```html
 <script src="/your/js/path/obs.all.min.js"></script>
