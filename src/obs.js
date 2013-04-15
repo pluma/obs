@@ -161,7 +161,7 @@ exports.computed = aug(function(readFn, watched, lazy) {
         unwatch: function() {
             var subs = slice.call(arguments, 0),
                 allSubs = this._subscriptions,
-                i, sub;
+                i, j, sub;
 
             for (i = 0; i < subs.length; i++) {
                 sub = subs[i];
@@ -173,8 +173,11 @@ exports.computed = aug(function(readFn, watched, lazy) {
             this._subscriptions = [];
             for (i = 0; i < allSubs.length; i++) {
                  sub = allSubs[i];
-                 if (subs.indexOf(sub) === -1) {
-                     this._subscriptions.push(sub);
+                 for (j = 0; j < subs.length; j++) {
+                    if (subs[j] === sub) {
+                        this._subscriptions.push(sub);
+                        break;
+                    }
                  }
             }
             return this;
