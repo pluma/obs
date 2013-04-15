@@ -1,4 +1,7 @@
-/*global describe, it, expect, obs */
+/*global describe, it */
+var expect = require('expect.js'),
+    aug = require('aug'),
+    obs = require('../');
 describe('computed', function() {
     describe('when created as eager (default)', function() {
         var x, y, computed;
