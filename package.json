@@ -33,7 +33,6 @@
     "files": "spec/*.js",
     "harness": "mocha",
     "browsers": [
-      "ie/7..latest",
       "chrome/latest",
       "chrome/canary",
       "firefox/latest",
@@ -42,7 +41,8 @@
       "opera/next",
       "safari/latest",
       "ipad/6..latest",
-      "iphone/6..latest"
+      "iphone/6..latest",
+      "ie/7..latest"
     ]
   }
 }
