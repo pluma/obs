@@ -6,10 +6,10 @@
     "observable",
     "properties"
   ],
-  "version": "0.5.0",
+  "version": "0.5.1",
   "dependencies": {
     "jgallen23/aug": "0.0.5",
-    "pluma/sublish": "0.4.0"
+    "pluma/sublish": "0.4.1"
   },
   "devDependencies": {
     "mocha": "1.7.x",

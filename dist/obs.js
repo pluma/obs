@@ -1,7 +1,7 @@
-/*! obs 0.5.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
+/*! obs 0.5.1 Copyright (c) 2013 Alan Plum. MIT licensed. */
 var aug = require('aug'),
     PubSub = require('sublish').PubSub,
-    A = Array.prototype;
+    slice = Array.prototype.slice;
 
 
 exports.prop = aug(function(initialValue) {
@@ -148,27 +148,36 @@ exports.computed = aug(function(readFn, watched, lazy) {
 }, {
     fn: aug({}, exports.prop.fn, {
         watch: function() {
-            A.forEach.call(arguments, function(sub) {
+            var args = slice.call(arguments, 0);
+            var sub, i;
+            for (i = 0; i < args.length; i++) {
+                sub = args[i];
                 if (sub && typeof sub.subscribe === 'function') {
                     sub.subscribe(this._onNotify);
                     this._subscriptions.push(sub);
                 }
-            }.bind(this));
+            }
             return this;
         },
         unwatch: function() {
-            var subs = A.slice.call(arguments, 0),
-                allSubs = this._subscriptions;
+            var subs = slice.call(arguments, 0),
+                allSubs = this._subscriptions,
+                i, sub;
 
-            subs.forEach(function(sub) {
+            for (i = 0; i < subs.length; i++) {
+                sub = subs[i];
                 if (sub && typeof sub.unsubscribe === 'function') {
                     sub.unsubscribe(this._onNotify);
                 }
-            }.bind(this));
+            }
 
-            this._subscriptions = allSubs.filter(function(sub) {
-                return subs.indexOf(sub) === -1;
-            });
+            this._subscriptions = [];
+            for (i = 0; i < allSubs.length; i++) {
+                 sub = allSubs[i];
+                 if (subs.indexOf(sub) === -1) {
+                     this._subscriptions.push(sub);
+                 }
+            }
             return this;
         },
         dismiss: function() {

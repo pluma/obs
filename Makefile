@@ -1,4 +1,4 @@
-LICENSE_COMMENT="/*! obs 0.5.0 Copyright (c) 2013 Alan Plum. MIT licensed. */"
+LICENSE_COMMENT="/*! obs 0.5.1 Copyright (c) 2013 Alan Plum. MIT licensed. */"
 
 test:
 	@./node_modules/.bin/mocha \
@@ -34,7 +34,7 @@ dist/vendor/aug.js: dist/vendor
 	@wget -P dist/vendor/ https://raw.github.com/jgallen23/aug/0.0.5/dist/aug.js
 
 dist/vendor/sublish.globals.js: dist/vendor
-	@wget -P dist/vendor/ https://raw.github.com/pluma/sublish/0.4.0/dist/sublish.globals.js
+	@wget -P dist/vendor/ https://raw.github.com/pluma/sublish/0.4.1/dist/sublish.globals.js
 
 dist/obs.all.min.js: dist/vendor/aug.js dist/vendor/sublish.globals.js dist/obs.globals.js
 	@cat dist/vendor/aug.js \
