@@ -1,6 +1,6 @@
 # Synopsis
 
-**obs** is a lightweight (~0.7 kB gzipped, ~1.1 kB with all dependencies) implementation of observable properties that can be used on both the client-side and the server-side.
+**obs** is a powerful implementation of observable properties that can be used on both the client-side and the server-side.
 
 Together with [rivets.js](http://rivetsjs.com) it can serve as a lightweight alternative to [Knockout.js](http://knockoutjs.com).
 
@@ -57,7 +57,7 @@ Make sure you also have a compatible copy of [aug](https://github.com/jgallen23/
 
 ### As standalone bundle
 
-Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/dist/obs.all.min.js) (~3.0 kB or ~1.1 kB gzipped, includes [aug 0.0.5](https://github.com/jgallen23/aug/tree/0.0.5) and [sublish 0.3.0](https://github.com/pluma/sublish/tree/0.3.0)) and download it to your project.
+Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/dist/obs.all.min.js) (~3.3 kB or ~1.2 kB gzipped, includes [aug 0.0.5](https://github.com/jgallen23/aug/tree/0.0.5) and [sublish 0.3.0](https://github.com/pluma/sublish/tree/0.3.0)) and download it to your project.
 
 ```html
 <script src="/your/js/path/obs.all.min.js"></script>
@@ -65,7 +65,7 @@ Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/
 
 This makes the `obs` module available in the global namespace.
 
-If you are already using `aug` and `sublish` in your project, you can download the [latest minified standalone release](https://raw.github.com/pluma/obs.js/master/dist/obs.globals.min.js) (~1.9 kB or ~0.7 kB minified) instead.
+If you are already using `aug` and `sublish` in your project, you can download the [latest minified standalone release](https://raw.github.com/pluma/obs.js/master/dist/obs.globals.min.js) (~2.4 kB or ~0.9 kB minified) instead.
 
 # Basic usage example with node.js
 
@@ -228,6 +228,10 @@ Returns `false` if the callback could not be found in the list of subscribers or
 
 **NOTE:** Remember to use the exact function that was passed to `prop#subscribe`.
 
+### prop#peek()
+
+Returns the property's current value. This method mainly exists for compatibility reasons.
+
 ### prop#reset()
 
 Resets the property to its initial value (or `undefined`).
@@ -238,13 +242,37 @@ An object containing attributes that will be applied to new observable propertie
 
 ## computed: Computed observables
 
-### computed(fn:Function, dependencies:Array, [lazy:Boolean])
+### computed(readFn:Function, [watched:Array], [lazy:Boolean])
 
-Creates a computed observable property. The property's value will be set to the return value of the given function `fn` and updated whenever any of the given `dependencies` changes.
+Creates a computed observable property. The property's value will be set to the return value of the given function `readFn` and updated whenever any of the `watched` functions changes.
 
 If `lazy` is set to `true` (default: `false`), updating of the property's new value will be delayed until the first time the property is called. This also means subscribers will not be notified until the property is called directly.
 
-The list of dependencies can be an array containing any kind of object that supports the `subscribe` and (optionally) `unsubscribe` methods (e.g. an instance of `sublish.PubSub`). If a single object is passed instead of an array, the object will automatically be wrapped in an array.
+The list of `watched` functions can be an array containing any kind of object that supports the `subscribe` and (optionally) `unsubscribe` methods (e.g. an instance of `sublish.PubSub`). If a single object is passed instead of an array, the object will automatically be wrapped in an array.
+
+### computed(options)
+
+Creates a computed observable property with the given options.
+
+#### read:Function (optional)
+
+The function this computed observable will use to generate its value. If this option is not provided, the observable will be write-only.
+
+**NOTE**: This option is only optional if a `write` function is provided.
+
+#### write:Function (optional)
+
+The function this computed observable will use when it is passed a value. If this option is not provided, the observable will be read-only.
+
+**NOTE**: This option is only optional if a `read` function is provided.
+
+#### lazy:Boolean (optional)
+
+See above. This option has no effect if no `read` function is provided.
+
+#### watched:Array (optional)
+
+See above. This option has no effect if no `read` function is provided. If a single function is provided instead of an array, it is wrapped in an array automatically.
 
 ### computed#()
 
@@ -256,11 +284,11 @@ Adds the given callback function to this property's list of subscribers. See `pr
 
 ### computed#unsubscribe(callback:Function)
 
-Removes the given callback function from this property#s list of subscribers. See `prop#unsubscribe` .
+Removes the given callback function from this property#s list of subscribers. See `prop#unsubscribe`.
 
 ### computed#peek()
 
-Returns the comnputed property's current value. Unlike `computed#()` this will not trigger the function evaluation in lazy computed observables.
+Returns the computed property's current value. Unlike `computed#()` this will not trigger the function evaluation in lazy computed observables.
 
 ### computed#watch(dependencies…)
 
@@ -273,6 +301,10 @@ Removes the given objects from the computed property's dependencies after callin
 ### computed#dismiss()
 
 Removes all of the computed property's dependencies. Equivalent to calling `computed#unwatch` for each dependency.
+
+### computed#reset()
+
+See `prop#reset()`. This method will fail if the computed observable property is not writable.
 
 ### computed.fn
 

@@ -1,61 +1,63 @@
 var aug = require('aug'),
-    sublish = require('sublish');
+    PubSub = require('sublish').PubSub,
+    A = Array.prototype;
 
-exports.prop = aug(
-    function(initialValue) {
-        function prop(value) {
-            if (arguments.length) {
-                if (typeof prop.validate === 'function') {
-                    prop.validate(value);
-                }
-                prop._previousValue = prop._currentValue;
-                prop._currentValue = value;
-                prop.notify();
-            } else {
-                return prop._currentValue;
-            }
-        }
 
-        sublish.PubSub(prop);
-
-        aug(prop, {
-            _initialValue: initialValue,
-            _currentValue: initialValue,
-            dirty: false
-        }, exports.prop.fn);
-        
-        return prop;
-    },
-    {
-        fn: {
-            __is_obs__: true,
-            notify: function() {
-                this.dirty = (this._currentValue === this._initialValue);
-                this.publish(this._currentValue, this._previousValue);
-            },
-            peek: function() {
-                return this._currentValue;
-            },
-            dismiss: function() {/* noop */},
-            reset: function() {
-                this(this._initialValue);
-            }
+exports.prop = aug(function(initialValue) {
+    function prop(value) {
+        if (arguments.length) {
+            prop._previousValue = prop._currentValue;
+            prop._currentValue = value;
+            prop.notify();
+        } else {
+            return prop._currentValue;
         }
     }
-);
 
-function lazyComputed(fn) {
+    aug(prop, PubSub.prototype, {
+        _initialValue: initialValue,
+        _currentValue: initialValue,
+        dirty: false
+    }, exports.prop.fn);
+
+    PubSub.apply(prop);
+    
+    return prop;
+}, {
+    fn: {
+        __is_obs__: true,
+        notify: function() {
+            this.dirty = (this._currentValue === this._initialValue);
+            this.publish(this._currentValue, this._previousValue);
+        },
+        peek: function() {
+            return this._currentValue;
+        },
+        reset: function() {
+            this(this._initialValue);
+        }
+    }
+});
+
+
+function lazyComputed(readFn, writeFn) {
     var changed = true;
     function computed() {
-        computed._previousValue = computed._currentValue;
-        if (changed) {
-            computed._currentValue = fn();
-            changed = false;
-            computed.notify();
+        if (arguments.length) {
+            if (typeof writeFn !== 'function') {
+                throw new Error('This observable is read-only!');
+            }
+            writeFn.apply(computed, arguments);
+        } else {
+            computed._previousValue = computed._currentValue;
+            if (changed) {
+                computed._currentValue = readFn.apply(computed);
+                changed = false;
+                computed.notify();
+            }
+            return computed._currentValue;
         }
-        return computed._currentValue;
     }
-
     return aug(computed, {
         _initialValue: undefined,
         _onNotify: function() {
@@ -64,78 +66,112 @@ function lazyComputed(fn) {
     });
 }
 
-function eagerComputed(fn) {
-    var initialValue = fn();
+
+function eagerComputed(readFn, writeFn) {
     function computed() {
-        return computed._currentValue;
+        if (arguments.length) {
+            if (typeof writeFn !== 'function') {
+                throw new Error('This observable is read-only!');
+            }
+            writeFn.apply(computed, arguments);
+        } else {
+            return computed._currentValue;
+        }
     }
     return aug(computed, {
-        _initialValue: initialValue,
+        _initialValue: readFn.apply(computed),
         _onNotify: function() {
-            this._previousValue = this._currentValue;
-            this._currentValue = fn();
-            this.notify();
-        }.bind(computed)
+            computed._previousValue = computed._currentValue;
+            computed._currentValue = readFn.apply(computed);
+            computed.notify();
+        }
     });
 }
 
-exports.computed = aug(
-    function(fn, dependencies, lazy) {
-        var computed = (lazy ? lazyComputed : eagerComputed)(fn);
 
-        sublish.PubSub(computed);
-
-        aug(computed, {
-            _currentValue: computed._initialValue,
-            _dependencies: []
-        }, exports.computed.fn);
-
-
-        if (dependencies) {
-            if (Array.isArray(dependencies)) {
-                computed.watch.apply(computed, dependencies);
-            } else {
-                computed.watch(dependencies);
-            }
-        }
-
-        return computed;
-    },
-    {
-        fn: {
-            __is_obs__: true,
-            notify: function() {
-                this.dirty = (this._currentValue === this._initialValue);
-                this.publish(this._currentValue, this._previousValue);
-            },
-            peek: function() {
-                return this._currentValue;
-            },
-            watch: function() {
-                Array.prototype.forEach.call(arguments, function(dep) {
-                    if (dep && typeof dep.subscribe === 'function') {
-                        dep.subscribe(this._onNotify);
-                        this._dependencies.push(dep);
-                    }
-                }.bind(this));
-            },
-            unwatch: function() {
-                var deps = Array.prototype.slice.call(arguments, 0),
-                    allDeps = this._dependencies;
-
-                deps.forEach(function(dep) {
-                    if (dep && typeof dep.unsubscribe === 'function') {
-                        dep.unsubscribe(this._onNotify);
-                    }
-                }.bind(this));
-
-                this._dependencies = allDeps.filter(function(dep) {
-                    return deps.indexOf(dep) === -1;
-                });
-            },
-            dismiss: function() {
-                this.unwatch.apply(this, this._dependencies);
-            }
+function writeOnlyComputed(writeFn) {
+    function computed() {
+        if (arguments.length) {
+            writeFn.apply(computed, arguments);
+        } else {
+            throw new Error('This observable is write-only!');
         }
     }
-);
+    computed._initialValue = undefined;
+    return computed;
+}
+
+
+exports.computed = aug(function(readFn, watched, lazy) {
+    var writeFn;
+
+    if (arguments.length === 1 && typeof readFn === 'object') {
+        lazy = readFn.lazy;
+        watched = readFn.watched;
+        writeFn = readFn.write;
+        readFn = readFn.read;
+    } else if (arguments.length < 3) {
+        if (typeof watched === 'boolean') {
+            lazy = watched;
+            watched = undefined;
+        }
+    }
+
+    if (!readFn && !writeFn) {
+        throw new Error('No read function and no write function provided!');
+    }
+
+    var computed = (
+        readFn ? (
+            lazy ? lazyComputed : eagerComputed
+        )(readFn, writeFn) : writeOnlyComputed(writeFn)
+    );
+
+    aug(computed, PubSub.prototype, {
+        _currentValue: computed._initialValue,
+        dirty: false,
+        _subscriptions: []
+    }, exports.computed.fn);
+
+    PubSub.apply(computed);
+
+    if (readFn && watched) {
+        if (Array.isArray(watched)) {
+            computed.watch.apply(computed, watched);
+        } else {
+            computed.watch(watched);
+        }
+    }
+
+    return computed;
+}, {
+    fn: aug({}, exports.prop.fn, {
+        watch: function() {
+            A.forEach.call(arguments, function(sub) {
+                if (sub && typeof sub.subscribe === 'function') {
+                    sub.subscribe(this._onNotify);
+                    this._subscriptions.push(sub);
+                }
+            }.bind(this));
+            return this;
+        },
+        unwatch: function() {
+            var subs = A.slice.call(arguments, 0),
+                allSubs = this._subscriptions;
+
+            subs.forEach(function(sub) {
+                if (sub && typeof sub.unsubscribe === 'function') {
+                    sub.unsubscribe(this._onNotify);
+                }
+            }.bind(this));
+
+            this._subscriptions = allSubs.filter(function(sub) {
+                return subs.indexOf(sub) === -1;
+            });
+            return this;
+        },
+        dismiss: function() {
+            this.unwatch.apply(this, this._subscriptions);
+        }
+    })
+});

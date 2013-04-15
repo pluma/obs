@@ -1,8 +1,8 @@
 {
   "name": "obs",
-  "version": "0.4.0",
-  "author": "Alan Plum <me@alanplum.com>",
-  "description": "Minimalist observable properties",
+  "version": "0.5.0",
+  "author": "Alan Plum <me@pluma.io>",
+  "description": "Observable properties done right.",
   "repository": {
     "type": "git",
     "url": "https://github.com/pluma/obs.js.git"
@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "aug": "~0.0.5",
-    "sublish": "~0.3.0"
+    "sublish": "~0.4.0"
   },
   "devDependencies": {
     "mocha": "1.7.x",
