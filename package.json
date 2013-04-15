@@ -30,8 +30,8 @@
     "node": ">=0.8"
   },
   "testling": {
-    "files": "spec/*.spec.*.js",
-    "harness": "mocha-bdd",
+    "files": "spec/*.js",
+    "harness": "mocha",
     "browsers": [
       "ie/7..latest",
       "chrome/latest",
