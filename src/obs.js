@@ -136,7 +136,7 @@ exports.computed = aug(function(readFn, watched, lazy) {
     PubSub.apply(computed);
 
     if (readFn && watched) {
-        if (Array.isArray(watched)) {
+        if (Object.prototype.toString.call(watched) === '[object Array]') {
             computed.watch.apply(computed, watched);
         } else {
             computed.watch(watched);
