@@ -1,4 +1,4 @@
-/*global describe, it */
+/*global describe, it, beforeEach, afterEach */
 var expect = require('expect.js'),
     aug = require('aug'),
     obs = require('../');
