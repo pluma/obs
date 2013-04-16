@@ -1,7 +1,10 @@
-/*! obs 0.5.2 Copyright (c) 2013 Alan Plum. MIT licensed. */
+/*! obs 0.6.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
 var aug = require('aug'),
     PubSub = require('sublish').PubSub,
-    slice = Array.prototype.slice;
+    slice = Array.prototype.slice,
+    isArray = Array.isArray ? Array.isArray : function(arr) {
+        return Object.prototype.toString.call(arr) === '[object Array]';
+    };
 
 
 exports.prop = aug(function(initialValue) {
@@ -25,6 +28,25 @@ exports.prop = aug(function(initialValue) {
     
     return prop;
 }, {
+    readOnly: function(initialValue) {
+        function prop() {
+            if (arguments.length) {
+                throw new Error('This observable is read-only!');
+            } else {
+                return prop._currentValue;
+            }
+        }
+
+        aug(prop, PubSub.prototype, {
+            _initialValue: initialValue,
+            _currentValue: initialValue,
+            dirty: false
+        }, exports.prop.fn);
+
+        PubSub.apply(prop);
+
+        return prop;
+    },
     fn: {
         __is_obs__: true,
         notify: function() {
@@ -103,19 +125,19 @@ function writeOnlyComputed(writeFn) {
 }
 
 
-exports.computed = aug(function(readFn, watched, lazy) {
-    var writeFn;
-
+exports.computed = aug(function(readFn, writeFn, watched) {
+    var lazy = false;
     if (arguments.length === 1 && typeof readFn === 'object') {
-        lazy = readFn.lazy;
-        watched = readFn.watched;
         writeFn = readFn.write;
+        watched = readFn.watched;
+        lazy = readFn.lazy;
         readFn = readFn.read;
-    } else if (arguments.length < 3) {
-        if (typeof watched === 'boolean') {
-            lazy = watched;
-            watched = undefined;
+        if (watched && !isArray(watched)) {
+            watched = [watched];
         }
+    } else if (arguments.length === 2 && isArray(writeFn)) {
+        watched = writeFn;
+        writeFn = undefined;
     }
 
     if (!readFn && !writeFn) {
@@ -136,16 +158,26 @@ exports.computed = aug(function(readFn, watched, lazy) {
 
     PubSub.apply(computed);
 
-    if (readFn && watched) {
-        if (Object.prototype.toString.call(watched) === '[object Array]') {
-            computed.watch.apply(computed, watched);
-        } else {
-            computed.watch(watched);
-        }
+    if (readFn && isArray(watched)) {
+        computed.watch.apply(computed, watched);
     }
 
     return computed;
 }, {
+    lazy: function(readFn, writeFn, watched) {
+        if (arguments.length === 1 && typeof readFn === 'object') {
+            return exports.computed(aug({lazy: true}, readFn));
+        } else if (arguments.length === 2 && isArray(writeFn)) {
+            watched = writeFn;
+            writeFn = undefined;
+        }
+        return exports.computed({
+            read: readFn,
+            write: writeFn,
+            watched: watched,
+            lazy: true
+        });
+    },
     fn: aug({}, exports.prop.fn, {
         watch: function() {
             var args = slice.call(arguments, 0);

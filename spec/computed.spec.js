@@ -83,9 +83,9 @@ describe('computed', function() {
         });
         it('initially contains nothing', function() {
             var initialValue;
-            computed = obs.computed(function() {
+            computed = obs.computed.lazy(function() {
                 return x() + y();
-            }, [x, y], true);
+            }, [x, y]);
             initialValue = computed.peek();
             expect(initialValue).to.be(undefined);
         });
@@ -93,9 +93,9 @@ describe('computed', function() {
             it('does notify its subscribers', function() {
                 var timesCalled = 0,
                     subscriber = function() {timesCalled += 1;};
-                computed = obs.computed(function() {
+                computed = obs.computed.lazy(function() {
                     return x() + y();
-                }, [x, y], true);
+                }, [x, y]);
                 computed.subscribe(subscriber);
                 computed();
                 expect(timesCalled).to.equal(1);
@@ -110,9 +110,9 @@ describe('computed', function() {
                     oldY = y(),
                     newX = 20,
                     newY = 50;
-                computed = obs.computed(function() {
+                computed = obs.computed.lazy(function() {
                     return x() + y();
-                }, [x, y], true);
+                }, [x, y]);
                 computed.subscribe(subscriber);
                 x(newX);
                 expect(messages).to.be.empty();
@@ -124,9 +124,9 @@ describe('computed', function() {
             it('does notify its subscribers', function() {
                 var timesCalled = 0,
                     subscriber = function() {timesCalled += 1;};
-                computed = obs.computed(function() {
+                computed = obs.computed.lazy(function() {
                     return x() + y();
-                }, [x, y], true);
+                }, [x, y]);
                 computed.subscribe(subscriber);
                 x(20);
                 expect(timesCalled).to.equal(0);

@@ -234,19 +234,23 @@ Returns the property's current value. This method mainly exists for compatibilit
 
 Resets the property to its initial value (or `undefined`).
 
+### prop.readOnly([initialValue])
+
+Creates an observable property that can not be written to directly.
+
 ### prop.fn
 
 An object containing attributes that will be applied to new observable properties.
 
 ## computed: Computed observables
 
-### computed(readFn:Function, [watched:Array], [lazy:Boolean])
+### computed(readFn:Function, [writeFn:Function], [watched:Array])
 
 Creates a computed observable property. The property's value will be set to the return value of the given function `readFn` and updated whenever any of the `watched` functions changes.
 
-If `lazy` is set to `true` (default: `false`), updating of the property's new value will be delayed until the first time the property is called. This also means subscribers will not be notified until the property is called directly.
+If a `writeFn` is passed, that function will be used when the computed observable is passed a value.
 
-The list of `watched` functions can be an array containing any kind of object that supports the `subscribe` and (optionally) `unsubscribe` methods (e.g. an instance of `sublish.PubSub`). If a single object is passed instead of an array, the object will automatically be wrapped in an array.
+The list of `watched` functions can be an array containing any kind of object that supports the `subscribe` and (optionally) `unsubscribe` methods (e.g. an instance of `sublish.PubSub`).
 
 ### computed(options)
 
@@ -266,11 +270,11 @@ The function this computed observable will use when it is passed a value. If thi
 
 #### lazy:Boolean (optional)
 
-See above. This option has no effect if no `read` function is provided.
+If `lazy` is set to `true` (default: `false`), updating of the property's new value will be delayed until the first time the property is called. This also means subscribers will not be notified until the property is called directly. This option has no effect if no `read` function is provided.
 
 #### watched:Array (optional)
 
-See above. This option has no effect if no `read` function is provided. If a single function is provided instead of an array, it is wrapped in an array automatically.
+See above. This option has no effect if no `read` function is provided. If a single object is passed instead of an array, the object will automatically be wrapped in an array.
 
 ### computed#()
 
@@ -303,6 +307,14 @@ Removes all of the computed property's dependencies. Equivalent to calling `comp
 ### computed#reset()
 
 See `prop#reset()`. This method will fail if the computed observable property is not writable.
+
+### computed.lazy(readFn:Function, [writeFn: Function], [watched:Array])
+
+See `computed(…)`. Shorthand for creating a computed observable with `lazy` set to `True`.
+
+### computed.lazy(options)
+
+See `computed(options)`. Shorthand for creating a computed observable with `lazy` set to `True`.
 
 ### computed.fn
 
