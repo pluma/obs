@@ -1,7 +1,7 @@
 /*global describe, it, beforeEach, afterEach */
 var expect = require('expect.js'),
-    aug = require('aug'),
     obs = require('../');
+
 describe('computed', function() {
     describe('when created as eager (default)', function() {
         var x, y, computed;
@@ -107,7 +107,6 @@ describe('computed', function() {
             it('does not notify its subscribers', function() {
                 var messages = [],
                     subscriber = function(msg) {messages.push(msg);},
-                    oldY = y(),
                     newX = 20,
                     newY = 50;
                 computed = obs.computed.lazy(function() {
