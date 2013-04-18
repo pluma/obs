@@ -2,6 +2,7 @@
 var expect = require('expect.js'),
     aug = require('aug'),
     obs = require('../');
+
 describe('prop', function() {
     var originalFn = aug({}, obs.prop.fn);
     beforeEach(function() {
