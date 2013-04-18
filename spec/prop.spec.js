@@ -43,6 +43,7 @@ describe('prop', function() {
             prop(newValue);
             expect(newValue).to.equal(publishedNewValue);
             expect(oldValue).to.equal(publishedOldValue);
+            prop.unsubscribe(subscriber);
         });
         describe('the next time it is called without a value', function() {
             it('returns the new value', function() {

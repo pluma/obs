@@ -9,10 +9,6 @@ describe('computed', function() {
             x = obs.prop(2);
             y = obs.prop(5);
         });
-        afterEach(function() {
-            computed.dismiss();
-            computed.subscribers = [];
-        });
         it('initially contains the function\'s result', function() {
             var initialValue;
             computed = obs.computed(function() {
@@ -20,6 +16,7 @@ describe('computed', function() {
             }, [x, y]);
             initialValue = computed.peek();
             expect(x() + y()).to.equal(initialValue);
+            computed.dismiss();
         });
         describe('when called at any time', function() {
             it('does not notify its subscribers', function() {
@@ -33,6 +30,8 @@ describe('computed', function() {
                 expect(timesCalled).to.equal(0);
                 computed();
                 expect(timesCalled).to.equal(0);
+                computed.unsubscribe(subscriber);
+                computed.dismiss();
             });
         });
         describe('when dependencies change', function() {
@@ -49,6 +48,8 @@ describe('computed', function() {
                 x(newX);
                 y(newY);
                 expect(messages).to.eql([newX + oldY, newX + newY]);
+                computed.unsubscribe(subscriber);
+                computed.dismiss();
             });
             it('notifies its subscribers with its old and new value', function() {
                 var subscriber = function(newVal, oldVal) {
@@ -68,6 +69,8 @@ describe('computed', function() {
                 y(newY);
                 expect(publishedNewVal).to.equal(expectedNewVal);
                 expect(publishedOldVal).to.equal(oldVal);
+                computed.unsubscribe(subscriber);
+                computed.dismiss();
             });
         });
     });
@@ -88,6 +91,7 @@ describe('computed', function() {
             }, [x, y]);
             initialValue = computed.peek();
             expect(initialValue).to.be(undefined);
+            computed.dismiss();
         });
         describe('when called for the very first time', function() {
             it('does notify its subscribers', function() {
@@ -101,6 +105,8 @@ describe('computed', function() {
                 expect(timesCalled).to.equal(1);
                 computed();
                 expect(timesCalled).to.equal(1);
+                computed.unsubscribe(subscriber);
+                computed.dismiss();
             });
         });
         describe('when dependencies change', function() {
@@ -117,6 +123,8 @@ describe('computed', function() {
                 expect(messages).to.be.empty();
                 y(newY);
                 expect(messages).to.be.empty();
+                computed.unsubscribe(subscriber);
+                computed.dismiss();
             });
         });
         describe('when called for the very first time after a dependency changed', function() {
@@ -133,6 +141,8 @@ describe('computed', function() {
                 expect(timesCalled).to.equal(1);
                 computed();
                 expect(timesCalled).to.equal(1);
+                computed.unsubscribe(subscriber);
+                computed.dismiss();
             });
         });
     });
@@ -164,6 +174,8 @@ describe('computed', function() {
             computed.subscribe(subscriber);
             z(70);
             expect(timesCalled).to.equal(1);
+            computed.unsubscribe(subscriber);
+            computed.dismiss();
         });
     });
     describe('when dismissed', function() {
