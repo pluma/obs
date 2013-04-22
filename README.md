@@ -55,7 +55,7 @@ Make sure you also have a compatible copy of [aug](https://github.com/jgallen23/
 
 ### As standalone bundle
 
-Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/dist/obs.all.min.js) (~3.5 kB or ~1.3 kB gzipped, includes [aug 0.0.5](https://github.com/jgallen23/aug/tree/0.0.5) and [sublish 0.4.2](https://github.com/pluma/sublish/tree/0.3.0)) and download it to your project.
+Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/dist/obs.all.min.js) (~4.1 kB or ~1.4 kB gzipped, includes [aug 0.0.5](https://github.com/jgallen23/aug/tree/0.0.5) and [sublish 0.4.2](https://github.com/pluma/sublish/tree/0.3.0)) and download it to your project.
 
 ```html
 <script src="/your/js/path/obs.all.min.js"></script>
@@ -63,7 +63,7 @@ Get the [latest distribution bundle](https://raw.github.com/pluma/obs.js/master/
 
 This makes the `obs` module available in the global namespace.
 
-If you are already using `aug` and `sublish` in your project, you can download the [latest minified standalone release](https://raw.github.com/pluma/obs.js/master/dist/obs.globals.min.js) (~2.5 kB or ~0.9 kB minified) instead.
+If you are already using `aug` and `sublish` in your project, you can download the [latest minified standalone release](https://raw.github.com/pluma/obs.js/master/dist/obs.globals.min.js) (~3.1 kB or ~1.0 kB minified) instead.
 
 # Basic usage example with node.js
 
@@ -294,7 +294,7 @@ Returns the computed property's current value. Unlike `computed#()` this will no
 
 ### computed#watch(dependencies…)
 
-Adds the given objects as dependencies. The passed objects should support the `subscribe` method and optionally support the `unsubscribe` method.
+Adds the given objects as dependencies. The passed objects should support the `subscribe` method and optionally support the `unsubscribe` method. Duplicates will be ignored.
 
 ### computed#unwatch(dependencies…)
 
@@ -307,6 +307,14 @@ Removes all of the computed property's dependencies. Equivalent to calling `comp
 ### computed#reset()
 
 See `prop#reset()`. This method will fail if the computed observable property is not writable.
+
+### computed#read
+
+The function that will be called when the computed observable is read.
+
+### computed#write
+
+The function that will be called when the computed observable is written to.
 
 ### computed.lazy(readFn:Function, [writeFn: Function], [watched:Array])
 

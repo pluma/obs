@@ -5,6 +5,16 @@ var aug = require('aug'),
     slice = Array.prototype.slice,
     isArray = Array.isArray ? Array.isArray : function(arr) {
         return Object.prototype.toString.call(arr) === '[object Array]';
+    },
+    contains = Array.prototype.indexOf ? function(arr, el) {
+        return !!~arr.indexOf(el);
+    } : function(arr, el) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] === el) {
+                return true;
+            }
+        }
+        return false;
     };
 
 
@@ -64,18 +74,18 @@ exports.prop = aug(function(initialValue) {
 });
 
 
-function lazyComputed(readFn, writeFn) {
+function lazyComputed() {
     var changed = true;
     function computed() {
         if (arguments.length) {
-            if (typeof writeFn !== 'function') {
+            if (typeof computed.write !== 'function') {
                 throw new Error('This observable is read-only!');
             }
-            writeFn.apply(computed, arguments);
+            computed.write.apply(computed, arguments);
         } else {
             computed._previousValue = computed._currentValue;
             if (changed) {
-                computed._currentValue = readFn.apply(computed);
+                computed._currentValue = computed.read();
                 changed = false;
                 computed.notify();
             }
@@ -91,13 +101,13 @@ function lazyComputed(readFn, writeFn) {
 }
 
 
-function eagerComputed(readFn, writeFn) {
+function eagerComputed(readFn) {
     function computed() {
         if (arguments.length) {
-            if (typeof writeFn !== 'function') {
+            if (typeof computed.write !== 'function') {
                 throw new Error('This observable is read-only!');
             }
-            writeFn.apply(computed, arguments);
+            computed.write.apply(computed, arguments);
         } else {
             return computed._currentValue;
         }
@@ -106,17 +116,17 @@ function eagerComputed(readFn, writeFn) {
         _initialValue: readFn.apply(computed),
         _onNotify: function() {
             computed._previousValue = computed._currentValue;
-            computed._currentValue = readFn.apply(computed);
+            computed._currentValue = computed.read();
             computed.notify();
         }
     });
 }
 
 
-function writeOnlyComputed(writeFn) {
+function writeOnlyComputed() {
     function computed() {
         if (arguments.length) {
-            writeFn.apply(computed, arguments);
+            computed.write.apply(computed, arguments);
         } else {
             throw new Error('This observable is write-only!');
         }
@@ -153,6 +163,8 @@ exports.computed = aug(function(readFn, writeFn, watched) {
 
     aug(computed, PubSub.prototype, {
         _currentValue: computed._initialValue,
+        read: readFn,
+        write: writeFn,
         dirty: false,
         _subscriptions: []
     }, exports.computed.fn);
@@ -181,10 +193,13 @@ exports.computed = aug(function(readFn, writeFn, watched) {
     },
     fn: aug({}, exports.prop.fn, {
         watch: function() {
-            var args = slice.call(arguments, 0);
-            var sub, i;
+            var args = slice.call(arguments, 0),
+                sub, i;
             for (i = 0; i < args.length; i++) {
                 sub = args[i];
+                if (contains(this._subscriptions, sub)) {
+                    continue;
+                }
                 if (sub && typeof sub.subscribe === 'function') {
                     sub.subscribe(this._onNotify);
                     this._subscriptions.push(sub);
@@ -195,7 +210,7 @@ exports.computed = aug(function(readFn, writeFn, watched) {
         unwatch: function() {
             var subs = slice.call(arguments, 0),
                 allSubs = this._subscriptions,
-                i, j, sub;
+                i, sub;
 
             for (i = 0; i < subs.length; i++) {
                 sub = subs[i];
@@ -207,11 +222,8 @@ exports.computed = aug(function(readFn, writeFn, watched) {
             this._subscriptions = [];
             for (i = 0; i < allSubs.length; i++) {
                  sub = allSubs[i];
-                 for (j = 0; j < subs.length; j++) {
-                    if (subs[j] === sub) {
-                        this._subscriptions.push(sub);
-                        break;
-                    }
+                 if (!contains(subs, sub)) {
+                    this._subscriptions.push(sub);
                  }
             }
             return this;
