@@ -256,25 +256,29 @@ The list of `watched` functions can be an array containing any kind of object th
 
 Creates a computed observable property with the given options.
 
-#### read:Function (optional)
+#### options.read:Function (optional)
 
 The function this computed observable will use to generate its value. If this option is not provided, the observable will be write-only.
 
 **NOTE**: This option is only optional if a `write` function is provided.
 
-#### write:Function (optional)
+#### options.write:Function (optional)
 
 The function this computed observable will use when it is passed a value. If this option is not provided, the observable will be read-only.
 
 **NOTE**: This option is only optional if a `read` function is provided.
 
-#### lazy:Boolean (optional)
+#### options.lazy:Boolean (optional)
 
 If `lazy` is set to `true` (default: `false`), updating of the property's new value will be delayed until the first time the property is called. This also means subscribers will not be notified until the property is called directly. This option has no effect if no `read` function is provided.
 
-#### watched:Array (optional)
+#### options.watched:Array (optional)
 
 See above. This option has no effect if no `read` function is provided. If a single object is passed instead of an array, the object will automatically be wrapped in an array.
+
+#### options.context (optional)
+
+The context the `read` and `write` functions will be executed in. Defaults to the computed observable itself.
 
 ### computed#()
 

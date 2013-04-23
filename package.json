@@ -1,6 +1,6 @@
 {
   "name": "obs",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "author": "Alan Plum <me@pluma.io>",
   "description": "Observable properties done right.",
   "repository": {

@@ -1,4 +1,4 @@
-/*! obs 0.6.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
+/*! obs 0.6.1 Copyright (c) 2013 Alan Plum. MIT licensed. */
 var aug = require('aug'),
     PubSub = require('sublish').PubSub,
     slice = Array.prototype.slice,
@@ -80,11 +80,11 @@ function lazyComputed() {
             if (typeof computed.write !== 'function') {
                 throw new Error('This observable is read-only!');
             }
-            computed.write.apply(computed, arguments);
+            computed.write.apply(computed.context, arguments);
         } else {
             computed._previousValue = computed._currentValue;
             if (changed) {
-                computed._currentValue = computed.read();
+                computed._currentValue = computed.read.call(computed.context);
                 changed = false;
                 computed.notify();
             }
@@ -100,22 +100,22 @@ function lazyComputed() {
 }
 
 
-function eagerComputed(readFn) {
+function eagerComputed(readFn, writeFn, context) {
     function computed() {
         if (arguments.length) {
             if (typeof computed.write !== 'function') {
                 throw new Error('This observable is read-only!');
             }
-            computed.write.apply(computed, arguments);
+            computed.write.apply(computed.context, arguments);
         } else {
             return computed._currentValue;
         }
     }
     return aug(computed, {
-        _initialValue: readFn.apply(computed),
+        _initialValue: readFn.apply(context === undefined ? computed : context),
         _onNotify: function() {
             computed._previousValue = computed._currentValue;
-            computed._currentValue = computed.read();
+            computed._currentValue = computed.read.call(computed.context);
             computed.notify();
         }
     });
@@ -125,7 +125,7 @@ function eagerComputed(readFn) {
 function writeOnlyComputed() {
     function computed() {
         if (arguments.length) {
-            computed.write.apply(computed, arguments);
+            computed.write.apply(computed.context, arguments);
         } else {
             throw new Error('This observable is write-only!');
         }
@@ -136,11 +136,13 @@ function writeOnlyComputed() {
 
 
 exports.computed = aug(function(readFn, writeFn, watched) {
-    var lazy = false;
+    var lazy = false,
+        context;
     if (arguments.length === 1 && typeof readFn === 'object') {
         writeFn = readFn.write;
         watched = readFn.watched;
         lazy = readFn.lazy;
+        context = readFn.context;
         readFn = readFn.read;
         if (watched && !isArray(watched)) {
             watched = [watched];
@@ -157,13 +159,14 @@ exports.computed = aug(function(readFn, writeFn, watched) {
     var computed = (
         readFn ? (
             lazy ? lazyComputed : eagerComputed
-        )(readFn, writeFn) : writeOnlyComputed(writeFn)
+        )(readFn, writeFn, context) : writeOnlyComputed(writeFn)
     );
 
     aug(computed, PubSub.prototype, {
         _currentValue: computed._initialValue,
         read: readFn,
         write: writeFn,
+        context: context === undefined ? computed : context,
         dirty: false,
         _subscriptions: []
     }, exports.computed.fn);

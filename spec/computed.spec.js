@@ -194,4 +194,28 @@ describe('computed', function() {
             expect(newValue).to.equal(oldValue);
         });
     });
+    it('calls its read function with its passed context', function() {
+        var ctx = {},
+            actualCtx = null,
+            computed = obs.computed({
+                read: function() {
+                    actualCtx = this;
+                },
+                context: ctx
+            });
+        computed();
+        expect(actualCtx).to.equal(ctx);
+    });
+    it('calls its write function with its passed context', function() {
+        var ctx = {},
+            actualCtx = null,
+            computed = obs.computed({
+                write: function() {
+                    actualCtx = this;
+                },
+                context: ctx
+            });
+        computed(null);
+        expect(actualCtx).to.equal(ctx);
+    });
 });
