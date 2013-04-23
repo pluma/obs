@@ -1,12 +1,12 @@
 /*global describe, it, beforeEach */
 var expect = require('expect.js'),
-    aug = require('aug'),
+    assimilate = require('assimilate'),
     obs = require('../');
 
 describe('prop', function() {
-    var originalFn = aug({}, obs.prop.fn);
+    var originalFn = assimilate({}, obs.prop.fn);
     beforeEach(function() {
-        obs.prop.fn = aug({}, originalFn);
+        obs.prop.fn = assimilate({}, originalFn);
     });
     it('inherits all properties of prop.fn', function() {
         var prop;
