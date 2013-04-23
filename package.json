@@ -5,7 +5,7 @@
   "description": "Observable properties done right.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pluma/obs.js.git"
+    "url": "https://github.com/pluma/obs.git"
   },
   "keywords": [
     "observable",

@@ -1,6 +1,6 @@
 {
-  "name": "obs.js",
-  "repo": "pluma/obs.js",
+  "name": "obs",
+  "repo": "pluma/obs",
   "description": "Observable properties done right.",
   "keywords": [
     "observable",
