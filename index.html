@@ -19,11 +19,11 @@
       <header>
         <h1>obs</h1>
         <p>Observable properties done right.</p>
-        <p class="view"><a href="https://github.com/pluma/obs.js">View the Project on GitHub <small>pluma/obs.js</small></a></p>
+        <p class="view"><a href="https://github.com/pluma/obs">View the Project on GitHub <small>pluma/obs</small></a></p>
         <ul>
-          <li><a href="https://github.com/pluma/obs.js/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/pluma/obs.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/pluma/obs.js">View On <strong>GitHub</strong></a></li>
+          <li><a href="https://github.com/pluma/obs/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/pluma/obs/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/pluma/obs">View On <strong>GitHub</strong></a></li>
         </ul>
       </header>
       <section>
@@ -33,9 +33,9 @@
 
 <p>Together with <a href="http://rivetsjs.com">rivets.js</a> it can serve as a lightweight alternative to <a href="http://knockoutjs.com">Knockout.js</a>.</p>
 
-<p><a href="https://ci.testling.com/pluma/obs.js"><img src="https://ci.testling.com/pluma/obs.js.png" alt="browser support"></a></p>
+<p><a href="https://ci.testling.com/pluma/obs"><img src="https://ci.testling.com/pluma/obs.png" alt="browser support"></a></p>
 
-<p><a href="https://travis-ci.org/pluma/obs.js"><img src="https://travis-ci.org/pluma/obs.js.png?branch=master" alt="Build Status"></a></p>
+<p><a href="https://travis-ci.org/pluma/obs"><img src="https://travis-ci.org/pluma/obs.png?branch=master" alt="Build Status"></a></p>
 
 <h1>Install</h1>
 
@@ -48,8 +48,8 @@
 
 <h3>From source</h3>
 
-<div class="highlight"><pre>git clone https://github.com/pluma/obs.js.git
-<span class="nb">cd </span>obs.js
+<div class="highlight"><pre>git clone https://github.com/pluma/obs.git
+<span class="nb">cd </span>obs
 npm install
 make <span class="o">&amp;&amp;</span> make dist
 </pre></div>
@@ -58,37 +58,37 @@ make <span class="o">&amp;&amp;</span> make dist
 
 <h3>With component</h3>
 
-<div class="highlight"><pre>component install pluma/obs.js
+<div class="highlight"><pre>component install pluma/obs
 </pre></div>
 
 <p><a href="https://github.com/component/component">Learn more about component</a>.</p>
 
 <h3>With a CommonJS module loader</h3>
 
-<p>Download the <a href="https://raw.github.com/pluma/obs.js/master/dist/obs.min.js">latest minified CommonJS release</a> and add it to your project.</p>
+<p>Download the <a href="https://raw.github.com/pluma/obs/master/dist/obs.min.js">latest minified CommonJS release</a> and add it to your project.</p>
 
-<p>Make sure you also have a compatible copy of <a href="https://github.com/jgallen23/aug">aug</a> and <a href="https://github.com/pluma/sublish">sublish</a>.</p>
+<p>Make sure you also have a compatible copy of <a href="https://github.com/pluma/assimilate">assimilate</a> and <a href="https://github.com/pluma/sublish">sublish</a>.</p>
 
 <p><a href="http://wiki.commonjs.org/wiki/Modules/1.1">Learn more about CommonJS modules</a>.</p>
 
 <h3>With an AMD module loader</h3>
 
-<p>Download the <a href="https://raw.github.com/pluma/obs.js/master/dist/obs.amd.min.js">latest minified AMD release</a> and add it to your project.</p>
+<p>Download the <a href="https://raw.github.com/pluma/obs/master/dist/obs.amd.min.js">latest minified AMD release</a> and add it to your project.</p>
 
-<p>Make sure you also have a compatible copy of <a href="https://github.com/jgallen23/aug">aug</a> and <a href="https://github.com/pluma/sublish">sublish</a>.</p>
+<p>Make sure you also have a compatible copy of <a href="https://github.com/pluma/assimilate">assimilate</a> and <a href="https://github.com/pluma/sublish">sublish</a>.</p>
 
 <p><a href="http://requirejs.org/docs/whyamd.html">Learn more about AMD modules</a>.</p>
 
 <h3>As standalone bundle</h3>
 
-<p>Get the <a href="https://raw.github.com/pluma/obs.js/master/dist/obs.all.min.js">latest distribution bundle</a> (~3.5 kB or ~1.3 kB gzipped, includes <a href="https://github.com/jgallen23/aug/tree/0.0.5">aug 0.0.5</a> and <a href="https://github.com/pluma/sublish/tree/0.3.0">sublish 0.4.2</a>) and download it to your project.</p>
+<p>Get the <a href="https://raw.github.com/pluma/obs/master/dist/obs.all.min.js">latest distribution bundle</a> (~4.1 kB or ~1.4 kB gzipped, includes <a href="https://github.com/pluma/assimilate/tree/0.1.0">assimilate 0.1.0</a> and <a href="https://github.com/pluma/sublish/tree/0.3.0">sublish 0.4.2</a>) and download it to your project.</p>
 
 <div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/your/js/path/obs.all.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></div>
 
 <p>This makes the <code>obs</code> module available in the global namespace.</p>
 
-<p>If you are already using <code>aug</code> and <code>sublish</code> in your project, you can download the <a href="https://raw.github.com/pluma/obs.js/master/dist/obs.globals.min.js">latest minified standalone release</a> (~2.5 kB or ~0.9 kB minified) instead.</p>
+<p>If you are already using <code>assimilate</code> and <code>sublish</code> in your project, you can download the <a href="https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js">latest minified standalone release</a> (~3.2 kB or ~1.1 kB minified) instead.</p>
 
 <h1>Basic usage example with node.js</h1>
 
@@ -254,43 +254,51 @@ make <span class="o">&amp;&amp;</span> make dist
 
 <p>Resets the property to its initial value (or <code>undefined</code>).</p>
 
+<h3>prop.readOnly([initialValue])</h3>
+
+<p>Creates an observable property that can not be written to directly.</p>
+
 <h3>prop.fn</h3>
 
 <p>An object containing attributes that will be applied to new observable properties.</p>
 
 <h2>computed: Computed observables</h2>
 
-<h3>computed(readFn:Function, [watched:Array], [lazy:Boolean])</h3>
+<h3>computed(readFn:Function, [writeFn:Function], [watched:Array])</h3>
 
 <p>Creates a computed observable property. The property's value will be set to the return value of the given function <code>readFn</code> and updated whenever any of the <code>watched</code> functions changes.</p>
 
-<p>If <code>lazy</code> is set to <code>true</code> (default: <code>false</code>), updating of the property's new value will be delayed until the first time the property is called. This also means subscribers will not be notified until the property is called directly.</p>
+<p>If a <code>writeFn</code> is passed, that function will be used when the computed observable is passed a value.</p>
 
-<p>The list of <code>watched</code> functions can be an array containing any kind of object that supports the <code>subscribe</code> and (optionally) <code>unsubscribe</code> methods (e.g. an instance of <code>sublish.PubSub</code>). If a single object is passed instead of an array, the object will automatically be wrapped in an array.</p>
+<p>The list of <code>watched</code> functions can be an array containing any kind of object that supports the <code>subscribe</code> and (optionally) <code>unsubscribe</code> methods (e.g. an instance of <code>sublish.PubSub</code>).</p>
 
 <h3>computed(options)</h3>
 
 <p>Creates a computed observable property with the given options.</p>
 
-<h4>read:Function (optional)</h4>
+<h4>options.read:Function (optional)</h4>
 
 <p>The function this computed observable will use to generate its value. If this option is not provided, the observable will be write-only.</p>
 
 <p><strong>NOTE</strong>: This option is only optional if a <code>write</code> function is provided.</p>
 
-<h4>write:Function (optional)</h4>
+<h4>options.write:Function (optional)</h4>
 
 <p>The function this computed observable will use when it is passed a value. If this option is not provided, the observable will be read-only.</p>
 
 <p><strong>NOTE</strong>: This option is only optional if a <code>read</code> function is provided.</p>
 
-<h4>lazy:Boolean (optional)</h4>
+<h4>options.lazy:Boolean (optional)</h4>
 
-<p>See above. This option has no effect if no <code>read</code> function is provided.</p>
+<p>If <code>lazy</code> is set to <code>true</code> (default: <code>false</code>), updating of the property's new value will be delayed until the first time the property is called. This also means subscribers will not be notified until the property is called directly. This option has no effect if no <code>read</code> function is provided.</p>
 
-<h4>watched:Array (optional)</h4>
+<h4>options.watched:Array (optional)</h4>
 
-<p>See above. This option has no effect if no <code>read</code> function is provided. If a single function is provided instead of an array, it is wrapped in an array automatically.</p>
+<p>See above. This option has no effect if no <code>read</code> function is provided. If a single object is passed instead of an array, the object will automatically be wrapped in an array.</p>
+
+<h4>options.context (optional)</h4>
+
+<p>The context the <code>read</code> and <code>write</code> functions will be executed in. Defaults to the computed observable itself.</p>
 
 <h3>computed#()</h3>
 
@@ -310,7 +318,7 @@ make <span class="o">&amp;&amp;</span> make dist
 
 <h3>computed#watch(dependencies…)</h3>
 
-<p>Adds the given objects as dependencies. The passed objects should support the <code>subscribe</code> method and optionally support the <code>unsubscribe</code> method.</p>
+<p>Adds the given objects as dependencies. The passed objects should support the <code>subscribe</code> method and optionally support the <code>unsubscribe</code> method. Duplicates will be ignored.</p>
 
 <h3>computed#unwatch(dependencies…)</h3>
 
@@ -323,6 +331,22 @@ make <span class="o">&amp;&amp;</span> make dist
 <h3>computed#reset()</h3>
 
 <p>See <code>prop#reset()</code>. This method will fail if the computed observable property is not writable.</p>
+
+<h3>computed#read</h3>
+
+<p>The function that will be called when the computed observable is read.</p>
+
+<h3>computed#write</h3>
+
+<p>The function that will be called when the computed observable is written to.</p>
+
+<h3>computed.lazy(readFn:Function, [writeFn: Function], [watched:Array])</h3>
+
+<p>See <code>computed(…)</code>. Shorthand for creating a computed observable with <code>lazy</code> set to <code>True</code>.</p>
+
+<h3>computed.lazy(options)</h3>
+
+<p>See <code>computed(options)</code>. Shorthand for creating a computed observable with <code>lazy</code> set to <code>True</code>.</p>
 
 <h3>computed.fn</h3>
 
