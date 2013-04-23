@@ -1,4 +1,4 @@
-var aug = require('aug'),
+var assimilate = require('assimilate'),
     PubSub = require('sublish').PubSub,
     slice = Array.prototype.slice,
     isArray = Array.isArray ? Array.isArray : function(arr) {
@@ -16,7 +16,7 @@ var aug = require('aug'),
     };
 
 
-exports.prop = aug(function(initialValue) {
+exports.prop = assimilate(function(initialValue) {
     function prop(value) {
         if (arguments.length) {
             prop._previousValue = prop._currentValue;
@@ -27,7 +27,7 @@ exports.prop = aug(function(initialValue) {
         }
     }
 
-    aug(prop, PubSub.prototype, {
+    assimilate(prop, PubSub.prototype, {
         _initialValue: initialValue,
         _currentValue: initialValue,
         dirty: false
@@ -46,7 +46,7 @@ exports.prop = aug(function(initialValue) {
             }
         }
 
-        aug(prop, PubSub.prototype, {
+        assimilate(prop, PubSub.prototype, {
             _initialValue: initialValue,
             _currentValue: initialValue,
             dirty: false
@@ -90,7 +90,7 @@ function lazyComputed() {
             return computed._currentValue;
         }
     }
-    return aug(computed, {
+    return assimilate(computed, {
         _initialValue: undefined,
         _onNotify: function() {
             changed = true;
@@ -110,7 +110,7 @@ function eagerComputed(readFn, writeFn, context) {
             return computed._currentValue;
         }
     }
-    return aug(computed, {
+    return assimilate(computed, {
         _initialValue: readFn.apply(context === undefined ? computed : context),
         _onNotify: function() {
             computed._previousValue = computed._currentValue;
@@ -134,7 +134,7 @@ function writeOnlyComputed() {
 }
 
 
-exports.computed = aug(function(readFn, writeFn, watched) {
+exports.computed = assimilate(function(readFn, writeFn, watched) {
     var lazy = false,
         context;
     if (arguments.length === 1 && typeof readFn === 'object') {
@@ -161,7 +161,7 @@ exports.computed = aug(function(readFn, writeFn, watched) {
         )(readFn, writeFn, context) : writeOnlyComputed(writeFn)
     );
 
-    aug(computed, PubSub.prototype, {
+    assimilate(computed, PubSub.prototype, {
         _currentValue: computed._initialValue,
         read: readFn,
         write: writeFn,
@@ -180,7 +180,7 @@ exports.computed = aug(function(readFn, writeFn, watched) {
 }, {
     lazy: function(readFn, writeFn, watched) {
         if (arguments.length === 1 && typeof readFn === 'object') {
-            return exports.computed(aug({lazy: true}, readFn));
+            return exports.computed(assimilate({lazy: true}, readFn));
         } else if (arguments.length === 2 && isArray(writeFn)) {
             watched = writeFn;
             writeFn = undefined;
@@ -192,7 +192,7 @@ exports.computed = aug(function(readFn, writeFn, watched) {
             lazy: true
         });
     },
-    fn: aug({}, exports.prop.fn, {
+    fn: assimilate({}, exports.prop.fn, {
         watch: function() {
             var args = slice.call(arguments, 0),
                 sub, i;

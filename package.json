@@ -1,6 +1,6 @@
 {
   "name": "obs",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "author": "Alan Plum <me@pluma.io>",
   "description": "Observable properties done right.",
   "repository": {
@@ -12,7 +12,7 @@
     "properties"
   ],
   "dependencies": {
-    "aug": "~0.0.5",
+    "assimilate": "~0.1.0",
     "sublish": "~0.4.2"
   },
   "devDependencies": {
