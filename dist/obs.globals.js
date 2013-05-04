@@ -1,12 +1,11 @@
-/*! obs 0.8.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
+/*! obs 0.9.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
 (function(root){var require=function(key){return root[key];},module={};
-var assimilate = require('assimilate'),
-    PubSub = require('sublish').PubSub,
+var PubSub = require('sublish').PubSub,
     slice = Array.prototype.slice,
     isArray = Array.isArray ? Array.isArray : function(arr) {
         return Object.prototype.toString.call(arr) === '[object Array]';
     },
-    contains = Array.prototype.indexOf ? function(arr, el) {
+     contains = Array.prototype.indexOf ? function(arr, el) {
         return !!~arr.indexOf(el);
     } : function(arr, el) {
         for (var i = 0; i < arr.length; i++) {
@@ -16,6 +15,19 @@ var assimilate = require('assimilate'),
         }
         return false;
     };
+
+function extend(dest) {
+    var args = slice.call(arguments, 1), i, src, key;
+    for (i = 0; i < args.length; i++) {
+        src = args[i];
+        for (key in src) {
+            if (!src.hasOwnProperty(key)) {
+                continue;
+            }
+            dest[key] = src[key];
+        }
+    }
+}
 
 function parseComputedConfig(args) {
     var config = args[0];
@@ -52,7 +64,7 @@ function obs(config) {
         }
     }
 
-    assimilate(observable, PubSub.prototype, {
+    extend(observable, PubSub.prototype, {
         context: config.context || observable,
         read: config.read,
         write: config.write,
@@ -97,8 +109,7 @@ obs.fn = {
         this.notify();
     },
     watch: function() {
-        var args = slice.call(arguments, 0),
-            sub, i;
+        var args = slice.call(arguments, 0), sub, i;
         for (i = 0; i < args.length; i++) {
             sub = args[i];
             if (contains(this._subscriptions, sub)) {
@@ -153,7 +164,8 @@ obs.prop = function(initialValue) {
 
 obs.computed = function(config) {
     config = parseComputedConfig(arguments);
-    var observable = obs(assimilate({}, config, {
+
+    var observable = obs(extend({}, config, {
         read: function() {
             return observable._currentValue;
         },
@@ -180,8 +192,9 @@ obs.computed = function(config) {
 
 obs.computed.lazy = function(config) {
     config = parseComputedConfig(arguments);
+
     var changed = true;
-    var observable = obs(assimilate({}, config, {
+    var observable = obs(extend({}, config, {
         context: config.context,
         read: function() {
             if (changed) {

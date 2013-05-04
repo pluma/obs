@@ -1,6 +1,5 @@
 /*global describe, it, beforeEach */
 var expect = require('expect.js'),
-    assimilate = require('assimilate'),
     obs = require('../');
 
 describe('prop', function() {
