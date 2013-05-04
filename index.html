@@ -81,14 +81,14 @@ make <span class="o">&amp;&amp;</span> make dist
 
 <h3>As standalone bundle</h3>
 
-<p>Get the <a href="https://raw.github.com/pluma/obs/master/dist/obs.all.min.js">latest distribution bundle</a> (~4.1 kB or ~1.4 kB gzipped, includes <a href="https://github.com/pluma/assimilate/tree/0.1.0">assimilate 0.1.0</a> and <a href="https://github.com/pluma/sublish/tree/0.3.0">sublish 0.4.2</a>) and download it to your project.</p>
+<p>Get the <a href="https://raw.github.com/pluma/obs/master/dist/obs.all.min.js">latest distribution bundle</a> (~3.8 kB or ~1.3 kB gzipped, includes <a href="https://github.com/pluma/assimilate/tree/0.2.0">assimilate 0.2.0</a> and <a href="https://github.com/pluma/sublish/tree/0.3.0">sublish 0.4.2</a>) and download it to your project.</p>
 
 <div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/your/js/path/obs.all.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></div>
 
 <p>This makes the <code>obs</code> module available in the global namespace.</p>
 
-<p>If you are already using <code>assimilate</code> and <code>sublish</code> in your project, you can download the <a href="https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js">latest minified standalone release</a> (~3.2 kB or ~1.1 kB minified) instead.</p>
+<p>If you are already using <code>assimilate</code> and <code>sublish</code> in your project, you can download the <a href="https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js">latest minified standalone release</a> (~2.9 kB or ~1.0 kB minified) instead.</p>
 
 <h1>Basic usage example with node.js</h1>
 
@@ -124,9 +124,31 @@ make <span class="o">&amp;&amp;</span> make dist
 <span class="c1">// 'product is now 24 (was: 15)'</span>
 </pre></div>
 
+<h1>Example with writable computed observables</h1>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">obs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'obs'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">firstname</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'John'</span><span class="p">),</span>
+    <span class="nx">lastname</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'Doe'</span><span class="p">),</span>
+    <span class="nx">fullname</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">computed</span><span class="p">({</span>
+        <span class="nx">compute</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">firstname</span><span class="p">()</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="nx">lastname</span><span class="p">();</span>
+        <span class="p">},</span>
+        <span class="nx">write</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value</span> <span class="o">||</span> <span class="s1">''</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">);</span>
+            <span class="nx">firstname</span><span class="p">(</span><span class="nx">tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+            <span class="nx">lastname</span><span class="p">(</span><span class="nx">tokens</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">' '</span><span class="p">));</span>
+        <span class="p">},</span>
+        <span class="nx">watch</span><span class="o">:</span> <span class="p">[</span><span class="nx">firstname</span><span class="p">,</span> <span class="nx">lastname</span><span class="p">]</span>
+    <span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fullname</span><span class="p">());</span> <span class="c1">// John Doe</span>
+<span class="nx">fullname</span><span class="p">(</span><span class="s1">'Konrad von Zuse'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstname</span><span class="p">());</span> <span class="c1">// Konrad</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lastname</span><span class="p">());</span> <span class="c1">// von Zuse</span>
+</pre></div>
+
 <h1>Client-side example with <a href="http://rivetsjs.com">rivets.js</a> data-binding</h1>
 
-<p>Try it on <a href="http://jsfiddle.net/QdLxc/3/">jsfiddle</a>.</p>
+<p>Try it on <a href="http://jsfiddle.net/QdLxc/4/">jsfiddle</a>.</p>
 
 <h2>HTML</h2>
 
@@ -218,139 +240,147 @@ make <span class="o">&amp;&amp;</span> make dist
 
 <h1>API</h1>
 
-<h2>prop: Observable properties</h2>
+<h2>obs: Abstract observables</h2>
 
-<h3>prop([initialValue])</h3>
+<p>This provides the base functionality for observables. You probably want to use <code>obs.prop</code> and <code>obs.computed</code> instead of calling <code>obs</code> directly.</p>
 
-<p>Creates an observable property (optionally initialised with the given value).</p>
+<h3>obs(options)</h3>
 
-<h3>prop#()</h3>
+<p>Creates an observable.</p>
 
-<p>Returns the property's current value.</p>
+<h4>options.context (optional)</h4>
 
-<h3>prop#(newValue)</h3>
+<p>The context the observable's <code>read</code> and <code>write</code> functions will be executed in.</p>
 
-<p>Sets the property's value to <code>newValue</code>. Notifies all subscribers with the new and old value.</p>
+<p>Defaults to the observable instance if not explicitly set.</p>
 
-<h3>prop#subscribe(callback:Function)</h3>
+<h4>options.read:Function and options.write:Function (optional)</h4>
 
-<p>Adds the given callback function to this property's list of subscribers.</p>
+<p>The functions to be called when the observable is read from or written to.</p>
 
-<p>The callback will be called with the property's new and old value as its arguments whenever the property is set to a new value (even if the new value is equal to the old value).</p>
+<p>An error will be raised if the observable is read from but no <code>read</code> function was defined, or if it is written to and no <code>write</code> function was defined.</p>
 
-<h3>prop#unsubscribe(callback:Function):Boolean</h3>
+<h4>options.watched:Array (optional)</h4>
 
-<p>Removes the given callback function from this property's list of subscribers. The callback will no longer be called when the property's value changes.</p>
+<p>An array of objects this observable subscribes to. If the value is not an array, it will be wrapped in one. Each object should have a <code>subscribe</code> method and (optionally) an <code>unsubscribe</code> method.</p>
+
+<h4>options.onNotify:Function (optional)</h4>
+
+<p>Function to be called when an object the observable is watching changes. Defaults to the observable's <code>notify</code> method, effectively turning the observable into a relay.</p>
+
+<h3>obs#()</h3>
+
+<p>Calls the observable's <code>read</code> function with its <code>context</code>.</p>
+
+<h3>obs#(value)</h3>
+
+<p>Calls the observable's <code>write</code> function with its <code>context</code> and the given <code>value</code>.</p>
+
+<h3>obs#subscribe(callback:Function)</h3>
+
+<p>Adds the given callback function to this observable's list of subscribers.</p>
+
+<p>The callback will be called with the observable's new and old value as its arguments whenever the observable's value is updated (even if the new value is equal to the old value).</p>
+
+<h3>obs#unsubscribe(callback:Function):Boolean</h3>
+
+<p>Removes the given callback function from this observable's list of subscribers. The callback will no longer be called when the observable's value changes.</p>
 
 <p>Returns <code>false</code> if the callback could not be found in the list of subscribers or <code>true</code> otherwise.</p>
 
-<p><strong>NOTE:</strong> Remember to use the exact function that was passed to <code>prop#subscribe</code>.</p>
+<p><strong>NOTE:</strong> Remember to use the exact function that was passed to <code>obs#subscribe</code>.</p>
 
-<h3>prop#peek()</h3>
+<h3>obs#peek()</h3>
 
-<p>Returns the property's current value. This method mainly exists for compatibility reasons.</p>
+<p>Returns the observable's current value without invoking its <code>read</code> function.</p>
 
-<h3>prop#reset()</h3>
+<h3>obs#commit()</h3>
 
-<p>Resets the property to its initial value (or <code>undefined</code>).</p>
+<p>Sets the observable's initial value to its current value and clears its <code>dirty</code> flag.</p>
 
-<h3>prop.readOnly([initialValue])</h3>
+<h3>obs#reset()</h3>
 
-<p>Creates an observable property that can not be written to directly.</p>
+<p>Resets the observable to its initial value (or <code>undefined</code>), then calls <code>notify()</code>.</p>
 
-<h3>prop.fn</h3>
+<h3>obs#notify()</h3>
 
-<p>An object containing attributes that will be applied to new observable properties.</p>
+<p>Updates the observable's <code>dirty</code> flag, then notifies all subscribers with the its current and previous value.</p>
 
-<h2>computed: Computed observables</h2>
+<h3>obs#watch(dependencies…)</h3>
 
-<h3>computed(readFn:Function, [writeFn:Function], [watched:Array])</h3>
+<p>Adds the given dependencies to this observable. Each dependency should have a <code>subscribe</code> and <code>unsubscribe</code> method. Whenever one of the dependencies changes, this observable's <code>onNotify</code> function will be called.</p>
 
-<p>Creates a computed observable property. The property's value will be set to the return value of the given function <code>readFn</code> and updated whenever any of the <code>watched</code> functions changes.</p>
+<h3>obs#unwatch(dependencies…)</h3>
 
-<p>If a <code>writeFn</code> is passed, that function will be used when the computed observable is passed a value.</p>
+<p>Removes the given dependencies by calling their <code>unsubscribe</code> methods. The observable will no longer be notified when their values change.</p>
 
-<p>The list of <code>watched</code> functions can be an array containing any kind of object that supports the <code>subscribe</code> and (optionally) <code>unsubscribe</code> methods (e.g. an instance of <code>sublish.PubSub</code>).</p>
+<h3>obs#dismiss()</h3>
 
-<h3>computed(options)</h3>
+<p>Removes all of the observable's dependencies. Equivalent to calling <code>obs#unwatch</code> for each dependency.</p>
+
+<h3>obs.fn</h3>
+
+<p>An object containing attributes that will be applied to new observables.</p>
+
+<h2>obs.prop: Observable properties</h2>
+
+<p>This provides a simple wrapper around <code>obs</code> useful for observables that should just act as a single value storage.</p>
+
+<h3>obs.prop([initialValue])</h3>
+
+<p>Creates an observable property (optionally initialized with the given value).</p>
+
+<h3>obs.prop#()</h3>
+
+<p>Returns the property's current value.</p>
+
+<h3>obs.prop#(newValue)</h3>
+
+<p>Sets the property's current value to <code>newValue</code> and notifies all subscribers.</p>
+
+<h2>obs.computed: Computed observables</h2>
+
+<p>This provides a simple wrapper around <code>obs</code> to create observables that depend on other observables and have values that should be computed dynamically, e.g. composite values of other observables.</p>
+
+<h3>obs.computed(compute:Function, [write:Function], [watch:Array])</h3>
+
+<p>Creates a computed observable observable. The observable's value will be set to the return value of the given function <code>compute</code> and updated whenever any of the <code>watch</code> functions changes.</p>
+
+<p>If <code>write</code> is passed, that function will be used when the computed observable is passed a value.</p>
+
+<p>The list of <code>watch</code> functions can be an array containing any kind of object that supports the <code>subscribe</code> and (optionally) <code>unsubscribe</code> methods (e.g. an instance of <code>sublish.PubSub</code>).</p>
+
+<h3>obs.computed(options)</h3>
 
 <p>Creates a computed observable property with the given options.</p>
 
-<h4>options.read:Function (optional)</h4>
+<h4>options.compute:Function (optional)</h4>
 
 <p>The function this computed observable will use to generate its value. If this option is not provided, the observable will be write-only.</p>
-
-<p><strong>NOTE</strong>: This option is only optional if a <code>write</code> function is provided.</p>
 
 <h4>options.write:Function (optional)</h4>
 
 <p>The function this computed observable will use when it is passed a value. If this option is not provided, the observable will be read-only.</p>
 
-<p><strong>NOTE</strong>: This option is only optional if a <code>read</code> function is provided.</p>
-
-<h4>options.lazy:Boolean (optional)</h4>
-
-<p>If <code>lazy</code> is set to <code>true</code> (default: <code>false</code>), updating of the property's new value will be delayed until the first time the property is called. This also means subscribers will not be notified until the property is called directly. This option has no effect if no <code>read</code> function is provided.</p>
-
-<h4>options.watched:Array (optional)</h4>
+<h4>options.watch:Array (optional)</h4>
 
 <p>See above. This option has no effect if no <code>read</code> function is provided. If a single object is passed instead of an array, the object will automatically be wrapped in an array.</p>
 
 <h4>options.context (optional)</h4>
 
-<p>The context the <code>read</code> and <code>write</code> functions will be executed in. Defaults to the computed observable itself.</p>
+<p>The context the <code>compute</code> and <code>write</code> functions will be executed in. Defaults to the computed observable itself.</p>
 
-<h3>computed#()</h3>
+<h3>obs.computed#()</h3>
 
 <p>Returns the computed property's current value. For lazy computed observables, this will trigger the function evaluation and notify any subscribers.</p>
 
-<h3>computed#subscribe(callback:Function)</h3>
+<h3>obs.computed.lazy(compute:Function, [write:Function], [watched:Array])</h3>
 
-<p>Adds the given callback function to this property's list of subscribers. See <code>prop#subscribe</code>.</p>
+<p>See <code>obs.computed(…)</code>. The created observable will only call its <code>compute</code> function to update its value when it is explicitly read from.</p>
 
-<h3>computed#unsubscribe(callback:Function)</h3>
+<h3>obs.computed.lazy(options)</h3>
 
-<p>Removes the given callback function from this property#s list of subscribers. See <code>prop#unsubscribe</code>.</p>
-
-<h3>computed#peek()</h3>
-
-<p>Returns the computed property's current value. Unlike <code>computed#()</code> this will not trigger the function evaluation in lazy computed observables.</p>
-
-<h3>computed#watch(dependencies…)</h3>
-
-<p>Adds the given objects as dependencies. The passed objects should support the <code>subscribe</code> method and optionally support the <code>unsubscribe</code> method. Duplicates will be ignored.</p>
-
-<h3>computed#unwatch(dependencies…)</h3>
-
-<p>Removes the given objects from the computed property's dependencies after calling their <code>unsubscribe</code> methods, if possible.</p>
-
-<h3>computed#dismiss()</h3>
-
-<p>Removes all of the computed property's dependencies. Equivalent to calling <code>computed#unwatch</code> for each dependency.</p>
-
-<h3>computed#reset()</h3>
-
-<p>See <code>prop#reset()</code>. This method will fail if the computed observable property is not writable.</p>
-
-<h3>computed#read</h3>
-
-<p>The function that will be called when the computed observable is read.</p>
-
-<h3>computed#write</h3>
-
-<p>The function that will be called when the computed observable is written to.</p>
-
-<h3>computed.lazy(readFn:Function, [writeFn: Function], [watched:Array])</h3>
-
-<p>See <code>computed(…)</code>. Shorthand for creating a computed observable with <code>lazy</code> set to <code>True</code>.</p>
-
-<h3>computed.lazy(options)</h3>
-
-<p>See <code>computed(options)</code>. Shorthand for creating a computed observable with <code>lazy</code> set to <code>True</code>.</p>
-
-<h3>computed.fn</h3>
-
-<p>An object containing attributes that will be applied to new computed observable properties.</p>
+<p>See <code>obs.computed(options)</code> and above.</p>
 
 <h1>Acknowledgements</h1>
 
