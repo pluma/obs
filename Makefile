@@ -19,7 +19,8 @@ dist/obs.js: dist/vendor
 dist/obs.globals.js: dist/vendor
 	@echo $(LICENSE_COMMENT) > dist/obs.globals.js
 	@echo "(function(root){\
-	var module={};" >> dist/obs.globals.js
+	var require=function(key){return root[key];},\
+	module={};" >> dist/obs.globals.js
 	@cat src/obs.js >> dist/obs.globals.js
 	@echo "root.obs = module.exports;\
 	}(this));" >> dist/obs.globals.js

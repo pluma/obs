@@ -1,5 +1,5 @@
 /*! obs 0.8.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
-(function(root){var module={};
+(function(root){var require=function(key){return root[key];},module={};
 var assimilate = require('assimilate'),
     PubSub = require('sublish').PubSub,
     slice = Array.prototype.slice,
