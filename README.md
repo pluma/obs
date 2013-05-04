@@ -55,7 +55,7 @@ Make sure you also have a compatible copy of [assimilate](https://github.com/plu
 
 ### As standalone bundle
 
-Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dist/obs.all.min.js) (~3.8 kB or ~1.3 kB gzipped, includes [assimilate 0.2.0](https://github.com/pluma/assimilate/tree/0.2.0) and [sublish 0.4.2](https://github.com/pluma/sublish/tree/0.3.0)) and download it to your project.
+Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dist/obs.all.min.js) (~4.5 kB or ~1.5 kB gzipped, includes [assimilate 0.2.0](https://github.com/pluma/assimilate/tree/0.2.0) and [sublish 0.4.2](https://github.com/pluma/sublish/tree/0.3.0)) and download it to your project.
 
 ```html
 <script src="/your/js/path/obs.all.min.js"></script>
