@@ -1,4 +1,4 @@
-/*! obs 0.7.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
+/*! obs 0.8.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
 (function(root){var require=function(key){return root[key];},exports=(root.obs={});
 var assimilate = require('assimilate'),
     PubSub = require('sublish').PubSub,
@@ -17,223 +17,189 @@ var assimilate = require('assimilate'),
         return false;
     };
 
+function parseComputedConfig(args) {
+    var config = args[0];
+    if (typeof config === 'function') {
+        config = {compute: args[0]};
+        if (args.length > 1) {
+            if (typeof args[1] === 'function') {
+                config.write = args[1];
+                if (args.length > 2) {
+                    config.watch = args[2];
+                }
+            } else {
+                config.watch = args[1];
+            }
+        }
+    }
+    return config;
+}
 
-exports.prop = assimilate(function(initialValue) {
-    function prop(value) {
+function obs(config) {
+    function observable(value) {
         if (arguments.length) {
-            prop._previousValue = prop._currentValue;
-            prop._currentValue = value;
-            prop.notify();
+            if (typeof observable.write === 'function') {
+                observable.write.call(observable.context, value);
+            } else {
+                throw new Error('This observable cannot be written to!');
+            }
         } else {
-            return prop._currentValue;
+            if (typeof observable.read === 'function') {
+                return observable.read.call(observable.context);
+            } else {
+                throw new Error('This observable cannot be read from!');
+            }
         }
     }
 
-    assimilate(prop, PubSub.prototype, {
-        _initialValue: initialValue,
-        _currentValue: initialValue,
-        dirty: false
-    }, exports.prop.fn);
+    assimilate(observable, PubSub.prototype, {
+        context: config.context || observable,
+        read: config.read,
+        write: config.write,
+        onNotify: (function(onNotify) {
+            return function() {
+                onNotify.call(observable);
+            };
+        }(config.onNotify || function() {})),
+        _initialValue: config.value,
+        _currentValue: config.value,
+        _previousValue: undefined,
+        _subscriptions: []
+    }, obs.fn);
 
-    PubSub.apply(prop);
-    
-    return prop;
-}, {
-    readOnly: function(initialValue) {
-        function prop() {
-            if (arguments.length) {
-                throw new Error('This observable is read-only!');
-            } else {
-                return prop._currentValue;
+    PubSub.apply(observable);
+
+    if (config.watch) {
+        observable.watch.apply(observable, (
+            isArray(config.watch) ? config.watch : [config.watch]
+        ));
+    }
+
+    return observable;
+}
+
+obs.fn = {
+    __is_obs__: true,
+    notify: function() {
+        this.dirty = (this._currentValue === this._initialValue);
+        this.publish(this._currentValue, this._previousValue);
+    },
+    peek: function() {
+        return this._currentValue;
+    },
+    commit: function() {
+        this._initialValue = this._currentValue;
+        this.dirty = false;
+    },
+    reset: function() {
+        this._previousValue = this._currentValue;
+        this._currentValue = this._initialValue;
+        this.notify();
+    },
+    watch: function() {
+        var args = slice.call(arguments, 0),
+            sub, i;
+        for (i = 0; i < args.length; i++) {
+            sub = args[i];
+            if (contains(this._subscriptions, sub)) {
+                continue;
+            }
+            if (sub && typeof sub.subscribe === 'function') {
+                sub.subscribe(this.onNotify);
+                this._subscriptions.push(sub);
+            }
+        }
+        return this;
+    },
+    unwatch: function() {
+        var subs = slice.call(arguments, 0),
+            allSubs = this._subscriptions,
+            i, sub;
+
+        for (i = 0; i < subs.length; i++) {
+            sub = subs[i];
+            if (sub && typeof sub.unsubscribe === 'function') {
+                sub.unsubscribe(this.onNotify);
             }
         }
 
-        assimilate(prop, PubSub.prototype, {
-            _initialValue: initialValue,
-            _currentValue: initialValue,
-            dirty: false
-        }, exports.prop.fn);
-
-        PubSub.apply(prop);
-
-        return prop;
+        this._subscriptions = [];
+        for (i = 0; i < allSubs.length; i++) {
+            sub = allSubs[i];
+            if (!contains(subs, sub)) {
+                this._subscriptions.push(sub);
+            }
+        }
+        return this;
     },
-    fn: {
-        __is_obs__: true,
-        notify: function() {
-            this.dirty = (this._currentValue === this._initialValue);
-            this.publish(this._currentValue, this._previousValue);
-        },
-        peek: function() {
+    dismiss: function() {
+        this.unwatch.apply(this, this._subscriptions);
+    }
+};
+
+obs.prop = function(initialValue) {
+    return obs({
+        read: function() {
             return this._currentValue;
         },
-        reset: function() {
-            this(this._initialValue);
+        write: function(value) {
+            this._previousValue = this._currentValue;
+            this._currentValue = value;
+            this.notify();
+        },
+        value: initialValue
+    });
+};
+
+obs.computed = function(config) {
+    config = parseComputedConfig(arguments);
+    var observable = obs(assimilate({}, config, {
+        read: function() {
+            return observable._currentValue;
+        },
+        onNotify: function() {
+            this._previousValue = this._currentValue;
+            this._currentValue = config.compute.call(this.context);
+            this.notify();
         }
+    }));
+
+    if (config.compute) {
+        observable._initialValue = config.compute.call(observable.context);
+        observable._currentValue = observable._initialValue;
     }
-});
 
+    if (config.watch) {
+        observable.watch.apply(observable, (
+            isArray(config.watch) ? config.watch : [config.watch]
+        ));
+    }
 
-function lazyComputed() {
+    return observable;
+};
+
+obs.computed.lazy = function(config) {
+    config = parseComputedConfig(arguments);
     var changed = true;
-    function computed() {
-        if (arguments.length) {
-            if (typeof computed.write !== 'function') {
-                throw new Error('This observable is read-only!');
-            }
-            computed.write.apply(computed.context, arguments);
-        } else {
-            computed._previousValue = computed._currentValue;
+    var observable = obs(assimilate({}, config, {
+        context: config.context,
+        read: function() {
             if (changed) {
-                computed._currentValue = computed.read.call(computed.context);
                 changed = false;
-                computed.notify();
+                observable._previousValue = observable._currentValue;
+                observable._currentValue = config.compute.call(this);
+                observable.notify();
             }
-            return computed._currentValue;
-        }
-    }
-    return assimilate(computed, {
-        _initialValue: undefined,
-        _onNotify: function() {
+            return observable._currentValue;
+        },
+        write: config.write,
+        onNotify: function() {
             changed = true;
-        }
-    });
-}
-
-
-function eagerComputed(readFn, writeFn, context) {
-    function computed() {
-        if (arguments.length) {
-            if (typeof computed.write !== 'function') {
-                throw new Error('This observable is read-only!');
-            }
-            computed.write.apply(computed.context, arguments);
-        } else {
-            return computed._currentValue;
-        }
-    }
-    return assimilate(computed, {
-        _initialValue: readFn.apply(context === undefined ? computed : context),
-        _onNotify: function() {
-            computed._previousValue = computed._currentValue;
-            computed._currentValue = computed.read.call(computed.context);
-            computed.notify();
-        }
-    });
-}
-
-
-function writeOnlyComputed() {
-    function computed() {
-        if (arguments.length) {
-            computed.write.apply(computed.context, arguments);
-        } else {
-            throw new Error('This observable is write-only!');
-        }
-    }
-    computed._initialValue = undefined;
-    return computed;
-}
-
-
-exports.computed = assimilate(function(readFn, writeFn, watched) {
-    var lazy = false,
-        context;
-    if (arguments.length === 1 && typeof readFn === 'object') {
-        writeFn = readFn.write;
-        watched = readFn.watched;
-        lazy = readFn.lazy;
-        context = readFn.context;
-        readFn = readFn.read;
-        if (watched && !isArray(watched)) {
-            watched = [watched];
-        }
-    } else if (arguments.length === 2 && isArray(writeFn)) {
-        watched = writeFn;
-        writeFn = undefined;
-    }
-
-    if (!readFn && !writeFn) {
-        throw new Error('No read function and no write function provided!');
-    }
-
-    var computed = (
-        readFn ? (
-            lazy ? lazyComputed : eagerComputed
-        )(readFn, writeFn, context) : writeOnlyComputed(writeFn)
-    );
-
-    assimilate(computed, PubSub.prototype, {
-        _currentValue: computed._initialValue,
-        read: readFn,
-        write: writeFn,
-        context: context === undefined ? computed : context,
-        dirty: false,
-        _subscriptions: []
-    }, exports.computed.fn);
-
-    PubSub.apply(computed);
-
-    if (readFn && isArray(watched)) {
-        computed.watch.apply(computed, watched);
-    }
-
-    return computed;
-}, {
-    lazy: function(readFn, writeFn, watched) {
-        if (arguments.length === 1 && typeof readFn === 'object') {
-            return exports.computed(assimilate({lazy: true}, readFn));
-        } else if (arguments.length === 2 && isArray(writeFn)) {
-            watched = writeFn;
-            writeFn = undefined;
-        }
-        return exports.computed({
-            read: readFn,
-            write: writeFn,
-            watched: watched,
-            lazy: true
-        });
-    },
-    fn: assimilate({}, exports.prop.fn, {
-        watch: function() {
-            var args = slice.call(arguments, 0),
-                sub, i;
-            for (i = 0; i < args.length; i++) {
-                sub = args[i];
-                if (contains(this._subscriptions, sub)) {
-                    continue;
-                }
-                if (sub && typeof sub.subscribe === 'function') {
-                    sub.subscribe(this._onNotify);
-                    this._subscriptions.push(sub);
-                }
-            }
-            return this;
         },
-        unwatch: function() {
-            var subs = slice.call(arguments, 0),
-                allSubs = this._subscriptions,
-                i, sub;
+        watch: config.watch
+    }));
 
-            for (i = 0; i < subs.length; i++) {
-                sub = subs[i];
-                if (sub && typeof sub.unsubscribe === 'function') {
-                    sub.unsubscribe(this._onNotify);
-                }
-            }
+    return observable;
+};
 
-            this._subscriptions = [];
-            for (i = 0; i < allSubs.length; i++) {
-                 sub = allSubs[i];
-                 if (!contains(subs, sub)) {
-                    this._subscriptions.push(sub);
-                 }
-            }
-            return this;
-        },
-        dismiss: function() {
-            this.unwatch.apply(this, this._subscriptions);
-        }
-    })
-});
-}(this));
+module.exports = obs;}(this));

@@ -11,9 +11,12 @@ describe('computed', function() {
         });
         it('initially contains the function\'s result', function() {
             var initialValue;
-            computed = obs.computed(function() {
-                return x() + y();
-            }, [x, y]);
+            computed = obs.computed({
+                compute: function() {
+                    return x() + y();
+                },
+                watch: [x, y]
+            });
             initialValue = computed.peek();
             expect(x() + y()).to.equal(initialValue);
             computed.dismiss();
@@ -22,9 +25,12 @@ describe('computed', function() {
             it('does not notify its subscribers', function() {
                 var timesCalled = 0,
                     subscriber = function() {timesCalled += 1;};
-                computed = obs.computed(function() {
-                    return x() + y();
-                }, [x, y]);
+                computed = obs.computed({
+                    compute: function() {
+                        return x() + y();
+                    },
+                    watch: [x, y]
+                });
                 computed.subscribe(subscriber);
                 computed();
                 expect(timesCalled).to.equal(0);
@@ -41,9 +47,12 @@ describe('computed', function() {
                     oldY = y(),
                     newX = 20,
                     newY = 50;
-                computed = obs.computed(function() {
-                    return x() + y();
-                }, [x, y]);
+                computed = obs.computed({
+                    compute: function() {
+                        return x() + y();
+                    },
+                    watch: [x, y]
+                });
                 computed.subscribe(subscriber);
                 x(newX);
                 y(newY);
@@ -61,9 +70,12 @@ describe('computed', function() {
                     publishedNewVal,
                     publishedOldVal,
                     oldVal;
-                computed = obs.computed(function() {
-                    return x() + y();
-                }, [x, y]);
+                computed = obs.computed({
+                    compute: function() {
+                        return x() + y();
+                    },
+                    watch: [x, y]
+                });
                 oldVal = computed();
                 computed.subscribe(subscriber);
                 y(newY);
@@ -86,9 +98,12 @@ describe('computed', function() {
         });
         it('initially contains nothing', function() {
             var initialValue;
-            computed = obs.computed.lazy(function() {
-                return x() + y();
-            }, [x, y]);
+            computed = obs.computed.lazy({
+                compute: function() {
+                    return x() + y();
+                },
+                watch: [x, y]
+            });
             initialValue = computed.peek();
             expect(initialValue).to.be(undefined);
             computed.dismiss();
@@ -97,9 +112,12 @@ describe('computed', function() {
             it('does notify its subscribers', function() {
                 var timesCalled = 0,
                     subscriber = function() {timesCalled += 1;};
-                computed = obs.computed.lazy(function() {
-                    return x() + y();
-                }, [x, y]);
+                computed = obs.computed.lazy({
+                    compute: function() {
+                        return x() + y();
+                    },
+                    watch: [x, y]
+                });
                 computed.subscribe(subscriber);
                 computed();
                 expect(timesCalled).to.equal(1);
@@ -115,9 +133,12 @@ describe('computed', function() {
                     subscriber = function(msg) {messages.push(msg);},
                     newX = 20,
                     newY = 50;
-                computed = obs.computed.lazy(function() {
-                    return x() + y();
-                }, [x, y]);
+                computed = obs.computed.lazy({
+                    compute: function() {
+                        return x() + y();
+                    },
+                    watch: [x, y]
+                });
                 computed.subscribe(subscriber);
                 x(newX);
                 expect(messages).to.be.empty();
@@ -165,9 +186,12 @@ describe('computed', function() {
         var x = obs.prop(2),
             y = obs.prop(5),
             z = obs.prop(7),
-            computed = obs.computed(function() {
-                return x() + y();
-            }, [x, y, z]);
+            computed = obs.computed({
+                compute: function() {
+                    return x() + y();
+                },
+                watch: [x, y, z]
+            });
         it('notifies its subscribers when they change, too', function() {
             var timesCalled = 0,
                 subscriber = function() {timesCalled += 1;};
@@ -181,9 +205,12 @@ describe('computed', function() {
     describe('when dismissed', function() {
         var x = obs.prop(2),
             y = obs.prop(5),
-            computed = obs.computed(function() {
-                return x() + y();
-            }, [x, y]);
+            computed = obs.computed({
+                compute: function() {
+                    return x() + y();
+                },
+                watch: [x, y]
+            });
         computed.dismiss();
         it('no longer changes when its dependencies are updated.', function() {
             var oldValue = computed(),
@@ -198,7 +225,7 @@ describe('computed', function() {
         var ctx = {},
             actualCtx = null,
             computed = obs.computed({
-                read: function() {
+                compute: function() {
                     actualCtx = this;
                 },
                 context: ctx
@@ -210,6 +237,9 @@ describe('computed', function() {
         var ctx = {},
             actualCtx = null,
             computed = obs.computed({
+                compute: function() {
+                    // pass
+                },
                 write: function() {
                     actualCtx = this;
                 },

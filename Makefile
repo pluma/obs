@@ -1,4 +1,4 @@
-LICENSE_COMMENT="/*! obs 0.7.0 Copyright (c) 2013 Alan Plum. MIT licensed. */"
+LICENSE_COMMENT="/*! obs 0.8.0 Copyright (c) 2013 Alan Plum. MIT licensed. */"
 
 test:
 	@./node_modules/.bin/mocha \
@@ -31,10 +31,10 @@ dist/obs.amd.js: dist/vendor
 	@echo "});" >> dist/obs.amd.js
 
 dist/vendor/assimilate.js: dist/vendor
-	@wget -P dist/vendor/ https://raw.github.com/pluma/assimilate/0.1.0/dist/assimilate.js
+	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/pluma/assimilate/0.2.0/dist/assimilate.js
 
 dist/vendor/sublish.globals.js: dist/vendor
-	@wget -P dist/vendor/ https://raw.github.com/pluma/sublish/0.4.2/dist/sublish.globals.js
+	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/pluma/sublish/0.4.2/dist/sublish.globals.js
 
 dist/obs.all.min.js: dist/vendor/assimilate.js dist/vendor/sublish.globals.js dist/obs.globals.js
 	@cat dist/vendor/assimilate.js \

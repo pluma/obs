@@ -15,6 +15,6 @@
     "white": false,
     "globals": {
         "require": false,
-        "exports": false
+        "module": false
     }
 }

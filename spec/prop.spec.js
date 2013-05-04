@@ -4,16 +4,6 @@ var expect = require('expect.js'),
     obs = require('../');
 
 describe('prop', function() {
-    var originalFn = assimilate({}, obs.prop.fn);
-    beforeEach(function() {
-        obs.prop.fn = assimilate({}, originalFn);
-    });
-    it('inherits all properties of prop.fn', function() {
-        var prop;
-        obs.prop.fn.inheritedProperty = 'example';
-        prop = obs.prop();
-        expect(prop.inheritedProperty).to.equal(obs.prop.fn.inheritedProperty);
-    });
     describe('when called without a new value', function() {
         var prop = obs.prop();
         it('returns its current value', function() {

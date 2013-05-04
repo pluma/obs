@@ -55,7 +55,7 @@ Make sure you also have a compatible copy of [assimilate](https://github.com/plu
 
 ### As standalone bundle
 
-Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dist/obs.all.min.js) (~4.1 kB or ~1.4 kB gzipped, includes [assimilate 0.1.0](https://github.com/pluma/assimilate/tree/0.1.0) and [sublish 0.4.2](https://github.com/pluma/sublish/tree/0.3.0)) and download it to your project.
+Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dist/obs.all.min.js) (~3.8 kB or ~1.3 kB gzipped, includes [assimilate 0.2.0](https://github.com/pluma/assimilate/tree/0.2.0) and [sublish 0.4.2](https://github.com/pluma/sublish/tree/0.3.0)) and download it to your project.
 
 ```html
 <script src="/your/js/path/obs.all.min.js"></script>
@@ -63,7 +63,7 @@ Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dis
 
 This makes the `obs` module available in the global namespace.
 
-If you are already using `assimilate` and `sublish` in your project, you can download the [latest minified standalone release](https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js) (~3.2 kB or ~1.1 kB minified) instead.
+If you are already using `assimilate` and `sublish` in your project, you can download the [latest minified standalone release](https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js) (~2.9 kB or ~1.0 kB minified) instead.
 
 # Basic usage example with node.js
 
@@ -98,6 +98,29 @@ console.log('sum is currently ' + sum());
 y(8);
 // 'sum is now 11 (was: 8)'
 // 'product is now 24 (was: 15)'
+```
+
+# Example with writable computed observables
+
+```javascript
+var obs = require('obs');
+var firstname = obs.prop('John'),
+    lastname = obs.prop('Doe'),
+    fullname = obs.computed({
+        compute: function() {
+            return firstname() + ' ' + lastname();
+        },
+        write: function(value) {
+            var tokens = (value || '').split(' ');
+            firstname(tokens[0]);
+            lastname(tokens.slice(1).join(' '));
+        },
+        watch: [firstname, lastname]
+    });
+console.log(fullname()); // John Doe
+fullname('Konrad von Zuse');
+console.log(firstname()); // Konrad
+console.log(lastname()); // von Zuse
 ```
 
 # Client-side example with [rivets.js](http://rivetsjs.com) data-binding
@@ -198,139 +221,147 @@ setInterval(function() {
 
 # API
 
-## prop: Observable properties
+## obs: Abstract observables
 
-### prop([initialValue])
+This provides the base functionality for observables. You probably want to use `obs.prop` and `obs.computed` instead of calling `obs` directly.
 
-Creates an observable property (optionally initialised with the given value).
+### obs(options)
 
-### prop#()
+Creates an observable.
 
-Returns the property's current value.
+#### options.context (optional)
 
-### prop#(newValue)
+The context the observable's `read` and `write` functions will be executed in.
 
-Sets the property's value to `newValue`. Notifies all subscribers with the new and old value.
+Defaults to the observable instance if not explicitly set.
 
-### prop#subscribe(callback:Function)
+#### options.read:Function and options.write:Function (optional)
 
-Adds the given callback function to this property's list of subscribers.
+The functions to be called when the observable is read from or written to.
 
-The callback will be called with the property's new and old value as its arguments whenever the property is set to a new value (even if the new value is equal to the old value).
+An error will be raised if the observable is read from but no `read` function was defined, or if it is written to and no `write` function was defined.
 
-### prop#unsubscribe(callback:Function):Boolean
+#### options.watched:Array (optional)
 
-Removes the given callback function from this property's list of subscribers. The callback will no longer be called when the property's value changes.
+An array of objects this observable subscribes to. If the value is not an array, it will be wrapped in one. Each object should have a `subscribe` method and (optionally) an `unsubscribe` method.
+
+#### options.onNotify:Function (optional)
+
+Function to be called when an object the observable is watching changes. Defaults to the observable's `notify` method, effectively turning the observable into a relay.
+
+### obs#()
+
+Calls the observable's `read` function with its `context`.
+
+### obs#(value)
+
+Calls the observable's `write` function with its `context` and the given `value`.
+
+### obs#subscribe(callback:Function)
+
+Adds the given callback function to this observable's list of subscribers.
+
+The callback will be called with the observable's new and old value as its arguments whenever the observable's value is updated (even if the new value is equal to the old value).
+
+### obs#unsubscribe(callback:Function):Boolean
+
+Removes the given callback function from this observable's list of subscribers. The callback will no longer be called when the observable's value changes.
 
 Returns `false` if the callback could not be found in the list of subscribers or `true` otherwise.
 
-**NOTE:** Remember to use the exact function that was passed to `prop#subscribe`.
+**NOTE:** Remember to use the exact function that was passed to `obs#subscribe`.
 
-### prop#peek()
+### obs#peek()
 
-Returns the property's current value. This method mainly exists for compatibility reasons.
+Returns the observable's current value without invoking its `read` function.
 
-### prop#reset()
+### obs#commit()
 
-Resets the property to its initial value (or `undefined`).
+Sets the observable's initial value to its current value and clears its `dirty` flag.
 
-### prop.readOnly([initialValue])
+### obs#reset()
 
-Creates an observable property that can not be written to directly.
+Resets the observable to its initial value (or `undefined`), then calls `notify()`.
 
-### prop.fn
+### obs#notify()
 
-An object containing attributes that will be applied to new observable properties.
+Updates the observable's `dirty` flag, then notifies all subscribers with the its current and previous value.
 
-## computed: Computed observables
+### obs#watch(dependencies…)
 
-### computed(readFn:Function, [writeFn:Function], [watched:Array])
+Adds the given dependencies to this observable. Each dependency should have a `subscribe` and `unsubscribe` method. Whenever one of the dependencies changes, this observable's `onNotify` function will be called.
 
-Creates a computed observable property. The property's value will be set to the return value of the given function `readFn` and updated whenever any of the `watched` functions changes.
+### obs#unwatch(dependencies…)
 
-If a `writeFn` is passed, that function will be used when the computed observable is passed a value.
+Removes the given dependencies by calling their `unsubscribe` methods. The observable will no longer be notified when their values change.
 
-The list of `watched` functions can be an array containing any kind of object that supports the `subscribe` and (optionally) `unsubscribe` methods (e.g. an instance of `sublish.PubSub`).
+### obs#dismiss()
 
-### computed(options)
+Removes all of the observable's dependencies. Equivalent to calling `obs#unwatch` for each dependency.
+
+### obs.fn
+
+An object containing attributes that will be applied to new observables.
+
+## obs.prop: Observable properties
+
+This provides a simple wrapper around `obs` useful for observables that should just act as a single value storage.
+
+### obs.prop([initialValue])
+
+Creates an observable property (optionally initialized with the given value).
+
+### obs.prop#()
+
+Returns the property's current value.
+
+### obs.prop#(newValue)
+
+Sets the property's current value to `newValue` and notifies all subscribers.
+
+## obs.computed: Computed observables
+
+This provides a simple wrapper around `obs` to create observables that depend on other observables and have values that should be computed dynamically, e.g. composite values of other observables.
+
+### obs.computed(compute:Function, [write:Function], [watch:Array])
+
+Creates a computed observable observable. The observable's value will be set to the return value of the given function `compute` and updated whenever any of the `watch` functions changes.
+
+If `write` is passed, that function will be used when the computed observable is passed a value.
+
+The list of `watch` functions can be an array containing any kind of object that supports the `subscribe` and (optionally) `unsubscribe` methods (e.g. an instance of `sublish.PubSub`).
+
+### obs.computed(options)
 
 Creates a computed observable property with the given options.
 
-#### options.read:Function (optional)
+#### options.compute:Function (optional)
 
 The function this computed observable will use to generate its value. If this option is not provided, the observable will be write-only.
-
-**NOTE**: This option is only optional if a `write` function is provided.
 
 #### options.write:Function (optional)
 
 The function this computed observable will use when it is passed a value. If this option is not provided, the observable will be read-only.
 
-**NOTE**: This option is only optional if a `read` function is provided.
-
-#### options.lazy:Boolean (optional)
-
-If `lazy` is set to `true` (default: `false`), updating of the property's new value will be delayed until the first time the property is called. This also means subscribers will not be notified until the property is called directly. This option has no effect if no `read` function is provided.
-
-#### options.watched:Array (optional)
+#### options.watch:Array (optional)
 
 See above. This option has no effect if no `read` function is provided. If a single object is passed instead of an array, the object will automatically be wrapped in an array.
 
 #### options.context (optional)
 
-The context the `read` and `write` functions will be executed in. Defaults to the computed observable itself.
+The context the `compute` and `write` functions will be executed in. Defaults to the computed observable itself.
 
-### computed#()
+### obs.computed#()
 
 Returns the computed property's current value. For lazy computed observables, this will trigger the function evaluation and notify any subscribers.
 
-### computed#subscribe(callback:Function)
+### obs.computed.lazy(compute:Function, [write:Function], [watched:Array])
 
-Adds the given callback function to this property's list of subscribers. See `prop#subscribe`.
+See `obs.computed(…)`. The created observable will only call its `compute` function to update its value when it is explicitly read from.
 
-### computed#unsubscribe(callback:Function)
+### obs.computed.lazy(options)
 
-Removes the given callback function from this property#s list of subscribers. See `prop#unsubscribe`.
-
-### computed#peek()
-
-Returns the computed property's current value. Unlike `computed#()` this will not trigger the function evaluation in lazy computed observables.
-
-### computed#watch(dependencies…)
-
-Adds the given objects as dependencies. The passed objects should support the `subscribe` method and optionally support the `unsubscribe` method. Duplicates will be ignored.
-
-### computed#unwatch(dependencies…)
-
-Removes the given objects from the computed property's dependencies after calling their `unsubscribe` methods, if possible.
-
-### computed#dismiss()
-
-Removes all of the computed property's dependencies. Equivalent to calling `computed#unwatch` for each dependency.
-
-### computed#reset()
-
-See `prop#reset()`. This method will fail if the computed observable property is not writable.
-
-### computed#read
-
-The function that will be called when the computed observable is read.
-
-### computed#write
-
-The function that will be called when the computed observable is written to.
-
-### computed.lazy(readFn:Function, [writeFn: Function], [watched:Array])
-
-See `computed(…)`. Shorthand for creating a computed observable with `lazy` set to `True`.
-
-### computed.lazy(options)
-
-See `computed(options)`. Shorthand for creating a computed observable with `lazy` set to `True`.
-
-### computed.fn
-
-An object containing attributes that will be applied to new computed observable properties.
+See `obs.computed(options)` and above.
 
 # Acknowledgements
 

@@ -6,9 +6,9 @@
     "observable",
     "properties"
   ],
-  "version": "0.7.0",
+  "version": "0.8.0",
   "dependencies": {
-    "pluma/assimilate": "0.1.0",
+    "pluma/assimilate": "0.2.0",
     "pluma/sublish": "0.4.2"
   },
   "devDependencies": {},
