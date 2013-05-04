@@ -32,14 +32,14 @@ dist/obs.amd.js: dist/vendor
 	@echo "return module.exports;\
 	});" >> dist/obs.amd.js
 
-dist/vendor/assimilate.js: dist/vendor
-	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/pluma/assimilate/0.2.0/dist/assimilate.js
+dist/vendor/assimilate.globals.js: dist/vendor
+	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/pluma/assimilate/0.2.0/dist/assimilate.globals.js
 
 dist/vendor/sublish.globals.js: dist/vendor
 	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/pluma/sublish/0.4.2/dist/sublish.globals.js
 
-dist/obs.all.min.js: dist/vendor/assimilate.js dist/vendor/sublish.globals.js dist/obs.globals.js
-	@cat dist/vendor/assimilate.js \
+dist/obs.all.min.js: dist/vendor/assimilate.globals.js dist/vendor/sublish.globals.js dist/obs.globals.js
+	@cat dist/vendor/assimilate.globals.js \
 	dist/vendor/sublish.globals.js \
 	dist/obs.globals.js | ./node_modules/.bin/uglifyjs > dist/obs.all.min.js
 
