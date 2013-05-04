@@ -1,5 +1,5 @@
 /*! obs 0.8.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
-define(function(require, exports) {
+define(function(require) {var module = {};
 var assimilate = require('assimilate'),
     PubSub = require('sublish').PubSub,
     slice = Array.prototype.slice,
@@ -202,4 +202,4 @@ obs.computed.lazy = function(config) {
     return observable;
 };
 
-module.exports = obs;});
+module.exports = obs;return module.exports;});

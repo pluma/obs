@@ -19,16 +19,18 @@ dist/obs.js: dist/vendor
 dist/obs.globals.js: dist/vendor
 	@echo $(LICENSE_COMMENT) > dist/obs.globals.js
 	@echo "(function(root){\
-	var require=function(key){return root[key];},\
-	exports=(root.obs={});" >> dist/obs.globals.js
+	var module={};" >> dist/obs.globals.js
 	@cat src/obs.js >> dist/obs.globals.js
-	@echo "}(this));" >> dist/obs.globals.js
+	@echo "root.obs = module.exports;\
+	}(this));" >> dist/obs.globals.js
 
 dist/obs.amd.js: dist/vendor
 	@echo $(LICENSE_COMMENT) > dist/obs.amd.js
-	@echo "define(function(require, exports) {" >> dist/obs.amd.js
+	@echo "define(function(require) {\
+	var module = {};" >> dist/obs.amd.js
 	@cat src/obs.js >> dist/obs.amd.js
-	@echo "});" >> dist/obs.amd.js
+	@echo "return module.exports;\
+	});" >> dist/obs.amd.js
 
 dist/vendor/assimilate.js: dist/vendor
 	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/pluma/assimilate/0.2.0/dist/assimilate.js
