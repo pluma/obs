@@ -25,6 +25,7 @@ function extend(dest) {
             dest[key] = src[key];
         }
     }
+    return dest;
 }
 
 function parseComputedConfig(args) {
