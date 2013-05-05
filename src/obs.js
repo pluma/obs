@@ -1,4 +1,5 @@
 var PubSub = require('sublish').PubSub,
+    aug = require('aug'),
     slice = Array.prototype.slice,
     isArray = Array.isArray ? Array.isArray : function(arr) {
         return Object.prototype.toString.call(arr) === '[object Array]';
@@ -13,20 +14,6 @@ var PubSub = require('sublish').PubSub,
         }
         return false;
     };
-
-function extend(dest) {
-    var args = slice.call(arguments, 1), i, src, key;
-    for (i = 0; i < args.length; i++) {
-        src = args[i];
-        for (key in src) {
-            if (!src.hasOwnProperty(key)) {
-                continue;
-            }
-            dest[key] = src[key];
-        }
-    }
-    return dest;
-}
 
 function parseComputedConfig(args) {
     var config = args[0];
@@ -63,7 +50,7 @@ function obs(config) {
         }
     }
 
-    extend(observable, PubSub.prototype, {
+    aug(observable, PubSub.prototype, {
         context: config.context || observable,
         read: config.read,
         write: config.write,
@@ -164,7 +151,7 @@ obs.prop = function(initialValue) {
 obs.computed = function(config) {
     config = parseComputedConfig(arguments);
 
-    var observable = obs(extend({}, config, {
+    var observable = obs(aug({}, config, {
         read: function() {
             return observable._currentValue;
         },
@@ -193,7 +180,7 @@ obs.computed.lazy = function(config) {
     config = parseComputedConfig(arguments);
 
     var changed = true;
-    var observable = obs(extend({}, config, {
+    var observable = obs(aug({}, config, {
         context: config.context,
         read: function() {
             if (changed) {

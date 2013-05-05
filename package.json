@@ -12,6 +12,7 @@
     "properties"
   ],
   "dependencies": {
+    "aug": "~0.1.0",
     "sublish": "~0.4.2"
   },
   "devDependencies": {

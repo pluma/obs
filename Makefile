@@ -33,11 +33,15 @@ dist/obs.amd.js: dist/vendor
 	@echo "return module.exports;\
 	});" >> dist/obs.amd.js
 
+dist/vendor/aug.js: dist/vendor
+	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/jgallen23/aug/0.1.0/dist/aug.js
+
 dist/vendor/sublish.globals.js: dist/vendor
 	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/pluma/sublish/0.4.2/dist/sublish.globals.js
 
-dist/obs.all.min.js: dist/vendor/sublish.globals.js dist/obs.globals.js
-	@cat dist/vendor/sublish.globals.js \
+dist/obs.all.min.js: dist/vendor/aug.js dist/vendor/sublish.globals.js dist/obs.globals.js
+	@cat dist/vendor/aug.js \
+	dist/vendor/sublish.globals.js \
 	dist/obs.globals.js | ./node_modules/.bin/uglifyjs > dist/obs.all.min.js
 
 dist/obs.min.js: dist/obs.js
