@@ -6,7 +6,7 @@ Together with [rivets.js](http://rivetsjs.com) it can serve as a lightweight alt
 
 [![browser support](https://ci.testling.com/pluma/obs.png)](https://ci.testling.com/pluma/obs)
 
-[![Build Status](https://travis-ci.org/pluma/obs.png?branch=master)](https://travis-ci.org/pluma/obs) [![NPM version](https://badge.fury.io/js/obs.png)](http://badge.fury.io/js/obs)
+[![Build Status](https://travis-ci.org/pluma/obs.png?branch=master)](https://travis-ci.org/pluma/obs) [![NPM version](https://badge.fury.io/js/obs.png)](http://badge.fury.io/js/obs) [![Dependencies](https://david-dm.org/pluma/obs.png)](https://david-dm.org/pluma/obs)
 
 # Install
 
