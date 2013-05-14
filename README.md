@@ -55,7 +55,7 @@ Make sure you also have a compatible copy of [aug](https://github.com/jgallen23/
 
 ### As standalone bundle
 
-Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dist/obs.all.min.js) (~4.0 kB minified or ~1.4 kB gzipped, includes [aug 0.1.0](https://github.com/jgallen23/aug/tree/0.1.0) and [sublish 0.4.2](https://github.com/pluma/sublish/tree/0.4.2)) and download it to your project.
+Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dist/obs.all.min.js) (~4.2 kB minified or ~1.4 kB gzipped, includes [aug 0.1.0](https://github.com/jgallen23/aug/tree/0.1.0) and [sublish 0.4.2](https://github.com/pluma/sublish/tree/0.4.2)) and download it to your project.
 
 ```html
 <script src="/your/js/path/obs.all.min.js"></script>
@@ -63,7 +63,7 @@ Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dis
 
 This makes the `obs` module available in the global namespace.
 
-If you are already using `aug` and `sublish` in your project, you can download the [latest minified standalone release](https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js) (~3.1 kB minified or ~1.1 kB gzipped) instead.
+If you are already using `aug` and `sublish` in your project, you can download the [latest minified standalone release](https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js) (~3.0 kB minified or ~1.0 kB gzipped) instead.
 
 # Basic usage example with node.js
 

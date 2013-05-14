@@ -1,4 +1,4 @@
-LICENSE_COMMENT="/*! obs 0.9.0 Copyright (c) 2013 Alan Plum. MIT licensed. */"
+LICENSE_COMMENT="/*! obs 0.9.1 Copyright (c) 2013 Alan Plum. MIT licensed. @preserve */"
 
 test:
 	@./node_modules/.bin/mocha \
@@ -27,8 +27,8 @@ dist/obs.globals.js: dist/vendor
 
 dist/obs.amd.js: dist/vendor
 	@echo $(LICENSE_COMMENT) > dist/obs.amd.js
-	@echo "define(function(require) {\
-	var module = {};" >> dist/obs.amd.js
+	@echo "define(function(require, exports, module) {\
+	" >> dist/obs.amd.js
 	@cat src/obs.js >> dist/obs.amd.js
 	@echo "return module.exports;\
 	});" >> dist/obs.amd.js
@@ -37,21 +37,21 @@ dist/vendor/aug.js: dist/vendor
 	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/jgallen23/aug/0.1.0/dist/aug.js
 
 dist/vendor/sublish.globals.js: dist/vendor
-	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/pluma/sublish/0.4.2/dist/sublish.globals.js
+	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/pluma/sublish/0.4.4/dist/sublish.globals.js
 
 dist/obs.all.min.js: dist/vendor/aug.js dist/vendor/sublish.globals.js dist/obs.globals.js
 	@cat dist/vendor/aug.js \
 	dist/vendor/sublish.globals.js \
-	dist/obs.globals.js | ./node_modules/.bin/uglifyjs > dist/obs.all.min.js
+	dist/obs.globals.js | ./node_modules/.bin/uglifyjs --comments -m > dist/obs.all.min.js
 
 dist/obs.min.js: dist/obs.js
-	@./node_modules/.bin/uglifyjs dist/obs.js > dist/obs.min.js
+	@./node_modules/.bin/uglifyjs dist/obs.js --comments -m > dist/obs.min.js
 
 dist/obs.globals.min.js: dist/obs.globals.js
-	@./node_modules/.bin/uglifyjs dist/obs.globals.js > dist/obs.globals.min.js
+	@./node_modules/.bin/uglifyjs dist/obs.globals.js --comments -m > dist/obs.globals.min.js
 
 dist/obs.amd.min.js: dist/obs.amd.js
-	@./node_modules/.bin/uglifyjs dist/obs.amd.js > dist/obs.amd.min.js
+	@./node_modules/.bin/uglifyjs dist/obs.amd.js --comments > dist/obs.amd.min.js
 
 dist: dist/obs.min.js dist/obs.globals.min.js dist/obs.all.min.js dist/obs.amd.min.js
 

@@ -1,4 +1,4 @@
-/*! obs 0.9.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
+/*! obs 0.9.1 Copyright (c) 2013 Alan Plum. MIT licensed. @preserve */
 (function(root){var require=function(key){return root[key];},module={};
 var PubSub = require('sublish').PubSub,
     aug = require('aug'),
@@ -6,7 +6,7 @@ var PubSub = require('sublish').PubSub,
     isArray = Array.isArray ? Array.isArray : function(arr) {
         return Object.prototype.toString.call(arr) === '[object Array]';
     },
-     contains = Array.prototype.indexOf ? function(arr, el) {
+    contains = Array.prototype.indexOf ? function(arr, el) {
         return !!~arr.indexOf(el);
     } : function(arr, el) {
         for (var i = 0; i < arr.length; i++) {

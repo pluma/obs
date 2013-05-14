@@ -4,7 +4,7 @@ var PubSub = require('sublish').PubSub,
     isArray = Array.isArray ? Array.isArray : function(arr) {
         return Object.prototype.toString.call(arr) === '[object Array]';
     },
-     contains = Array.prototype.indexOf ? function(arr, el) {
+    contains = Array.prototype.indexOf ? function(arr, el) {
         return !!~arr.indexOf(el);
     } : function(arr, el) {
         for (var i = 0; i < arr.length; i++) {
