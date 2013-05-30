@@ -27,7 +27,8 @@
         </ul>
       </header>
       <section>
-        <h1>Synopsis</h1>
+        <h1>
+<a name="synopsis" class="anchor" href="#synopsis"><span class="octicon octicon-link"></span></a>Synopsis</h1>
 
 <p><strong>obs</strong> is a powerful implementation of observable properties that can be used on both the client-side and the server-side.</p>
 
@@ -35,18 +36,22 @@
 
 <p><a href="https://ci.testling.com/pluma/obs"><img src="https://ci.testling.com/pluma/obs.png" alt="browser support"></a></p>
 
-<p><a href="https://travis-ci.org/pluma/obs"><img src="https://travis-ci.org/pluma/obs.png?branch=master" alt="Build Status"></a> <a href="http://badge.fury.io/js/obs"><img src="https://badge.fury.io/js/obs.png" alt="NPM version"></a></p>
+<p><a href="https://travis-ci.org/pluma/obs"><img src="https://travis-ci.org/pluma/obs.png?branch=master" alt="Build Status"></a> <a href="http://badge.fury.io/js/obs"><img src="https://badge.fury.io/js/obs.png" alt="NPM version"></a> <a href="https://david-dm.org/pluma/obs"><img src="https://david-dm.org/pluma/obs.png" alt="Dependencies"></a></p>
 
-<h1>Install</h1>
+<h1>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h1>
 
-<h2>Node.js</h2>
+<h2>
+<a name="nodejs" class="anchor" href="#nodejs"><span class="octicon octicon-link"></span></a>Node.js</h2>
 
-<h3>With NPM</h3>
+<h3>
+<a name="with-npm" class="anchor" href="#with-npm"><span class="octicon octicon-link"></span></a>With NPM</h3>
 
 <div class="highlight"><pre>npm install obs
 </pre></div>
 
-<h3>From source</h3>
+<h3>
+<a name="from-source" class="anchor" href="#from-source"><span class="octicon octicon-link"></span></a>From source</h3>
 
 <div class="highlight"><pre>git clone https://github.com/pluma/obs.git
 <span class="nb">cd </span>obs
@@ -54,43 +59,49 @@ npm install
 make <span class="o">&amp;&amp;</span> make dist
 </pre></div>
 
-<h2>Browser</h2>
+<h2>
+<a name="browser" class="anchor" href="#browser"><span class="octicon octicon-link"></span></a>Browser</h2>
 
-<h3>With component</h3>
+<h3>
+<a name="with-component" class="anchor" href="#with-component"><span class="octicon octicon-link"></span></a>With component</h3>
 
 <div class="highlight"><pre>component install pluma/obs
 </pre></div>
 
 <p><a href="https://github.com/component/component">Learn more about component</a>.</p>
 
-<h3>With a CommonJS module loader</h3>
+<h3>
+<a name="with-a-commonjs-module-loader" class="anchor" href="#with-a-commonjs-module-loader"><span class="octicon octicon-link"></span></a>With a CommonJS module loader</h3>
 
 <p>Download the <a href="https://raw.github.com/pluma/obs/master/dist/obs.min.js">latest minified CommonJS release</a> and add it to your project.</p>
 
-<p>Make sure you also have a compatible copy of <a href="https://github.com/pluma/assimilate">assimilate</a> and <a href="https://github.com/pluma/sublish">sublish</a>.</p>
+<p>Make sure you also have a compatible copy of <a href="https://github.com/pluma/sublish">sublish</a>.</p>
 
 <p><a href="http://wiki.commonjs.org/wiki/Modules/1.1">Learn more about CommonJS modules</a>.</p>
 
-<h3>With an AMD module loader</h3>
+<h3>
+<a name="with-an-amd-module-loader" class="anchor" href="#with-an-amd-module-loader"><span class="octicon octicon-link"></span></a>With an AMD module loader</h3>
 
 <p>Download the <a href="https://raw.github.com/pluma/obs/master/dist/obs.amd.min.js">latest minified AMD release</a> and add it to your project.</p>
 
-<p>Make sure you also have a compatible copy of <a href="https://github.com/pluma/assimilate">assimilate</a> and <a href="https://github.com/pluma/sublish">sublish</a>.</p>
+<p>Make sure you also have a compatible copy of <a href="https://github.com/pluma/sublish">sublish</a>.</p>
 
 <p><a href="http://requirejs.org/docs/whyamd.html">Learn more about AMD modules</a>.</p>
 
-<h3>As standalone bundle</h3>
+<h3>
+<a name="as-standalone-bundle" class="anchor" href="#as-standalone-bundle"><span class="octicon octicon-link"></span></a>As standalone bundle</h3>
 
-<p>Get the <a href="https://raw.github.com/pluma/obs/master/dist/obs.all.min.js">latest distribution bundle</a> (~4.5 kB or ~1.5 kB gzipped, includes <a href="https://github.com/pluma/assimilate/tree/0.2.0">assimilate 0.2.0</a> and <a href="https://github.com/pluma/sublish/tree/0.3.0">sublish 0.4.2</a>) and download it to your project.</p>
+<p>Get the <a href="https://raw.github.com/pluma/obs/master/dist/obs.all.min.js">latest distribution bundle</a> (~3.7 kB minified or ~1.2 kB gzipped, includes <a href="https://github.com/pluma/sublish/tree/0.4.4">sublish 0.4.4</a>) and download it to your project.</p>
 
 <div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/your/js/path/obs.all.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></div>
 
 <p>This makes the <code>obs</code> module available in the global namespace.</p>
 
-<p>If you are already using <code>assimilate</code> and <code>sublish</code> in your project, you can download the <a href="https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js">latest minified standalone release</a> (~2.9 kB or ~1.0 kB minified) instead.</p>
+<p>If you are already using <code>sublish</code> in your project, you can download the <a href="https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js">latest minified standalone release</a> (~3.2 kB minified or ~1.1 kB gzipped) instead.</p>
 
-<h1>Basic usage example with node.js</h1>
+<h1>
+<a name="basic-usage-example-with-nodejs" class="anchor" href="#basic-usage-example-with-nodejs"><span class="octicon octicon-link"></span></a>Basic usage example with node.js</h1>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">obs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'obs'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
@@ -124,7 +135,8 @@ make <span class="o">&amp;&amp;</span> make dist
 <span class="c1">// 'product is now 24 (was: 15)'</span>
 </pre></div>
 
-<h1>Example with writable computed observables</h1>
+<h1>
+<a name="example-with-writable-computed-observables" class="anchor" href="#example-with-writable-computed-observables"><span class="octicon octicon-link"></span></a>Example with writable computed observables</h1>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">obs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'obs'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">firstname</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'John'</span><span class="p">),</span>
@@ -146,11 +158,13 @@ make <span class="o">&amp;&amp;</span> make dist
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lastname</span><span class="p">());</span> <span class="c1">// von Zuse</span>
 </pre></div>
 
-<h1>Client-side example with <a href="http://rivetsjs.com">rivets.js</a> data-binding</h1>
+<h1>
+<a name="client-side-example-with-rivetsjs-data-binding" class="anchor" href="#client-side-example-with-rivetsjs-data-binding"><span class="octicon octicon-link"></span></a>Client-side example with <a href="http://rivetsjs.com">rivets.js</a> data-binding</h1>
 
-<p>Try it on <a href="http://jsfiddle.net/QdLxc/4/">jsfiddle</a>.</p>
+<p>Try it on <a href="http://jsfiddle.net/QdLxc/5/">jsfiddle</a>.</p>
 
-<h2>HTML</h2>
+<h2>
+<a name="html" class="anchor" href="#html"><span class="octicon octicon-link"></span></a>HTML</h2>
 
 <div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"view"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;label&gt;</span>
@@ -164,7 +178,8 @@ make <span class="o">&amp;&amp;</span> make dist
 <span class="nt">&lt;/div&gt;</span>
 </pre></div>
 
-<h2>CSS</h2>
+<h2>
+<a name="css" class="anchor" href="#css"><span class="octicon octicon-link"></span></a>CSS</h2>
 
 <div class="highlight"><pre><span class="nf">#view</span> <span class="p">{</span>
     <span class="k">font</span><span class="o">:</span> <span class="m">16px</span> <span class="n">Verdana</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="k">sans-serif</span><span class="p">;</span>
@@ -174,9 +189,11 @@ make <span class="o">&amp;&amp;</span> make dist
 <span class="p">}</span>
 </pre></div>
 
-<h2>JavaScript</h2>
+<h2>
+<a name="javascript" class="anchor" href="#javascript"><span class="octicon octicon-link"></span></a>JavaScript</h2>
 
-<h3>Utilities</h3>
+<h3>
+<a name="utilities" class="anchor" href="#utilities"><span class="octicon octicon-link"></span></a>Utilities</h3>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">colors</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'rgba(255,0,0,0.5)'</span><span class="p">,</span> <span class="s1">'rgba(255,255,0,0.5)'</span><span class="p">,</span>
@@ -193,7 +210,8 @@ make <span class="o">&amp;&amp;</span> make dist
 <span class="p">}</span>
 </pre></div>
 
-<h3>Rivets.js adapter and configuration</h3>
+<h3>
+<a name="rivetsjs-adapter-and-configuration" class="anchor" href="#rivetsjs-adapter-and-configuration"><span class="octicon octicon-link"></span></a>Rivets.js adapter and configuration</h3>
 
 <div class="highlight"><pre><span class="nx">rivets</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span>
     <span class="nx">prefix</span><span class="o">:</span> <span class="s1">'rv'</span><span class="p">,</span>
@@ -218,7 +236,8 @@ make <span class="o">&amp;&amp;</span> make dist
 <span class="p">};</span>
 </pre></div>
 
-<h3>ViewModel (using obs.js)</h3>
+<h3>
+<a name="viewmodel-using-obsjs" class="anchor" href="#viewmodel-using-obsjs"><span class="octicon octicon-link"></span></a>ViewModel (using obs.js)</h3>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">viewModel</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">now</span><span class="o">:</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="o">+</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()),</span>
@@ -238,51 +257,62 @@ make <span class="o">&amp;&amp;</span> make dist
 <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
 </pre></div>
 
-<h1>API</h1>
+<h1>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h1>
 
-<h2>obs: Abstract observables</h2>
+<h2>
+<a name="obs-abstract-observables" class="anchor" href="#obs-abstract-observables"><span class="octicon octicon-link"></span></a>obs: Abstract observables</h2>
 
 <p>This provides the base functionality for observables. You probably want to use <code>obs.prop</code> and <code>obs.computed</code> instead of calling <code>obs</code> directly.</p>
 
-<h3>obs(options)</h3>
+<h3>
+<a name="obsoptions" class="anchor" href="#obsoptions"><span class="octicon octicon-link"></span></a>obs(options)</h3>
 
 <p>Creates an observable.</p>
 
-<h4>options.context (optional)</h4>
+<h4>
+<a name="optionscontext-optional" class="anchor" href="#optionscontext-optional"><span class="octicon octicon-link"></span></a>options.context (optional)</h4>
 
 <p>The context the observable's <code>read</code> and <code>write</code> functions will be executed in.</p>
 
 <p>Defaults to the observable instance if not explicitly set.</p>
 
-<h4>options.read:Function and options.write:Function (optional)</h4>
+<h4>
+<a name="optionsreadfunction-and-optionswritefunction-optional" class="anchor" href="#optionsreadfunction-and-optionswritefunction-optional"><span class="octicon octicon-link"></span></a>options.read:Function and options.write:Function (optional)</h4>
 
 <p>The functions to be called when the observable is read from or written to.</p>
 
 <p>An error will be raised if the observable is read from but no <code>read</code> function was defined, or if it is written to and no <code>write</code> function was defined.</p>
 
-<h4>options.watched:Array (optional)</h4>
+<h4>
+<a name="optionswatchedarray-optional" class="anchor" href="#optionswatchedarray-optional"><span class="octicon octicon-link"></span></a>options.watched:Array (optional)</h4>
 
 <p>An array of objects this observable subscribes to. If the value is not an array, it will be wrapped in one. Each object should have a <code>subscribe</code> method and (optionally) an <code>unsubscribe</code> method.</p>
 
-<h4>options.onNotify:Function (optional)</h4>
+<h4>
+<a name="optionsonnotifyfunction-optional" class="anchor" href="#optionsonnotifyfunction-optional"><span class="octicon octicon-link"></span></a>options.onNotify:Function (optional)</h4>
 
 <p>Function to be called when an object the observable is watching changes. Defaults to the observable's <code>notify</code> method, effectively turning the observable into a relay.</p>
 
-<h3>obs#()</h3>
+<h3>
+<a name="obs" class="anchor" href="#obs"><span class="octicon octicon-link"></span></a>obs#()</h3>
 
 <p>Calls the observable's <code>read</code> function with its <code>context</code>.</p>
 
-<h3>obs#(value)</h3>
+<h3>
+<a name="obsvalue" class="anchor" href="#obsvalue"><span class="octicon octicon-link"></span></a>obs#(value)</h3>
 
 <p>Calls the observable's <code>write</code> function with its <code>context</code> and the given <code>value</code>.</p>
 
-<h3>obs#subscribe(callback:Function)</h3>
+<h3>
+<a name="obssubscribecallbackfunction" class="anchor" href="#obssubscribecallbackfunction"><span class="octicon octicon-link"></span></a>obs#subscribe(callback:Function)</h3>
 
 <p>Adds the given callback function to this observable's list of subscribers.</p>
 
 <p>The callback will be called with the observable's new and old value as its arguments whenever the observable's value is updated (even if the new value is equal to the old value).</p>
 
-<h3>obs#unsubscribe(callback:Function):Boolean</h3>
+<h3>
+<a name="obsunsubscribecallbackfunctionboolean" class="anchor" href="#obsunsubscribecallbackfunctionboolean"><span class="octicon octicon-link"></span></a>obs#unsubscribe(callback:Function):Boolean</h3>
 
 <p>Removes the given callback function from this observable's list of subscribers. The callback will no longer be called when the observable's value changes.</p>
 
@@ -290,59 +320,73 @@ make <span class="o">&amp;&amp;</span> make dist
 
 <p><strong>NOTE:</strong> Remember to use the exact function that was passed to <code>obs#subscribe</code>.</p>
 
-<h3>obs#peek()</h3>
+<h3>
+<a name="obspeek" class="anchor" href="#obspeek"><span class="octicon octicon-link"></span></a>obs#peek()</h3>
 
 <p>Returns the observable's current value without invoking its <code>read</code> function.</p>
 
-<h3>obs#commit()</h3>
+<h3>
+<a name="obscommit" class="anchor" href="#obscommit"><span class="octicon octicon-link"></span></a>obs#commit()</h3>
 
 <p>Sets the observable's initial value to its current value and clears its <code>dirty</code> flag.</p>
 
-<h3>obs#reset()</h3>
+<h3>
+<a name="obsreset" class="anchor" href="#obsreset"><span class="octicon octicon-link"></span></a>obs#reset()</h3>
 
 <p>Resets the observable to its initial value (or <code>undefined</code>), then calls <code>notify()</code>.</p>
 
-<h3>obs#notify()</h3>
+<h3>
+<a name="obsnotify" class="anchor" href="#obsnotify"><span class="octicon octicon-link"></span></a>obs#notify()</h3>
 
 <p>Updates the observable's <code>dirty</code> flag, then notifies all subscribers with the its current and previous value.</p>
 
-<h3>obs#watch(dependencies…)</h3>
+<h3>
+<a name="obswatchdependencies" class="anchor" href="#obswatchdependencies"><span class="octicon octicon-link"></span></a>obs#watch(dependencies…)</h3>
 
 <p>Adds the given dependencies to this observable. Each dependency should have a <code>subscribe</code> and <code>unsubscribe</code> method. Whenever one of the dependencies changes, this observable's <code>onNotify</code> function will be called.</p>
 
-<h3>obs#unwatch(dependencies…)</h3>
+<h3>
+<a name="obsunwatchdependencies" class="anchor" href="#obsunwatchdependencies"><span class="octicon octicon-link"></span></a>obs#unwatch(dependencies…)</h3>
 
 <p>Removes the given dependencies by calling their <code>unsubscribe</code> methods. The observable will no longer be notified when their values change.</p>
 
-<h3>obs#dismiss()</h3>
+<h3>
+<a name="obsdismiss" class="anchor" href="#obsdismiss"><span class="octicon octicon-link"></span></a>obs#dismiss()</h3>
 
 <p>Removes all of the observable's dependencies. Equivalent to calling <code>obs#unwatch</code> for each dependency.</p>
 
-<h3>obs.fn</h3>
+<h3>
+<a name="obsfn" class="anchor" href="#obsfn"><span class="octicon octicon-link"></span></a>obs.fn</h3>
 
 <p>An object containing attributes that will be applied to new observables.</p>
 
-<h2>obs.prop: Observable properties</h2>
+<h2>
+<a name="obsprop-observable-properties" class="anchor" href="#obsprop-observable-properties"><span class="octicon octicon-link"></span></a>obs.prop: Observable properties</h2>
 
 <p>This provides a simple wrapper around <code>obs</code> useful for observables that should just act as a single value storage.</p>
 
-<h3>obs.prop([initialValue])</h3>
+<h3>
+<a name="obspropinitialvalue" class="anchor" href="#obspropinitialvalue"><span class="octicon octicon-link"></span></a>obs.prop([initialValue])</h3>
 
 <p>Creates an observable property (optionally initialized with the given value).</p>
 
-<h3>obs.prop#()</h3>
+<h3>
+<a name="obsprop" class="anchor" href="#obsprop"><span class="octicon octicon-link"></span></a>obs.prop#()</h3>
 
 <p>Returns the property's current value.</p>
 
-<h3>obs.prop#(newValue)</h3>
+<h3>
+<a name="obspropnewvalue" class="anchor" href="#obspropnewvalue"><span class="octicon octicon-link"></span></a>obs.prop#(newValue)</h3>
 
 <p>Sets the property's current value to <code>newValue</code> and notifies all subscribers.</p>
 
-<h2>obs.computed: Computed observables</h2>
+<h2>
+<a name="obscomputed-computed-observables" class="anchor" href="#obscomputed-computed-observables"><span class="octicon octicon-link"></span></a>obs.computed: Computed observables</h2>
 
 <p>This provides a simple wrapper around <code>obs</code> to create observables that depend on other observables and have values that should be computed dynamically, e.g. composite values of other observables.</p>
 
-<h3>obs.computed(compute:Function, [write:Function], [watch:Array])</h3>
+<h3>
+<a name="obscomputedcomputefunction-writefunction-watcharray" class="anchor" href="#obscomputedcomputefunction-writefunction-watcharray"><span class="octicon octicon-link"></span></a>obs.computed(compute:Function, [write:Function], [watch:Array])</h3>
 
 <p>Creates a computed observable observable. The observable's value will be set to the return value of the given function <code>compute</code> and updated whenever any of the <code>watch</code> functions changes.</p>
 
@@ -350,43 +394,53 @@ make <span class="o">&amp;&amp;</span> make dist
 
 <p>The list of <code>watch</code> functions can be an array containing any kind of object that supports the <code>subscribe</code> and (optionally) <code>unsubscribe</code> methods (e.g. an instance of <code>sublish.PubSub</code>).</p>
 
-<h3>obs.computed(options)</h3>
+<h3>
+<a name="obscomputedoptions" class="anchor" href="#obscomputedoptions"><span class="octicon octicon-link"></span></a>obs.computed(options)</h3>
 
 <p>Creates a computed observable property with the given options.</p>
 
-<h4>options.compute:Function (optional)</h4>
+<h4>
+<a name="optionscomputefunction-optional" class="anchor" href="#optionscomputefunction-optional"><span class="octicon octicon-link"></span></a>options.compute:Function (optional)</h4>
 
 <p>The function this computed observable will use to generate its value. If this option is not provided, the observable will be write-only.</p>
 
-<h4>options.write:Function (optional)</h4>
+<h4>
+<a name="optionswritefunction-optional" class="anchor" href="#optionswritefunction-optional"><span class="octicon octicon-link"></span></a>options.write:Function (optional)</h4>
 
 <p>The function this computed observable will use when it is passed a value. If this option is not provided, the observable will be read-only.</p>
 
-<h4>options.watch:Array (optional)</h4>
+<h4>
+<a name="optionswatcharray-optional" class="anchor" href="#optionswatcharray-optional"><span class="octicon octicon-link"></span></a>options.watch:Array (optional)</h4>
 
 <p>See above. This option has no effect if no <code>read</code> function is provided. If a single object is passed instead of an array, the object will automatically be wrapped in an array.</p>
 
-<h4>options.context (optional)</h4>
+<h4>
+<a name="optionscontext-optional-1" class="anchor" href="#optionscontext-optional-1"><span class="octicon octicon-link"></span></a>options.context (optional)</h4>
 
 <p>The context the <code>compute</code> and <code>write</code> functions will be executed in. Defaults to the computed observable itself.</p>
 
-<h3>obs.computed#()</h3>
+<h3>
+<a name="obscomputed" class="anchor" href="#obscomputed"><span class="octicon octicon-link"></span></a>obs.computed#()</h3>
 
 <p>Returns the computed property's current value. For lazy computed observables, this will trigger the function evaluation and notify any subscribers.</p>
 
-<h3>obs.computed.lazy(compute:Function, [write:Function], [watched:Array])</h3>
+<h3>
+<a name="obscomputedlazycomputefunction-writefunction-watchedarray" class="anchor" href="#obscomputedlazycomputefunction-writefunction-watchedarray"><span class="octicon octicon-link"></span></a>obs.computed.lazy(compute:Function, [write:Function], [watched:Array])</h3>
 
 <p>See <code>obs.computed(…)</code>. The created observable will only call its <code>compute</code> function to update its value when it is explicitly read from.</p>
 
-<h3>obs.computed.lazy(options)</h3>
+<h3>
+<a name="obscomputedlazyoptions" class="anchor" href="#obscomputedlazyoptions"><span class="octicon octicon-link"></span></a>obs.computed.lazy(options)</h3>
 
 <p>See <code>obs.computed(options)</code> and above.</p>
 
-<h1>Acknowledgements</h1>
+<h1>
+<a name="acknowledgements" class="anchor" href="#acknowledgements"><span class="octicon octicon-link"></span></a>Acknowledgements</h1>
 
 <p>This library was heavily inspired by <a href="https://github.com/SteveSanderson/knockout">Steve Sanderson's knockout.js project</a>.</p>
 
-<h1>License</h1>
+<h1>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
 
 <p>The MIT/Expat license.</p>
       </section>
