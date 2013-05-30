@@ -1,7 +1,6 @@
-/*! obs 0.9.1 Copyright (c) 2013 Alan Plum. MIT licensed. @preserve */
+/*! obs 0.10.0 Copyright (c) 2013 Alan Plum. MIT licensed. @preserve */
 define(function(require, exports, module) {
 var PubSub = require('sublish').PubSub,
-    aug = require('aug'),
     slice = Array.prototype.slice,
     isArray = Array.isArray ? Array.isArray : function(arr) {
         return Object.prototype.toString.call(arr) === '[object Array]';
@@ -16,6 +15,19 @@ var PubSub = require('sublish').PubSub,
         }
         return false;
     };
+
+function ext(dest) {
+    var srcs = slice.call(arguments, 1);
+    for (var i = 0; i < srcs.length; i++) {
+        var src = srcs[i];
+        for (var key in src) {
+            if (src.hasOwnProperty(key)) {
+                dest[key] = src[key];
+            }
+        }
+    }
+    return dest;
+}
 
 function parseComputedConfig(args) {
     var config = args[0];
@@ -52,7 +64,7 @@ function obs(config) {
         }
     }
 
-    aug(observable, PubSub.prototype, {
+    ext(observable, PubSub.prototype, {
         context: config.context || observable,
         read: config.read,
         write: config.write,
@@ -153,7 +165,7 @@ obs.prop = function(initialValue) {
 obs.computed = function(config) {
     config = parseComputedConfig(arguments);
 
-    var observable = obs(aug({}, config, {
+    var observable = obs(ext({}, config, {
         read: function() {
             return observable._currentValue;
         },
@@ -182,7 +194,7 @@ obs.computed.lazy = function(config) {
     config = parseComputedConfig(arguments);
 
     var changed = true;
-    var observable = obs(aug({}, config, {
+    var observable = obs(ext({}, config, {
         context: config.context,
         read: function() {
             if (changed) {

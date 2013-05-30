@@ -6,9 +6,8 @@
     "observable",
     "properties"
   ],
-  "version": "0.9.1",
+  "version": "0.10.0",
   "dependencies": {
-    "jgallen23/aug": "0.1.0",
     "pluma/sublish": "0.4.4"
   },
   "devDependencies": {},

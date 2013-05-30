@@ -1,6 +1,6 @@
 {
   "name": "obs",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "author": "Alan Plum <me@pluma.io>",
   "description": "Observable properties done right.",
   "repository": {
@@ -12,14 +12,13 @@
     "properties"
   ],
   "dependencies": {
-    "aug": "~0.1.0",
     "sublish": "~0.4.4"
   },
   "devDependencies": {
-    "mocha": "1.9.x",
+    "mocha": "1.10.x",
     "expect.js": "0.2.x",
     "uglify-js": "2.3.x",
-    "jshint": "2.0.x"
+    "jshint": "2.1.x"
   },
   "license": "MIT",
   "main": "./dist/obs.js",
