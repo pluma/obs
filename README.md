@@ -370,3 +370,7 @@ This library was heavily inspired by [Steve Sanderson's knockout.js project](htt
 # License
 
 The MIT/Expat license.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/pluma/obs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
