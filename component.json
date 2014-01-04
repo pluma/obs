@@ -1,14 +1,15 @@
 {
   "name": "obs",
   "repo": "pluma/obs",
+  "version": "0.10.1",
   "description": "Observable properties done right.",
+  "license": "UNLICENSE",
   "keywords": [
     "observable",
     "properties"
   ],
-  "version": "0.10.0",
   "dependencies": {
-    "pluma/sublish": "0.4.4"
+    "pluma/sublish": "0.4.5"
   },
   "devDependencies": {},
   "scripts": ["dist/obs.js"],
@@ -18,6 +19,5 @@
     "build",
     "components",
     "node_modules"
-  ],
-  "license": "MIT"
+  ]
 }

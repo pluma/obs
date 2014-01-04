@@ -1,4 +1,4 @@
-/*! obs 0.10.0 Copyright (c) 2013 Alan Plum. MIT licensed. @preserve */
+/*! obs 0.10.1 Original author Alan Plum <me@pluma.io>. Released into the Public Domain under the UNLICENSE. @preserve */
 var PubSub = require('sublish').PubSub,
     slice = Array.prototype.slice,
     isArray = Array.isArray ? Array.isArray : function(arr) {

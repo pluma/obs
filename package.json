@@ -1,8 +1,12 @@
 {
   "name": "obs",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "author": "Alan Plum <me@pluma.io>",
   "description": "Observable properties done right.",
+  "licenses": {
+    "type": "UNLICENSE",
+    "url": "https://github.com/pluma/obs/blob/master/UNLICENSE"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/pluma/obs.git"
@@ -12,15 +16,14 @@
     "properties"
   ],
   "dependencies": {
-    "sublish": "~0.4.4"
+    "sublish": "~0.4"
   },
   "devDependencies": {
-    "mocha": "1.10.x",
-    "expect.js": "0.2.x",
-    "uglify-js": "2.3.x",
-    "jshint": "2.1.x"
+    "mocha": "~1.16",
+    "expect.js": "~0.2",
+    "uglify-js": "~2.4",
+    "jshint": "~2.4"
   },
-  "license": "MIT",
   "main": "./dist/obs.js",
   "scripts": {
     "test": "make test"

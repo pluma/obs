@@ -369,8 +369,8 @@ This library was heavily inspired by [Steve Sanderson's knockout.js project](htt
 
 # License
 
-The MIT/Expat license.
+# Unlicense
 
+This is free and unencumbered public domain software. For more information, see http://unlicense.org/ or the accompanying [UNLICENSE](https://github.com/pluma/obs/blob/master/UNLICENSE) file.
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/pluma/obs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
