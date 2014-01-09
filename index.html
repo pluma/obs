@@ -1,32 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>obs by pluma</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="obs : observable properties done right" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <title>obs</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>obs</h1>
-        <p>Observable properties done right.</p>
-        <p class="view"><a href="https://github.com/pluma/obs">View the Project on GitHub <small>pluma/obs</small></a></p>
-        <ul>
-          <li><a href="https://github.com/pluma/obs/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/pluma/obs/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/pluma/obs">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/pluma/obs">View on GitHub</a>
+
+          <h1 id="project_title">obs</h1>
+          <h2 id="project_tagline">observable properties done right</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/pluma/obs/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/pluma/obs/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h1>
 <a name="synopsis" class="anchor" href="#synopsis"><span class="octicon octicon-link"></span></a>Synopsis</h1>
 
@@ -47,13 +51,13 @@
 <h3>
 <a name="with-npm" class="anchor" href="#with-npm"><span class="octicon octicon-link"></span></a>With NPM</h3>
 
-<div class="highlight"><pre>npm install obs
+<div class="highlight highlight-sh"><pre>npm install obs
 </pre></div>
 
 <h3>
 <a name="from-source" class="anchor" href="#from-source"><span class="octicon octicon-link"></span></a>From source</h3>
 
-<div class="highlight"><pre>git clone https://github.com/pluma/obs.git
+<div class="highlight highlight-sh"><pre>git clone https://github.com/pluma/obs.git
 <span class="nb">cd </span>obs
 npm install
 make <span class="o">&amp;&amp;</span> make dist
@@ -65,7 +69,7 @@ make <span class="o">&amp;&amp;</span> make dist
 <h3>
 <a name="with-component" class="anchor" href="#with-component"><span class="octicon octicon-link"></span></a>With component</h3>
 
-<div class="highlight"><pre>component install pluma/obs
+<div class="highlight highlight-sh"><pre>component install pluma/obs
 </pre></div>
 
 <p><a href="https://github.com/component/component">Learn more about component</a>.</p>
@@ -93,7 +97,7 @@ make <span class="o">&amp;&amp;</span> make dist
 
 <p>Get the <a href="https://raw.github.com/pluma/obs/master/dist/obs.all.min.js">latest distribution bundle</a> (~3.7 kB minified or ~1.2 kB gzipped, includes <a href="https://github.com/pluma/sublish/tree/0.4.4">sublish 0.4.4</a>) and download it to your project.</p>
 
-<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/your/js/path/obs.all.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/your/js/path/obs.all.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></div>
 
 <p>This makes the <code>obs</code> module available in the global namespace.</p>
@@ -103,7 +107,7 @@ make <span class="o">&amp;&amp;</span> make dist
 <h1>
 <a name="basic-usage-example-with-nodejs" class="anchor" href="#basic-usage-example-with-nodejs"><span class="octicon octicon-link"></span></a>Basic usage example with node.js</h1>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">obs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'obs'</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">obs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'obs'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
     <span class="nx">y</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
     <span class="nx">sum</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">computed</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -138,7 +142,7 @@ make <span class="o">&amp;&amp;</span> make dist
 <h1>
 <a name="example-with-writable-computed-observables" class="anchor" href="#example-with-writable-computed-observables"><span class="octicon octicon-link"></span></a>Example with writable computed observables</h1>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">obs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'obs'</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">obs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'obs'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">firstname</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'John'</span><span class="p">),</span>
     <span class="nx">lastname</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'Doe'</span><span class="p">),</span>
     <span class="nx">fullname</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">computed</span><span class="p">({</span>
@@ -161,12 +165,12 @@ make <span class="o">&amp;&amp;</span> make dist
 <h1>
 <a name="client-side-example-with-rivetsjs-data-binding" class="anchor" href="#client-side-example-with-rivetsjs-data-binding"><span class="octicon octicon-link"></span></a>Client-side example with <a href="http://rivetsjs.com">rivets.js</a> data-binding</h1>
 
-<p>Try it on <a href="http://jsfiddle.net/QdLxc/5/">jsfiddle</a>.</p>
+<p>Try it on <a href="http://jsfiddle.net/QdLxc/6/">jsfiddle</a>.</p>
 
 <h2>
 <a name="html" class="anchor" href="#html"><span class="octicon octicon-link"></span></a>HTML</h2>
 
-<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"view"</span><span class="nt">&gt;</span>
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"view"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;label&gt;</span>
         Your name:
         <span class="nt">&lt;input</span> <span class="na">data-rv-value=</span><span class="s">"user.name"</span><span class="nt">/&gt;</span>
@@ -181,7 +185,7 @@ make <span class="o">&amp;&amp;</span> make dist
 <h2>
 <a name="css" class="anchor" href="#css"><span class="octicon octicon-link"></span></a>CSS</h2>
 
-<div class="highlight"><pre><span class="nf">#view</span> <span class="p">{</span>
+<div class="highlight highlight-css"><pre><span class="nf">#view</span> <span class="p">{</span>
     <span class="k">font</span><span class="o">:</span> <span class="m">16px</span> <span class="n">Verdana</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="k">sans-serif</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nf">#view</span> <span class="nt">div</span> <span class="p">{</span>
@@ -195,7 +199,7 @@ make <span class="o">&amp;&amp;</span> make dist
 <h3>
 <a name="utilities" class="anchor" href="#utilities"><span class="octicon octicon-link"></span></a>Utilities</h3>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">colors</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">colors</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'rgba(255,0,0,0.5)'</span><span class="p">,</span> <span class="s1">'rgba(255,255,0,0.5)'</span><span class="p">,</span>
     <span class="s1">'rgba(0,255,0,0.5)'</span><span class="p">,</span> <span class="s1">'rgba(0,255,255,0.5)'</span><span class="p">,</span>
     <span class="s1">'rgba(0,0,255,0.5)'</span><span class="p">,</span> <span class="s1">'rgba(255,0,255,0.5)'</span>
@@ -213,7 +217,7 @@ make <span class="o">&amp;&amp;</span> make dist
 <h3>
 <a name="rivetsjs-adapter-and-configuration" class="anchor" href="#rivetsjs-adapter-and-configuration"><span class="octicon octicon-link"></span></a>Rivets.js adapter and configuration</h3>
 
-<div class="highlight"><pre><span class="nx">rivets</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">rivets</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span>
     <span class="nx">prefix</span><span class="o">:</span> <span class="s1">'rv'</span><span class="p">,</span>
     <span class="nx">adapter</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">subscribe</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">keypath</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
@@ -239,7 +243,7 @@ make <span class="o">&amp;&amp;</span> make dist
 <h3>
 <a name="viewmodel-using-obsjs" class="anchor" href="#viewmodel-using-obsjs"><span class="octicon octicon-link"></span></a>ViewModel (using obs.js)</h3>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">viewModel</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">viewModel</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">now</span><span class="o">:</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="o">+</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()),</span>
     <span class="nx">color</span><span class="o">:</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="nx">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
     <span class="nx">user</span><span class="o">:</span> <span class="p">{</span>
@@ -442,14 +446,24 @@ make <span class="o">&amp;&amp;</span> make dist
 <h1>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
 
-<p>The MIT/Expat license.</p>
+<h1>
+<a name="unlicense" class="anchor" href="#unlicense"><span class="octicon octicon-link"></span></a>Unlicense</h1>
+
+<p>This is free and unencumbered public domain software. For more information, see <a href="http://unlicense.org/">http://unlicense.org/</a> or the accompanying <a href="https://github.com/pluma/obs/blob/master/UNLICENSE">UNLICENSE</a> file.</p>
+
+<p><a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/pluma/obs/trend.png" alt="Bitdeli Badge"></a></p>
       </section>
     </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/pluma">pluma</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">obs maintained by <a href="https://github.com/pluma">pluma</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
     
+
   </body>
 </html>
