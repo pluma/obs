@@ -4,9 +4,14 @@
 
 Together with [rivets.js](http://rivetsjs.com) it can serve as a lightweight alternative to [Knockout.js](http://knockoutjs.com).
 
+[![stability 3 - stable](http://b.repl.ca/v1/stability-3_--_stable-yellowgreen.png)
+](http://nodejs.org/api/documentation.html#documentation_stability_index) [![license - Unlicense](http://b.repl.ca/v1/license-Unlicense-lightgrey.png)](http://unlicense.org/)
+
 [![browser support](https://ci.testling.com/pluma/obs.png)](https://ci.testling.com/pluma/obs)
 
-[![Build Status](https://travis-ci.org/pluma/obs.png?branch=master)](https://travis-ci.org/pluma/obs) [![Coverage Status](https://coveralls.io/repos/pluma/obs/badge.png?branch=master)](https://coveralls.io/r/pluma/obs?branch=master) [![NPM version](https://badge.fury.io/js/obs.png)](http://badge.fury.io/js/obs) [![Dependencies](https://david-dm.org/pluma/obs.png)](https://david-dm.org/pluma/obs)
+[![Build Status](https://travis-ci.org/pluma/obs.png?branch=master)](https://travis-ci.org/pluma/obs) [![Coverage Status](https://coveralls.io/repos/pluma/obs/badge.png?branch=master)](https://coveralls.io/r/pluma/obs?branch=master) [![Dependencies](https://david-dm.org/pluma/obs.png?theme=shields.io)](https://david-dm.org/pluma/obs)
+
+[![NPM status](https://nodei.co/npm/obs.png?compact=true)](https://npmjs.org/package/obs)
 
 # Install
 
