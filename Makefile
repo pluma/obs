@@ -1,6 +1,16 @@
-LICENSE_COMMENT="/*! obs 0.10.1 Original author Alan Plum <me@pluma.io>. Released into the Public Domain under the UNLICENSE. @preserve */"
+LICENSE_COMMENT="/*! obs 0.11.0 Original author Alan Plum <me@pluma.io>. Released into the Public Domain under the UNLICENSE. @preserve */"
 
-test:
+cover: lint
+	@./node_modules/.bin/istanbul cover -x "**/spec/**" \
+		./node_modules/mocha/bin/_mocha --report lcov spec/ -- -R spec
+
+coveralls:
+	@./node_modules/.bin/istanbul cover -x "**/spec/**" \
+		./node_modules/mocha/bin/_mocha --report lcovonly spec/ -- -R spec && \
+		cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+	@rm -rf ./coverage
+
+test: lint
 	@./node_modules/.bin/mocha \
 		--growl \
 		--reporter spec \
@@ -34,7 +44,7 @@ dist/obs.amd.js: dist/vendor
 	});" >> dist/obs.amd.js
 
 dist/vendor/sublish.globals.js: dist/vendor
-	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/pluma/sublish/0.4.4/dist/sublish.globals.js
+	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/pluma/sublish/0.4.5/dist/sublish.globals.js
 
 dist/obs.all.min.js: dist/vendor/sublish.globals.js dist/obs.globals.js
 	@cat dist/vendor/sublish.globals.js \

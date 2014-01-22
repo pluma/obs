@@ -6,7 +6,7 @@ Together with [rivets.js](http://rivetsjs.com) it can serve as a lightweight alt
 
 [![browser support](https://ci.testling.com/pluma/obs.png)](https://ci.testling.com/pluma/obs)
 
-[![Build Status](https://travis-ci.org/pluma/obs.png?branch=master)](https://travis-ci.org/pluma/obs) [![NPM version](https://badge.fury.io/js/obs.png)](http://badge.fury.io/js/obs) [![Dependencies](https://david-dm.org/pluma/obs.png)](https://david-dm.org/pluma/obs)
+[![Build Status](https://travis-ci.org/pluma/obs.png?branch=master)](https://travis-ci.org/pluma/obs) [![Coverage Status](https://coveralls.io/repos/pluma/obs/badge.png?branch=master)](https://coveralls.io/r/pluma/obs?branch=master) [![NPM version](https://badge.fury.io/js/obs.png)](http://badge.fury.io/js/obs) [![Dependencies](https://david-dm.org/pluma/obs.png)](https://david-dm.org/pluma/obs)
 
 # Install
 
@@ -55,7 +55,7 @@ Make sure you also have a compatible copy of [sublish](https://github.com/pluma/
 
 ### As standalone bundle
 
-Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dist/obs.all.min.js) (~3.7 kB minified or ~1.2 kB gzipped, includes [sublish 0.4.4](https://github.com/pluma/sublish/tree/0.4.4)) and download it to your project.
+Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dist/obs.all.min.js) (~3.7 kB minified or ~1.2 kB gzipped, includes [sublish 0.4.5](https://github.com/pluma/sublish/tree/0.4.5)) and download it to your project.
 
 ```html
 <script src="/your/js/path/obs.all.min.js"></script>
@@ -366,8 +366,6 @@ See `obs.computed(options)` and above.
 # Acknowledgements
 
 This library was heavily inspired by [Steve Sanderson's knockout.js project](https://github.com/SteveSanderson/knockout).
-
-# License
 
 # Unlicense
 
