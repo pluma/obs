@@ -1,4 +1,4 @@
-/*! obs 0.11.0 Original author Alan Plum <me@pluma.io>. Released into the Public Domain under the UNLICENSE. @preserve */
+/*! obs 0.11.1 Original author Alan Plum <me@pluma.io>. Released into the Public Domain under the UNLICENSE. @preserve */
 var PubSub = require('sublish').PubSub,
     slice = Array.prototype.slice,
     isArray = Array.isArray ? Array.isArray : function(arr) {
