@@ -130,7 +130,7 @@ console.log(lastname()); // von Zuse
 
 # Client-side example with [rivets.js](http://rivetsjs.com) data-binding
 
-Try it on [jsfiddle](http://jsfiddle.net/QdLxc/6/).
+Try it on [jsfiddle](http://jsfiddle.net/QdLxc/22/).
 
 ## HTML
 

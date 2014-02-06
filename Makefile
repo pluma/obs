@@ -1,4 +1,4 @@
-LICENSE_COMMENT="/*! obs 0.11.1 Original author Alan Plum <me@pluma.io>. Released into the Public Domain under the UNLICENSE. @preserve */"
+LICENSE_COMMENT="/*! obs 0.11.2 Original author Alan Plum <me@pluma.io>. Released into the Public Domain under the UNLICENSE. @preserve */"
 
 cover: lint
 	@./node_modules/.bin/istanbul cover -x "**/spec/**" \
