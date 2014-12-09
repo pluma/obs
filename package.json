@@ -16,15 +16,15 @@
     "properties"
   ],
   "dependencies": {
-    "sublish": "~0.4"
+    "sublish": "^0.4.6"
   },
   "devDependencies": {
-    "mocha": "~1.17",
-    "expect.js": "~0.2",
-    "uglify-js": "~2.4",
-    "jshint": "~2.4",
-    "istanbul": "~0.2",
-    "coveralls": "~2.6"
+    "mocha": "^2.0.1",
+    "expect.js": "^0.3.1",
+    "uglify-js": "^2.4.15",
+    "jshint": "^2.5.10",
+    "istanbul": "^0.3.5",
+    "coveralls": "^2.11.2"
   },
   "main": "./dist/obs.js",
   "scripts": {
