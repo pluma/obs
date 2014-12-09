@@ -4,8 +4,7 @@
 
 Together with [rivets.js](http://rivetsjs.com) it can serve as a lightweight alternative to [Knockout.js](http://knockoutjs.com).
 
-[![stability 3 - stable](http://b.repl.ca/v1/stability-3_--_stable-yellowgreen.png)
-](http://nodejs.org/api/documentation.html#documentation_stability_index) [![license - Unlicense](http://b.repl.ca/v1/license-Unlicense-lightgrey.png)](http://unlicense.org/) [![Flattr this](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=pluma&url=https://github.com/pluma/obs)
+[![license - MIT](http://b.repl.ca/v1/license-MIT-blue.png)](http://pluma.mit-license.org) [![Flattr this](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=pluma&url=https://github.com/pluma/obs)
 
 [![browser support](https://ci.testling.com/pluma/obs.png)](https://ci.testling.com/pluma/obs)
 
@@ -68,7 +67,7 @@ Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dis
 
 This makes the `obs` module available in the global namespace.
 
-If you are already using `sublish` in your project, you can download the [latest minified standalone release](https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js) (~3.2 kB minified or ~1.1 kB gzipped) instead.
+If you are already using `sublish` in your project, you can download the [latest minified standalone release](https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js) (~3.3 kB minified or ~1.1 kB gzipped) instead.
 
 # Basic usage example with node.js
 
@@ -230,7 +229,7 @@ setInterval(function() {
 
 This provides the base functionality for observables. You probably want to use `obs.prop` and `obs.computed` instead of calling `obs` directly.
 
-### obs(options)
+### obs(options):Function
 
 Creates an observable.
 
@@ -254,55 +253,55 @@ An array of objects this observable subscribes to. If the value is not an array,
 
 Function to be called when an object the observable is watching changes. Defaults to the observable's `notify` method, effectively turning the observable into a relay.
 
-### obs#()
+### observable()
 
 Calls the observable's `read` function with its `context`.
 
-### obs#(value)
+### observable(value)
 
 Calls the observable's `write` function with its `context` and the given `value`.
 
-### obs#subscribe(callback:Function)
+### observable.subscribe(callback:Function)
 
 Adds the given callback function to this observable's list of subscribers.
 
 The callback will be called with the observable's new and old value as its arguments whenever the observable's value is updated (even if the new value is equal to the old value).
 
-### obs#unsubscribe(callback:Function):Boolean
+### observable.unsubscribe(callback:Function):Boolean
 
 Removes the given callback function from this observable's list of subscribers. The callback will no longer be called when the observable's value changes.
 
 Returns `false` if the callback could not be found in the list of subscribers or `true` otherwise.
 
-**NOTE:** Remember to use the exact function that was passed to `obs#subscribe`.
+**NOTE:** Remember to use the exact function that was passed to `observable.subscribe`.
 
-### obs#peek()
+### observable.peek()
 
 Returns the observable's current value without invoking its `read` function.
 
-### obs#commit()
+### observable.commit()
 
 Sets the observable's initial value to its current value and clears its `dirty` flag.
 
-### obs#reset()
+### observable.reset()
 
 Resets the observable to its initial value (or `undefined`), then calls `notify()`.
 
-### obs#notify()
+### observable.notify()
 
 Updates the observable's `dirty` flag, then notifies all subscribers with the its current and previous value.
 
-### obs#watch(dependencies…)
+### observable.watch(dependencies…)
 
 Adds the given dependencies to this observable. Each dependency should have a `subscribe` and `unsubscribe` method. Whenever one of the dependencies changes, this observable's `onNotify` function will be called.
 
-### obs#unwatch(dependencies…)
+### observable.unwatch(dependencies…)
 
 Removes the given dependencies by calling their `unsubscribe` methods. The observable will no longer be notified when their values change.
 
-### obs#dismiss()
+### observable.dismiss()
 
-Removes all of the observable's dependencies. Equivalent to calling `obs#unwatch` for each dependency.
+Removes all of the observable's dependencies. Equivalent to calling `observable.unwatch` for each dependency.
 
 ### obs.fn
 
@@ -356,7 +355,7 @@ See above. This option has no effect if no `read` function is provided. If a sin
 
 The context the `compute` and `write` functions will be executed in. Defaults to the computed observable itself.
 
-### obs.computed#()
+### computedObservable()
 
 Returns the computed property's current value. For lazy computed observables, this will trigger the function evaluation and notify any subscribers.
 
@@ -368,12 +367,6 @@ See `obs.computed(…)`. The created observable will only call its `compute` fun
 
 See `obs.computed(options)` and above.
 
-# Acknowledgements
+# License
 
-This library was heavily inspired by [Steve Sanderson's knockout.js project](https://github.com/SteveSanderson/knockout).
-
-# Unlicense
-
-This is free and unencumbered public domain software. For more information, see http://unlicense.org/ or the accompanying [UNLICENSE](https://github.com/pluma/obs/blob/master/UNLICENSE) file.
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/pluma/obs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+The MIT/Expat license. For more information, see http://pluma.mit-license.org/ or the accompanying [LICENSE](https://github.com/pluma/obs/blob/master/LICENSE) file.

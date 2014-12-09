@@ -1,0 +1,4 @@
+
+}(function(key){return root[key];}, module.exports, module));
+root.obs = module.exports;
+}(this));

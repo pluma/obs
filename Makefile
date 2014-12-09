@@ -44,7 +44,7 @@ dist/obs.amd.js: dist/vendor
 	});" >> dist/obs.amd.js
 
 dist/vendor/sublish.globals.js: dist/vendor
-	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/pluma/sublish/0.4.5/dist/sublish.globals.js
+	@wget --no-check-certificate -P dist/vendor/ https://raw.github.com/pluma/sublish/v2.0.0/dist/sublish.globals.js
 
 dist/obs.all.min.js: dist/vendor/sublish.globals.js dist/obs.globals.js
 	@cat dist/vendor/sublish.globals.js \

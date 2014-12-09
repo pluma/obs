@@ -1,0 +1,3 @@
+(function(root){
+var module = {exports: {}};
+(function(require, exports, module) {

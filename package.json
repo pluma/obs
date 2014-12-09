@@ -4,8 +4,8 @@
   "author": "Alan Plum <me@pluma.io>",
   "description": "Observable properties done right.",
   "licenses": {
-    "type": "UNLICENSE",
-    "url": "https://github.com/pluma/obs/blob/master/UNLICENSE"
+    "type": "MIT",
+    "url": "https://github.com/pluma/obs/blob/master/LICENSE"
   },
   "repository": {
     "type": "git",
@@ -16,20 +16,31 @@
     "properties"
   ],
   "dependencies": {
-    "sublish": "^0.4.6"
+    "sublish": "^2.0.0"
   },
   "devDependencies": {
-    "mocha": "^2.0.1",
+    "coveralls": "^2.11.2",
     "expect.js": "^0.3.1",
-    "uglify-js": "^2.4.15",
-    "jshint": "^2.5.10",
     "istanbul": "^0.3.5",
-    "coveralls": "^2.11.2"
+    "jshint": "^2.5.10",
+    "mocha": "^2.0.1",
+    "uglify-js": "^2.4.15"
   },
   "main": "./dist/obs.js",
   "scripts": {
-    "test": "make test",
-    "coveralls": "make coveralls"
+    "lint": "jshint index.js test",
+    "test": "mocha --growl -R spec",
+    "cover": "npm run lint && istanbul cover --report lcov _mocha -- -R spec",
+    "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls ; rm -rf ./coverage",
+    "dist": "npm run cjs-min; npm run globals-min; npm run amd-min; npm run globals-all",
+    "cjs": "cp index.js dist/obs.js",
+    "cjs-min": "npm run cjs; uglifyjs dist/obs.js > dist/obs.min.js",
+    "globals": "cat templates/globals.before index.js templates/globals.after > dist/obs.globals.js",
+    "globals-min": "npm run globals; uglifyjs dist/obs.globals.js > dist/obs.globals.min.js",
+    "amd": "cat templates/amd.before index.js templates/amd.after > dist/obs.amd.js",
+    "amd-min": "npm run amd; uglifyjs dist/obs.amd.js > dist/obs.amd.min.js",
+    "deps": "wget https://raw.githubusercontent.com/pluma/sublish/v2.0.0/dist/sublish.globals.js",
+    "globals-all": "npm run globals; npm run deps; cat dist/vendor/sublish.globals.js dist/obs.globals.js | uglifyjs > dist/obs.all.min.js"
   },
   "engines": {
     "node": ">=0.8"
