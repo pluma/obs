@@ -4,7 +4,7 @@
 
 Together with [rivets.js](http://rivetsjs.com) it can serve as a lightweight alternative to [Knockout.js](http://knockoutjs.com).
 
-[![license - MIT](http://b.repl.ca/v1/license-MIT-blue.png)](http://pluma.mit-license.org) [![Flattr this](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=pluma&url=https://github.com/pluma/obs)
+[![license - MIT](https://img.shields.io/npm/l/obs.svg)](http://pluma.mit-license.org) [![Flattr this](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=pluma&url=https://github.com/pluma/obs)
 
 [![browser support](https://ci.testling.com/pluma/obs.png)](https://ci.testling.com/pluma/obs)
 
