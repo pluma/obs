@@ -2,9 +2,9 @@
 <html>
 
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="obs : observable properties done right" />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="obs : observable properties done right">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -32,13 +32,13 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h1>
-<a name="synopsis" class="anchor" href="#synopsis"><span class="octicon octicon-link"></span></a>Synopsis</h1>
+<a id="synopsis" class="anchor" href="#synopsis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Synopsis</h1>
 
 <p><strong>obs</strong> is a powerful implementation of observable properties that can be used on both the client-side and the server-side.</p>
 
 <p>Together with <a href="http://rivetsjs.com">rivets.js</a> it can serve as a lightweight alternative to <a href="http://knockoutjs.com">Knockout.js</a>.</p>
 
-<p><a href="http://nodejs.org/api/documentation.html#documentation_stability_index"><img src="http://b.repl.ca/v1/stability-3_--_stable-yellowgreen.png" alt="stability 3 - stable"></a> <a href="http://unlicense.org/"><img src="http://b.repl.ca/v1/license-Unlicense-lightgrey.png" alt="license - Unlicense"></a> <a href="https://flattr.com/submit/auto?user_id=pluma&amp;url=https://github.com/pluma/obs"><img src="https://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this"></a></p>
+<p><a href="http://pluma.mit-license.org"><img src="http://b.repl.ca/v1/license-MIT-blue.png" alt="license - MIT"></a> <a href="https://flattr.com/submit/auto?user_id=pluma&amp;url=https://github.com/pluma/obs"><img src="https://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this"></a></p>
 
 <p><a href="https://ci.testling.com/pluma/obs"><img src="https://ci.testling.com/pluma/obs.png" alt="browser support"></a></p>
 
@@ -47,39 +47,36 @@
 <p><a href="https://npmjs.org/package/obs"><img src="https://nodei.co/npm/obs.png?compact=true" alt="NPM status"></a></p>
 
 <h1>
-<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h1>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h1>
 
 <h2>
-<a name="nodejs" class="anchor" href="#nodejs"><span class="octicon octicon-link"></span></a>Node.js</h2>
+<a id="nodejs" class="anchor" href="#nodejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Node.js</h2>
 
 <h3>
-<a name="with-npm" class="anchor" href="#with-npm"><span class="octicon octicon-link"></span></a>With NPM</h3>
+<a id="with-npm" class="anchor" href="#with-npm" aria-hidden="true"><span class="octicon octicon-link"></span></a>With NPM</h3>
 
-<div class="highlight highlight-sh"><pre>npm install obs
-</pre></div>
+<div class="highlight highlight-sh"><pre>npm install obs</pre></div>
 
 <h3>
-<a name="from-source" class="anchor" href="#from-source"><span class="octicon octicon-link"></span></a>From source</h3>
+<a id="from-source" class="anchor" href="#from-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>From source</h3>
 
 <div class="highlight highlight-sh"><pre>git clone https://github.com/pluma/obs.git
-<span class="nb">cd </span>obs
+<span class="pl-s3">cd</span> obs
 npm install
-make <span class="o">&amp;&amp;</span> make dist
-</pre></div>
+make <span class="pl-k">&amp;&amp;</span> make dist</pre></div>
 
 <h2>
-<a name="browser" class="anchor" href="#browser"><span class="octicon octicon-link"></span></a>Browser</h2>
+<a id="browser" class="anchor" href="#browser" aria-hidden="true"><span class="octicon octicon-link"></span></a>Browser</h2>
 
 <h3>
-<a name="with-component" class="anchor" href="#with-component"><span class="octicon octicon-link"></span></a>With component</h3>
+<a id="with-component" class="anchor" href="#with-component" aria-hidden="true"><span class="octicon octicon-link"></span></a>With component</h3>
 
-<div class="highlight highlight-sh"><pre>component install pluma/obs
-</pre></div>
+<div class="highlight highlight-sh"><pre>component install pluma/obs</pre></div>
 
 <p><a href="https://github.com/component/component">Learn more about component</a>.</p>
 
 <h3>
-<a name="with-a-commonjs-module-loader" class="anchor" href="#with-a-commonjs-module-loader"><span class="octicon octicon-link"></span></a>With a CommonJS module loader</h3>
+<a id="with-a-commonjs-module-loader" class="anchor" href="#with-a-commonjs-module-loader" aria-hidden="true"><span class="octicon octicon-link"></span></a>With a CommonJS module loader</h3>
 
 <p>Download the <a href="https://raw.github.com/pluma/obs/master/dist/obs.min.js">latest minified CommonJS release</a> and add it to your project.</p>
 
@@ -88,7 +85,7 @@ make <span class="o">&amp;&amp;</span> make dist
 <p><a href="http://wiki.commonjs.org/wiki/Modules/1.1">Learn more about CommonJS modules</a>.</p>
 
 <h3>
-<a name="with-an-amd-module-loader" class="anchor" href="#with-an-amd-module-loader"><span class="octicon octicon-link"></span></a>With an AMD module loader</h3>
+<a id="with-an-amd-module-loader" class="anchor" href="#with-an-amd-module-loader" aria-hidden="true"><span class="octicon octicon-link"></span></a>With an AMD module loader</h3>
 
 <p>Download the <a href="https://raw.github.com/pluma/obs/master/dist/obs.amd.min.js">latest minified AMD release</a> and add it to your project.</p>
 
@@ -97,304 +94,296 @@ make <span class="o">&amp;&amp;</span> make dist
 <p><a href="http://requirejs.org/docs/whyamd.html">Learn more about AMD modules</a>.</p>
 
 <h3>
-<a name="as-standalone-bundle" class="anchor" href="#as-standalone-bundle"><span class="octicon octicon-link"></span></a>As standalone bundle</h3>
+<a id="as-standalone-bundle" class="anchor" href="#as-standalone-bundle" aria-hidden="true"><span class="octicon octicon-link"></span></a>As standalone bundle</h3>
 
-<p>Get the <a href="https://raw.github.com/pluma/obs/master/dist/obs.all.min.js">latest distribution bundle</a> (~3.7 kB minified or ~1.2 kB gzipped, includes <a href="https://github.com/pluma/sublish/tree/0.4.5">sublish 0.4.5</a>) and download it to your project.</p>
+<p>Get the <a href="https://raw.github.com/pluma/obs/master/dist/obs.all.min.js">latest distribution bundle</a> (~4.8 kB minified or ~1.4 kB gzipped, includes <a href="https://github.com/pluma/sublish/tree/2.0.0">sublish 2.0.0</a>) and download it to your project.</p>
 
-<div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/your/js/path/obs.all.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-</pre></div>
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>/your/js/path/obs.all.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
 
 <p>This makes the <code>obs</code> module available in the global namespace.</p>
 
-<p>If you are already using <code>sublish</code> in your project, you can download the <a href="https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js">latest minified standalone release</a> (~3.2 kB minified or ~1.1 kB gzipped) instead.</p>
+<p>If you are already using <code>sublish</code> in your project, you can download the <a href="https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js">latest minified standalone release</a> (~4.0 kB minified or ~1.2 kB gzipped) instead.</p>
 
 <h1>
-<a name="basic-usage-example-with-nodejs" class="anchor" href="#basic-usage-example-with-nodejs"><span class="octicon octicon-link"></span></a>Basic usage example with node.js</h1>
+<a id="basic-usage-example-with-nodejs" class="anchor" href="#basic-usage-example-with-nodejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic usage example with node.js</h1>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">obs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'obs'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-    <span class="nx">y</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
-    <span class="nx">sum</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">computed</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">x</span><span class="p">()</span> <span class="o">+</span> <span class="nx">y</span><span class="p">();</span>
-    <span class="p">},</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">]),</span>
-    <span class="nx">product</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">computed</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">x</span><span class="p">()</span> <span class="o">*</span> <span class="nx">y</span><span class="p">();</span>
-    <span class="p">},</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">]);</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> obs <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>obs<span class="pl-pds">'</span></span>);
+<span class="pl-s">var</span> x <span class="pl-k">=</span> obs.prop(<span class="pl-c1">2</span>),
+    y <span class="pl-k">=</span> obs.prop(<span class="pl-c1">5</span>),
+    sum <span class="pl-k">=</span> obs.computed(<span class="pl-st">function</span>() {
+        <span class="pl-k">return</span> x() <span class="pl-k">+</span> y();
+    }, [x, y]),
+    product <span class="pl-k">=</span> obs.computed(<span class="pl-st">function</span>() {
+        <span class="pl-k">return</span> x() <span class="pl-k">*</span> y();
+    }, [x, y]);
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'sum is currently '</span> <span class="o">+</span> <span class="nx">sum</span><span class="p">());</span>
-<span class="c1">// 'sum is currently 7'</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'product is currently '</span> <span class="o">+</span> <span class="nx">product</span><span class="p">());</span>
-<span class="c1">// 'product is currently 10'</span>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">'</span>sum is currently <span class="pl-pds">'</span></span> <span class="pl-k">+</span> sum());
+<span class="pl-c">// 'sum is currently 7'</span>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">'</span>product is currently <span class="pl-pds">'</span></span> <span class="pl-k">+</span> product());
+<span class="pl-c">// 'product is currently 10'</span>
 
-<span class="nx">sum</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">old</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'sum is now '</span> <span class="o">+</span> <span class="nx">value</span> <span class="o">+</span> <span class="s1">' (was: '</span> <span class="o">+</span> <span class="nx">old</span> <span class="o">+</span> <span class="s1">')'</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">product</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">old</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'product is now '</span> <span class="o">+</span> <span class="nx">value</span> <span class="o">+</span> <span class="s1">' (was: '</span> <span class="o">+</span> <span class="nx">old</span> <span class="o">+</span> <span class="s1">')'</span><span class="p">);</span>
-<span class="p">});</span>
+sum.subscribe(<span class="pl-st">function</span>(<span class="pl-vpf">value</span>, <span class="pl-vpf">old</span>) {
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">'</span>sum is now <span class="pl-pds">'</span></span> <span class="pl-k">+</span> value <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">'</span> (was: <span class="pl-pds">'</span></span> <span class="pl-k">+</span> old <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">'</span>)<span class="pl-pds">'</span></span>);
+});
+product.subscribe(<span class="pl-st">function</span>(<span class="pl-vpf">value</span>, <span class="pl-vpf">old</span>) {
+    <span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">'</span>product is now <span class="pl-pds">'</span></span> <span class="pl-k">+</span> value <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">'</span> (was: <span class="pl-pds">'</span></span> <span class="pl-k">+</span> old <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">'</span>)<span class="pl-pds">'</span></span>);
+});
 
-<span class="nx">x</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-<span class="c1">// 'sum is now 8 (was: 7)'</span>
-<span class="c1">// 'product is now 15 (was: 10)'</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'sum is currently '</span> <span class="o">+</span> <span class="nx">sum</span><span class="p">());</span>
-<span class="c1">// 'sum is currently 8'</span>
-<span class="nx">y</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
-<span class="c1">// 'sum is now 11 (was: 8)'</span>
-<span class="c1">// 'product is now 24 (was: 15)'</span>
-</pre></div>
-
-<h1>
-<a name="example-with-writable-computed-observables" class="anchor" href="#example-with-writable-computed-observables"><span class="octicon octicon-link"></span></a>Example with writable computed observables</h1>
-
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">obs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'obs'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">firstname</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'John'</span><span class="p">),</span>
-    <span class="nx">lastname</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'Doe'</span><span class="p">),</span>
-    <span class="nx">fullname</span> <span class="o">=</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">computed</span><span class="p">({</span>
-        <span class="nx">compute</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nx">firstname</span><span class="p">()</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="nx">lastname</span><span class="p">();</span>
-        <span class="p">},</span>
-        <span class="nx">write</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value</span> <span class="o">||</span> <span class="s1">''</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">);</span>
-            <span class="nx">firstname</span><span class="p">(</span><span class="nx">tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-            <span class="nx">lastname</span><span class="p">(</span><span class="nx">tokens</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">' '</span><span class="p">));</span>
-        <span class="p">},</span>
-        <span class="nx">watch</span><span class="o">:</span> <span class="p">[</span><span class="nx">firstname</span><span class="p">,</span> <span class="nx">lastname</span><span class="p">]</span>
-    <span class="p">});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fullname</span><span class="p">());</span> <span class="c1">// John Doe</span>
-<span class="nx">fullname</span><span class="p">(</span><span class="s1">'Konrad von Zuse'</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstname</span><span class="p">());</span> <span class="c1">// Konrad</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lastname</span><span class="p">());</span> <span class="c1">// von Zuse</span>
-</pre></div>
+x(<span class="pl-c1">3</span>);
+<span class="pl-c">// 'sum is now 8 (was: 7)'</span>
+<span class="pl-c">// 'product is now 15 (was: 10)'</span>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(<span class="pl-s1"><span class="pl-pds">'</span>sum is currently <span class="pl-pds">'</span></span> <span class="pl-k">+</span> sum());
+<span class="pl-c">// 'sum is currently 8'</span>
+y(<span class="pl-c1">8</span>);
+<span class="pl-c">// 'sum is now 11 (was: 8)'</span>
+<span class="pl-c">// 'product is now 24 (was: 15)'</span></pre></div>
 
 <h1>
-<a name="client-side-example-with-rivetsjs-data-binding" class="anchor" href="#client-side-example-with-rivetsjs-data-binding"><span class="octicon octicon-link"></span></a>Client-side example with <a href="http://rivetsjs.com">rivets.js</a> data-binding</h1>
+<a id="example-with-writable-computed-observables" class="anchor" href="#example-with-writable-computed-observables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example with writable computed observables</h1>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> obs <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>obs<span class="pl-pds">'</span></span>);
+<span class="pl-s">var</span> firstname <span class="pl-k">=</span> obs.prop(<span class="pl-s1"><span class="pl-pds">'</span>John<span class="pl-pds">'</span></span>),
+    lastname <span class="pl-k">=</span> obs.prop(<span class="pl-s1"><span class="pl-pds">'</span>Doe<span class="pl-pds">'</span></span>),
+    fullname <span class="pl-k">=</span> obs.computed({
+        <span class="pl-en">compute</span>: <span class="pl-st">function</span>() {
+            <span class="pl-k">return</span> firstname() <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span> <span class="pl-k">+</span> lastname();
+        },
+        <span class="pl-en">write</span>: <span class="pl-st">function</span>(<span class="pl-vpf">value</span>) {
+            <span class="pl-s">var</span> tokens <span class="pl-k">=</span> (value <span class="pl-k">||</span> <span class="pl-s1"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>).<span class="pl-s3">split</span>(<span class="pl-s1"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span>);
+            firstname(tokens[<span class="pl-c1">0</span>]);
+            lastname(tokens.<span class="pl-s3">slice</span>(<span class="pl-c1">1</span>).<span class="pl-s3">join</span>(<span class="pl-s1"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span>));
+        },
+        watch<span class="pl-k">:</span> [firstname, lastname]
+    });
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(fullname()); <span class="pl-c">// John Doe</span>
+fullname(<span class="pl-s1"><span class="pl-pds">'</span>Konrad von Zuse<span class="pl-pds">'</span></span>);
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(firstname()); <span class="pl-c">// Konrad</span>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(lastname()); <span class="pl-c">// von Zuse</span></pre></div>
+
+<h1>
+<a id="client-side-example-with-rivetsjs-data-binding" class="anchor" href="#client-side-example-with-rivetsjs-data-binding" aria-hidden="true"><span class="octicon octicon-link"></span></a>Client-side example with <a href="http://rivetsjs.com">rivets.js</a> data-binding</h1>
 
 <p>Try it on <a href="http://jsfiddle.net/QdLxc/22/">jsfiddle</a>.</p>
 
 <h2>
-<a name="html" class="anchor" href="#html"><span class="octicon octicon-link"></span></a>HTML</h2>
+<a id="html" class="anchor" href="#html" aria-hidden="true"><span class="octicon octicon-link"></span></a>HTML</h2>
 
-<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"view"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;label&gt;</span>
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>view<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">label</span>&gt;
         Your name:
-        <span class="nt">&lt;input</span> <span class="na">data-rv-value=</span><span class="s">"user.name"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/label&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">data-rv-bgcolor=</span><span class="s">"color"</span><span class="nt">&gt;</span>
-        Hello <span class="nt">&lt;span</span> <span class="na">data-rv-text=</span><span class="s">"user.name"</span><span class="nt">&gt;&lt;/span&gt;</span>!<span class="nt">&lt;br&gt;</span>
-        The current UNIX time is: <span class="nt">&lt;span</span> <span class="na">data-rv-text=</span><span class="s">"now"</span><span class="nt">&gt;&lt;/span&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</pre></div>
+        &lt;<span class="pl-ent">input</span> <span class="pl-e">data-rv-value</span>=<span class="pl-s1"><span class="pl-pds">"</span>user.name<span class="pl-pds">"</span></span>/&gt;
+    &lt;/<span class="pl-ent">label</span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">data-rv-bgcolor</span>=<span class="pl-s1"><span class="pl-pds">"</span>color<span class="pl-pds">"</span></span>&gt;
+        Hello &lt;<span class="pl-ent">span</span> <span class="pl-e">data-rv-text</span>=<span class="pl-s1"><span class="pl-pds">"</span>user.name<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;!&lt;<span class="pl-ent">br</span>&gt;
+        The current UNIX time is: &lt;<span class="pl-ent">span</span> <span class="pl-e">data-rv-text</span>=<span class="pl-s1"><span class="pl-pds">"</span>now<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;
+    &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 
 <h2>
-<a name="css" class="anchor" href="#css"><span class="octicon octicon-link"></span></a>CSS</h2>
+<a id="css" class="anchor" href="#css" aria-hidden="true"><span class="octicon octicon-link"></span></a>CSS</h2>
 
-<div class="highlight highlight-css"><pre><span class="nf">#view</span> <span class="p">{</span>
-    <span class="k">font</span><span class="o">:</span> <span class="m">16px</span> <span class="n">Verdana</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="k">sans-serif</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nf">#view</span> <span class="nt">div</span> <span class="p">{</span>
-    <span class="k">padding</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight highlight-css"><pre><span class="pl-e">#view</span> {
+    <span class="pl-mp"><span class="pl-s3">font</span></span>: <span class="pl-c1">16<span class="pl-k">px</span></span> <span class="pl-sc">Verdana</span>, <span class="pl-sc">Arial</span>, <span class="pl-sc">sans-serif</span>;
+}
+<span class="pl-e">#view</span> <span class="pl-ent">div</span> {
+    <span class="pl-mp"><span class="pl-s3">padding</span></span>: <span class="pl-c1">10<span class="pl-k">px</span></span>;
+}</pre></div>
 
 <h2>
-<a name="javascript" class="anchor" href="#javascript"><span class="octicon octicon-link"></span></a>JavaScript</h2>
+<a id="javascript" class="anchor" href="#javascript" aria-hidden="true"><span class="octicon octicon-link"></span></a>JavaScript</h2>
 
 <h3>
-<a name="utilities" class="anchor" href="#utilities"><span class="octicon octicon-link"></span></a>Utilities</h3>
+<a id="utilities" class="anchor" href="#utilities" aria-hidden="true"><span class="octicon octicon-link"></span></a>Utilities</h3>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">colors</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">'rgba(255,0,0,0.5)'</span><span class="p">,</span> <span class="s1">'rgba(255,255,0,0.5)'</span><span class="p">,</span>
-    <span class="s1">'rgba(0,255,0,0.5)'</span><span class="p">,</span> <span class="s1">'rgba(0,255,255,0.5)'</span><span class="p">,</span>
-    <span class="s1">'rgba(0,0,255,0.5)'</span><span class="p">,</span> <span class="s1">'rgba(255,0,255,0.5)'</span>
-<span class="p">];</span>
-<span class="kd">function</span> <span class="nx">resolveKeypath</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">keypath</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">keypath</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">'.'</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">obj</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
-        <span class="p">}</span>
-    <span class="p">});</span>
-    <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-<h3>
-<a name="rivetsjs-adapter-and-configuration" class="anchor" href="#rivetsjs-adapter-and-configuration"><span class="octicon octicon-link"></span></a>Rivets.js adapter and configuration</h3>
-
-<div class="highlight highlight-javascript"><pre><span class="nx">rivets</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span>
-    <span class="nx">prefix</span><span class="o">:</span> <span class="s1">'rv'</span><span class="p">,</span>
-    <span class="nx">adapter</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">subscribe</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">keypath</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">resolveKeypath</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">keypath</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
-        <span class="p">},</span>
-        <span class="nx">unsubscribe</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">keypath</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">resolveKeypath</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">keypath</span><span class="p">).</span><span class="nx">unsubscribe</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
-        <span class="p">},</span>
-        <span class="nx">read</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">keypath</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nx">resolveKeypath</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">keypath</span><span class="p">)();</span>
-        <span class="p">},</span>
-        <span class="nx">publish</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">keypath</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">resolveKeypath</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">keypath</span><span class="p">)(</span><span class="nx">value</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-
-<span class="nx">rivets</span><span class="p">.</span><span class="nx">binders</span><span class="p">.</span><span class="nx">bgcolor</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
-<span class="p">};</span>
-</pre></div>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> colors <span class="pl-k">=</span> [
+    <span class="pl-s1"><span class="pl-pds">'</span>rgba(255,0,0,0.5)<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>rgba(255,255,0,0.5)<span class="pl-pds">'</span></span>,
+    <span class="pl-s1"><span class="pl-pds">'</span>rgba(0,255,0,0.5)<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>rgba(0,255,255,0.5)<span class="pl-pds">'</span></span>,
+    <span class="pl-s1"><span class="pl-pds">'</span>rgba(0,0,255,0.5)<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>rgba(255,0,255,0.5)<span class="pl-pds">'</span></span>
+];
+<span class="pl-st">function</span> <span class="pl-en">resolveKeypath</span>(<span class="pl-vpf">obj</span>, <span class="pl-vpf">keypath</span>) {
+    keypath.<span class="pl-s3">split</span>(<span class="pl-s1"><span class="pl-pds">'</span>.<span class="pl-pds">'</span></span>).forEach(<span class="pl-st">function</span>(<span class="pl-vpf">key</span>) {
+        <span class="pl-k">if</span> (key) {
+            obj <span class="pl-k">=</span> obj[key];
+        }
+    });
+    <span class="pl-k">return</span> obj;
+}</pre></div>
 
 <h3>
-<a name="viewmodel-using-obsjs" class="anchor" href="#viewmodel-using-obsjs"><span class="octicon octicon-link"></span></a>ViewModel (using obs.js)</h3>
+<a id="rivetsjs-adapter-and-configuration" class="anchor" href="#rivetsjs-adapter-and-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rivets.js adapter and configuration</h3>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">viewModel</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">now</span><span class="o">:</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="o">+</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()),</span>
-    <span class="nx">color</span><span class="o">:</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="nx">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
-    <span class="nx">user</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="nx">obs</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'User'</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+<div class="highlight highlight-javascript"><pre>rivets.configure({
+    prefix<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>rv<span class="pl-pds">'</span></span>,
+    adapter<span class="pl-k">:</span> {
+        <span class="pl-en">subscribe</span>: <span class="pl-st">function</span>(<span class="pl-vpf">obj</span>, <span class="pl-vpf">keypath</span>, <span class="pl-vpf">callback</span>) {
+            resolveKeypath(obj, keypath).subscribe(callback);
+        },
+        <span class="pl-en">unsubscribe</span>: <span class="pl-st">function</span>(<span class="pl-vpf">obj</span>, <span class="pl-vpf">keypath</span>, <span class="pl-vpf">callback</span>) {
+            resolveKeypath(obj, keypath).unsubscribe(callback);
+        },
+        <span class="pl-en">read</span>: <span class="pl-st">function</span>(<span class="pl-vpf">obj</span>, <span class="pl-vpf">keypath</span>) {
+            <span class="pl-k">return</span> resolveKeypath(obj, keypath)();
+        },
+        <span class="pl-en">publish</span>: <span class="pl-st">function</span>(<span class="pl-vpf">obj</span>, <span class="pl-vpf">keypath</span>, <span class="pl-vpf">value</span>) {
+            resolveKeypath(obj, keypath)(value);
+        }
+    }
+});
 
-<span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="nx">rivets</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'#view'</span><span class="p">),</span> <span class="nx">viewModel</span><span class="p">);</span>
+<span class="pl-s3">rivets.binders</span>.<span class="pl-en">bgcolor</span> <span class="pl-k">=</span> <span class="pl-st">function</span>(<span class="pl-vpf">el</span>, <span class="pl-vpf">value</span>) {
+    el.<span class="pl-sc">style</span>.<span class="pl-sc">backgroundColor</span> <span class="pl-k">=</span> value;
+};</pre></div>
 
-<span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">viewModel</span><span class="p">.</span><span class="nx">now</span><span class="p">(</span><span class="o">+</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
-    <span class="nx">viewModel</span><span class="p">.</span><span class="nx">color</span><span class="p">(</span><span class="nx">colors</span><span class="p">[</span>
-        <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">colors</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
-    <span class="p">]);</span>
-<span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
-</pre></div>
+<h3>
+<a id="viewmodel-using-obsjs" class="anchor" href="#viewmodel-using-obsjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>ViewModel (using obs.js)</h3>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> viewModel <span class="pl-k">=</span> {
+    now<span class="pl-k">:</span> obs.prop(<span class="pl-k">+</span><span class="pl-k">new</span> <span class="pl-en">Date</span>()),
+    color<span class="pl-k">:</span> obs.prop(colors[<span class="pl-c1">0</span>]),
+    user<span class="pl-k">:</span> {
+        name<span class="pl-k">:</span> obs.prop(<span class="pl-s1"><span class="pl-pds">'</span>User<span class="pl-pds">'</span></span>)
+    }
+};
+
+<span class="pl-s">var</span> view <span class="pl-k">=</span> rivets.bind($(<span class="pl-s1"><span class="pl-pds">'</span>#view<span class="pl-pds">'</span></span>), viewModel);
+
+<span class="pl-s3">setInterval</span>(<span class="pl-st">function</span>() {
+    viewModel.now(<span class="pl-k">+</span><span class="pl-k">new</span> <span class="pl-en">Date</span>());
+    viewModel.<span class="pl-sc">color</span>(colors[
+        <span class="pl-s3">Math</span>.<span class="pl-s3">floor</span>(<span class="pl-s3">Math</span>.<span class="pl-s3">random</span>() <span class="pl-k">*</span> colors.<span class="pl-sc">length</span>)
+    ]);
+}, <span class="pl-c1">3000</span>);</pre></div>
 
 <h1>
-<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h1>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>API</h1>
 
 <h2>
-<a name="obs-abstract-observables" class="anchor" href="#obs-abstract-observables"><span class="octicon octicon-link"></span></a>obs: Abstract observables</h2>
+<a id="obs-abstract-observables" class="anchor" href="#obs-abstract-observables" aria-hidden="true"><span class="octicon octicon-link"></span></a>obs: Abstract observables</h2>
 
 <p>This provides the base functionality for observables. You probably want to use <code>obs.prop</code> and <code>obs.computed</code> instead of calling <code>obs</code> directly.</p>
 
 <h3>
-<a name="obsoptions" class="anchor" href="#obsoptions"><span class="octicon octicon-link"></span></a>obs(options)</h3>
+<a id="obsoptionsfunction" class="anchor" href="#obsoptionsfunction" aria-hidden="true"><span class="octicon octicon-link"></span></a>obs(options):Function</h3>
 
 <p>Creates an observable.</p>
 
 <h4>
-<a name="optionscontext-optional" class="anchor" href="#optionscontext-optional"><span class="octicon octicon-link"></span></a>options.context (optional)</h4>
+<a id="optionscontext-optional" class="anchor" href="#optionscontext-optional" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.context (optional)</h4>
 
 <p>The context the observable's <code>read</code> and <code>write</code> functions will be executed in.</p>
 
 <p>Defaults to the observable instance if not explicitly set.</p>
 
 <h4>
-<a name="optionsreadfunction-and-optionswritefunction-optional" class="anchor" href="#optionsreadfunction-and-optionswritefunction-optional"><span class="octicon octicon-link"></span></a>options.read:Function and options.write:Function (optional)</h4>
+<a id="optionsreadfunction-and-optionswritefunction-optional" class="anchor" href="#optionsreadfunction-and-optionswritefunction-optional" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.read:Function and options.write:Function (optional)</h4>
 
 <p>The functions to be called when the observable is read from or written to.</p>
 
 <p>An error will be raised if the observable is read from but no <code>read</code> function was defined, or if it is written to and no <code>write</code> function was defined.</p>
 
 <h4>
-<a name="optionswatchedarray-optional" class="anchor" href="#optionswatchedarray-optional"><span class="octicon octicon-link"></span></a>options.watched:Array (optional)</h4>
+<a id="optionswatchedarray-optional" class="anchor" href="#optionswatchedarray-optional" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.watched:Array (optional)</h4>
 
 <p>An array of objects this observable subscribes to. If the value is not an array, it will be wrapped in one. Each object should have a <code>subscribe</code> method and (optionally) an <code>unsubscribe</code> method.</p>
 
 <h4>
-<a name="optionsonnotifyfunction-optional" class="anchor" href="#optionsonnotifyfunction-optional"><span class="octicon octicon-link"></span></a>options.onNotify:Function (optional)</h4>
+<a id="optionsonnotifyfunction-optional" class="anchor" href="#optionsonnotifyfunction-optional" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.onNotify:Function (optional)</h4>
 
 <p>Function to be called when an object the observable is watching changes. Defaults to the observable's <code>notify</code> method, effectively turning the observable into a relay.</p>
 
 <h3>
-<a name="obs" class="anchor" href="#obs"><span class="octicon octicon-link"></span></a>obs#()</h3>
+<a id="observable" class="anchor" href="#observable" aria-hidden="true"><span class="octicon octicon-link"></span></a>observable()</h3>
 
 <p>Calls the observable's <code>read</code> function with its <code>context</code>.</p>
 
 <h3>
-<a name="obsvalue" class="anchor" href="#obsvalue"><span class="octicon octicon-link"></span></a>obs#(value)</h3>
+<a id="observablevalue" class="anchor" href="#observablevalue" aria-hidden="true"><span class="octicon octicon-link"></span></a>observable(value)</h3>
 
 <p>Calls the observable's <code>write</code> function with its <code>context</code> and the given <code>value</code>.</p>
 
 <h3>
-<a name="obssubscribecallbackfunction" class="anchor" href="#obssubscribecallbackfunction"><span class="octicon octicon-link"></span></a>obs#subscribe(callback:Function)</h3>
+<a id="observablesubscribecallbackfunction" class="anchor" href="#observablesubscribecallbackfunction" aria-hidden="true"><span class="octicon octicon-link"></span></a>observable.subscribe(callback:Function)</h3>
 
 <p>Adds the given callback function to this observable's list of subscribers.</p>
 
 <p>The callback will be called with the observable's new and old value as its arguments whenever the observable's value is updated (even if the new value is equal to the old value).</p>
 
 <h3>
-<a name="obsunsubscribecallbackfunctionboolean" class="anchor" href="#obsunsubscribecallbackfunctionboolean"><span class="octicon octicon-link"></span></a>obs#unsubscribe(callback:Function):Boolean</h3>
+<a id="observableunsubscribecallbackfunctionboolean" class="anchor" href="#observableunsubscribecallbackfunctionboolean" aria-hidden="true"><span class="octicon octicon-link"></span></a>observable.unsubscribe(callback:Function):Boolean</h3>
 
 <p>Removes the given callback function from this observable's list of subscribers. The callback will no longer be called when the observable's value changes.</p>
 
 <p>Returns <code>false</code> if the callback could not be found in the list of subscribers or <code>true</code> otherwise.</p>
 
-<p><strong>NOTE:</strong> Remember to use the exact function that was passed to <code>obs#subscribe</code>.</p>
+<p><strong>NOTE:</strong> Remember to use the exact function that was passed to <code>observable.subscribe</code>.</p>
 
 <h3>
-<a name="obspeek" class="anchor" href="#obspeek"><span class="octicon octicon-link"></span></a>obs#peek()</h3>
+<a id="observablepeek" class="anchor" href="#observablepeek" aria-hidden="true"><span class="octicon octicon-link"></span></a>observable.peek()</h3>
 
 <p>Returns the observable's current value without invoking its <code>read</code> function.</p>
 
 <h3>
-<a name="obscommit" class="anchor" href="#obscommit"><span class="octicon octicon-link"></span></a>obs#commit()</h3>
+<a id="observablecommit" class="anchor" href="#observablecommit" aria-hidden="true"><span class="octicon octicon-link"></span></a>observable.commit()</h3>
 
 <p>Sets the observable's initial value to its current value and clears its <code>dirty</code> flag.</p>
 
 <h3>
-<a name="obsreset" class="anchor" href="#obsreset"><span class="octicon octicon-link"></span></a>obs#reset()</h3>
+<a id="observablereset" class="anchor" href="#observablereset" aria-hidden="true"><span class="octicon octicon-link"></span></a>observable.reset()</h3>
 
 <p>Resets the observable to its initial value (or <code>undefined</code>), then calls <code>notify()</code>.</p>
 
 <h3>
-<a name="obsnotify" class="anchor" href="#obsnotify"><span class="octicon octicon-link"></span></a>obs#notify()</h3>
+<a id="observablenotify" class="anchor" href="#observablenotify" aria-hidden="true"><span class="octicon octicon-link"></span></a>observable.notify()</h3>
 
 <p>Updates the observable's <code>dirty</code> flag, then notifies all subscribers with the its current and previous value.</p>
 
 <h3>
-<a name="obswatchdependencies" class="anchor" href="#obswatchdependencies"><span class="octicon octicon-link"></span></a>obs#watch(dependencies…)</h3>
+<a id="observablewatchdependencies" class="anchor" href="#observablewatchdependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>observable.watch(dependencies…)</h3>
 
 <p>Adds the given dependencies to this observable. Each dependency should have a <code>subscribe</code> and <code>unsubscribe</code> method. Whenever one of the dependencies changes, this observable's <code>onNotify</code> function will be called.</p>
 
 <h3>
-<a name="obsunwatchdependencies" class="anchor" href="#obsunwatchdependencies"><span class="octicon octicon-link"></span></a>obs#unwatch(dependencies…)</h3>
+<a id="observableunwatchdependencies" class="anchor" href="#observableunwatchdependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>observable.unwatch(dependencies…)</h3>
 
 <p>Removes the given dependencies by calling their <code>unsubscribe</code> methods. The observable will no longer be notified when their values change.</p>
 
 <h3>
-<a name="obsdismiss" class="anchor" href="#obsdismiss"><span class="octicon octicon-link"></span></a>obs#dismiss()</h3>
+<a id="observabledismiss" class="anchor" href="#observabledismiss" aria-hidden="true"><span class="octicon octicon-link"></span></a>observable.dismiss()</h3>
 
-<p>Removes all of the observable's dependencies. Equivalent to calling <code>obs#unwatch</code> for each dependency.</p>
+<p>Removes all of the observable's dependencies. Equivalent to calling <code>observable.unwatch</code> for each dependency.</p>
 
 <h3>
-<a name="obsfn" class="anchor" href="#obsfn"><span class="octicon octicon-link"></span></a>obs.fn</h3>
+<a id="obsfn" class="anchor" href="#obsfn" aria-hidden="true"><span class="octicon octicon-link"></span></a>obs.fn</h3>
 
 <p>An object containing attributes that will be applied to new observables.</p>
 
 <h2>
-<a name="obsprop-observable-properties" class="anchor" href="#obsprop-observable-properties"><span class="octicon octicon-link"></span></a>obs.prop: Observable properties</h2>
+<a id="obsprop-observable-properties" class="anchor" href="#obsprop-observable-properties" aria-hidden="true"><span class="octicon octicon-link"></span></a>obs.prop: Observable properties</h2>
 
 <p>This provides a simple wrapper around <code>obs</code> useful for observables that should just act as a single value storage.</p>
 
 <h3>
-<a name="obspropinitialvalue" class="anchor" href="#obspropinitialvalue"><span class="octicon octicon-link"></span></a>obs.prop([initialValue])</h3>
+<a id="obspropinitialvalue" class="anchor" href="#obspropinitialvalue" aria-hidden="true"><span class="octicon octicon-link"></span></a>obs.prop([initialValue])</h3>
 
 <p>Creates an observable property (optionally initialized with the given value).</p>
 
 <h3>
-<a name="obsprop" class="anchor" href="#obsprop"><span class="octicon octicon-link"></span></a>obs.prop#()</h3>
+<a id="obsprop" class="anchor" href="#obsprop" aria-hidden="true"><span class="octicon octicon-link"></span></a>obs.prop#()</h3>
 
 <p>Returns the property's current value.</p>
 
 <h3>
-<a name="obspropnewvalue" class="anchor" href="#obspropnewvalue"><span class="octicon octicon-link"></span></a>obs.prop#(newValue)</h3>
+<a id="obspropnewvalue" class="anchor" href="#obspropnewvalue" aria-hidden="true"><span class="octicon octicon-link"></span></a>obs.prop#(newValue)</h3>
 
 <p>Sets the property's current value to <code>newValue</code> and notifies all subscribers.</p>
 
 <h2>
-<a name="obscomputed-computed-observables" class="anchor" href="#obscomputed-computed-observables"><span class="octicon octicon-link"></span></a>obs.computed: Computed observables</h2>
+<a id="obscomputed-computed-observables" class="anchor" href="#obscomputed-computed-observables" aria-hidden="true"><span class="octicon octicon-link"></span></a>obs.computed: Computed observables</h2>
 
 <p>This provides a simple wrapper around <code>obs</code> to create observables that depend on other observables and have values that should be computed dynamically, e.g. composite values of other observables.</p>
 
 <h3>
-<a name="obscomputedcomputefunction-writefunction-watcharray" class="anchor" href="#obscomputedcomputefunction-writefunction-watcharray"><span class="octicon octicon-link"></span></a>obs.computed(compute:Function, [write:Function], [watch:Array])</h3>
+<a id="obscomputedcomputefunction-writefunction-watcharray" class="anchor" href="#obscomputedcomputefunction-writefunction-watcharray" aria-hidden="true"><span class="octicon octicon-link"></span></a>obs.computed(compute:Function, [write:Function], [watch:Array])</h3>
 
 <p>Creates a computed observable observable. The observable's value will be set to the return value of the given function <code>compute</code> and updated whenever any of the <code>watch</code> functions changes.</p>
 
@@ -403,56 +392,49 @@ make <span class="o">&amp;&amp;</span> make dist
 <p>The list of <code>watch</code> functions can be an array containing any kind of object that supports the <code>subscribe</code> and (optionally) <code>unsubscribe</code> methods (e.g. an instance of <code>sublish.PubSub</code>).</p>
 
 <h3>
-<a name="obscomputedoptions" class="anchor" href="#obscomputedoptions"><span class="octicon octicon-link"></span></a>obs.computed(options)</h3>
+<a id="obscomputedoptions" class="anchor" href="#obscomputedoptions" aria-hidden="true"><span class="octicon octicon-link"></span></a>obs.computed(options)</h3>
 
 <p>Creates a computed observable property with the given options.</p>
 
 <h4>
-<a name="optionscomputefunction-optional" class="anchor" href="#optionscomputefunction-optional"><span class="octicon octicon-link"></span></a>options.compute:Function (optional)</h4>
+<a id="optionscomputefunction-optional" class="anchor" href="#optionscomputefunction-optional" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.compute:Function (optional)</h4>
 
 <p>The function this computed observable will use to generate its value. If this option is not provided, the observable will be write-only.</p>
 
 <h4>
-<a name="optionswritefunction-optional" class="anchor" href="#optionswritefunction-optional"><span class="octicon octicon-link"></span></a>options.write:Function (optional)</h4>
+<a id="optionswritefunction-optional" class="anchor" href="#optionswritefunction-optional" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.write:Function (optional)</h4>
 
 <p>The function this computed observable will use when it is passed a value. If this option is not provided, the observable will be read-only.</p>
 
 <h4>
-<a name="optionswatcharray-optional" class="anchor" href="#optionswatcharray-optional"><span class="octicon octicon-link"></span></a>options.watch:Array (optional)</h4>
+<a id="optionswatcharray-optional" class="anchor" href="#optionswatcharray-optional" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.watch:Array (optional)</h4>
 
 <p>See above. This option has no effect if no <code>read</code> function is provided. If a single object is passed instead of an array, the object will automatically be wrapped in an array.</p>
 
 <h4>
-<a name="optionscontext-optional-1" class="anchor" href="#optionscontext-optional-1"><span class="octicon octicon-link"></span></a>options.context (optional)</h4>
+<a id="optionscontext-optional-1" class="anchor" href="#optionscontext-optional-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.context (optional)</h4>
 
 <p>The context the <code>compute</code> and <code>write</code> functions will be executed in. Defaults to the computed observable itself.</p>
 
 <h3>
-<a name="obscomputed" class="anchor" href="#obscomputed"><span class="octicon octicon-link"></span></a>obs.computed#()</h3>
+<a id="computedobservable" class="anchor" href="#computedobservable" aria-hidden="true"><span class="octicon octicon-link"></span></a>computedObservable()</h3>
 
 <p>Returns the computed property's current value. For lazy computed observables, this will trigger the function evaluation and notify any subscribers.</p>
 
 <h3>
-<a name="obscomputedlazycomputefunction-writefunction-watchedarray" class="anchor" href="#obscomputedlazycomputefunction-writefunction-watchedarray"><span class="octicon octicon-link"></span></a>obs.computed.lazy(compute:Function, [write:Function], [watched:Array])</h3>
+<a id="obscomputedlazycomputefunction-writefunction-watchedarray" class="anchor" href="#obscomputedlazycomputefunction-writefunction-watchedarray" aria-hidden="true"><span class="octicon octicon-link"></span></a>obs.computed.lazy(compute:Function, [write:Function], [watched:Array])</h3>
 
 <p>See <code>obs.computed(…)</code>. The created observable will only call its <code>compute</code> function to update its value when it is explicitly read from.</p>
 
 <h3>
-<a name="obscomputedlazyoptions" class="anchor" href="#obscomputedlazyoptions"><span class="octicon octicon-link"></span></a>obs.computed.lazy(options)</h3>
+<a id="obscomputedlazyoptions" class="anchor" href="#obscomputedlazyoptions" aria-hidden="true"><span class="octicon octicon-link"></span></a>obs.computed.lazy(options)</h3>
 
 <p>See <code>obs.computed(options)</code> and above.</p>
 
 <h1>
-<a name="acknowledgements" class="anchor" href="#acknowledgements"><span class="octicon octicon-link"></span></a>Acknowledgements</h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h1>
 
-<p>This library was heavily inspired by <a href="https://github.com/SteveSanderson/knockout">Steve Sanderson's knockout.js project</a>.</p>
-
-<h1>
-<a name="unlicense" class="anchor" href="#unlicense"><span class="octicon octicon-link"></span></a>Unlicense</h1>
-
-<p>This is free and unencumbered public domain software. For more information, see <a href="http://unlicense.org/">http://unlicense.org/</a> or the accompanying <a href="https://github.com/pluma/obs/blob/master/UNLICENSE">UNLICENSE</a> file.</p>
-
-<p><a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/pluma/obs/trend.png" alt="Bitdeli Badge"></a></p>
+<p>The MIT/Expat license. For more information, see <a href="http://pluma.mit-license.org/">http://pluma.mit-license.org/</a> or the accompanying <a href="https://github.com/pluma/obs/blob/master/LICENSE">LICENSE</a> file.</p>
       </section>
     </div>
 
