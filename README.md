@@ -59,7 +59,7 @@ Make sure you also have a compatible copy of [sublish](https://github.com/pluma/
 
 ### As standalone bundle
 
-Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dist/obs.all.min.js) (~3.7 kB minified or ~1.2 kB gzipped, includes [sublish 0.4.5](https://github.com/pluma/sublish/tree/0.4.5)) and download it to your project.
+Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dist/obs.all.min.js) (~4.8 kB minified or ~1.4 kB gzipped, includes [sublish 2.0.0](https://github.com/pluma/sublish/tree/2.0.0)) and download it to your project.
 
 ```html
 <script src="/your/js/path/obs.all.min.js"></script>
@@ -67,7 +67,7 @@ Get the [latest distribution bundle](https://raw.github.com/pluma/obs/master/dis
 
 This makes the `obs` module available in the global namespace.
 
-If you are already using `sublish` in your project, you can download the [latest minified standalone release](https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js) (~3.3 kB minified or ~1.1 kB gzipped) instead.
+If you are already using `sublish` in your project, you can download the [latest minified standalone release](https://raw.github.com/pluma/obs/master/dist/obs.globals.min.js) (~4.0 kB minified or ~1.2 kB gzipped) instead.
 
 # Basic usage example with node.js
 
