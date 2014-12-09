@@ -1,6 +1,8 @@
 (function(root){
 var module = {exports: {}};
 (function(require, exports, module) {
+/*jshint es3: true */
+/*global module, require */
 'use strict';
 var PubSub = require('sublish').PubSub,
   slice = Array.prototype.slice,

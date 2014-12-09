@@ -1,3 +1,4 @@
+/*jshint node: true */
 /*global describe, it, beforeEach, afterEach */
 'use strict';
 var expect = require('expect.js'),
