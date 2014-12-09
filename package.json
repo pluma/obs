@@ -1,6 +1,6 @@
 {
   "name": "obs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Alan Plum <me@pluma.io>",
   "description": "Observable properties done right.",
   "license": "MIT",
