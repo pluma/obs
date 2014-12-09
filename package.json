@@ -36,7 +36,7 @@
     "globals-min": "npm run globals; uglifyjs dist/obs.globals.js > dist/obs.globals.min.js",
     "amd": "cat templates/amd.before index.js templates/amd.after > dist/obs.amd.js",
     "amd-min": "npm run amd; uglifyjs dist/obs.amd.js > dist/obs.amd.min.js",
-    "deps": "wget https://raw.githubusercontent.com/pluma/sublish/v2.0.0/dist/sublish.globals.js",
+    "deps": "wget -O dist/vendor/sublish.globals.js https://raw.githubusercontent.com/pluma/sublish/v2.0.0/dist/sublish.globals.js",
     "globals-all": "npm run globals; npm run deps; cat dist/vendor/sublish.globals.js dist/obs.globals.js | uglifyjs > dist/obs.all.min.js"
   },
   "engines": {
